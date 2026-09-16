@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel estratégico · ScribeClaroPUCV</title>
+<style>
+:root{
+  --navy:#00284d; --navy2:#003f75; --ink:#16202b; --muted:#5c6b7a;
+  --line:#dde5ec; --bg:#f4f7fa; --card:#ffffff;
+  --amber:#c8811c; --amber-soft:#fdf3e2;
+  --red:#b3261e; --red-soft:#fdecea;
+  --orange:#a85a10; --orange-soft:#fdf0e3;
+  --yellow:#8a6d0b; --yellow-soft:#fbf6e0;
+  --green:#1d6b45; --green-soft:#e8f4ed;
+  --teal:#0f5f6b; --teal-soft:#e4f2f4;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.layout{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+aside{width:270px;flex:0 0 270px;background:var(--navy);color:#dce7f1;position:sticky;top:0;height:100vh;
+  overflow-y:auto;padding:26px 0}
+aside .brand{padding:0 22px 20px;border-bottom:1px solid rgba(255,255,255,.13);margin-bottom:14px}
+aside .brand h1{font-size:17px;margin:0 0 5px;color:#fff;letter-spacing:-.2px}
+aside .brand p{font-size:11.5px;margin:0;color:#8fb0cc;line-height:1.45}
+nav a{display:block;padding:9px 22px;color:#c2d6e8;text-decoration:none;font-size:13.5px;
+  border-left:3px solid transparent;transition:.15s}
+nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+nav a.active{background:rgba(255,255,255,.11);color:#fff;border-left-color:var(--amber);font-weight:600}
+nav .grp{padding:16px 22px 6px;font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:#6f92b3;font-weight:700}
+aside .foot{padding:20px 22px 0;margin-top:18px;border-top:1px solid rgba(255,255,255,.13);font-size:11px;color:#7c9dbb}
+
+/* MAIN */
+main{flex:1;min-width:0;padding:34px 46px 90px;max-width:1180px}
+section{display:none;animation:fade .25s ease}
+section.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2{font-size:28px;margin:0 0 6px;letter-spacing:-.6px;color:var(--navy)}
+.sub{color:var(--muted);font-size:14.5px;margin:0 0 26px;max-width:760px}
+h3{font-size:18px;margin:34px 0 12px;color:var(--navy2);letter-spacing:-.2px}
+h4{font-size:14px;margin:20px 0 8px;color:var(--ink);text-transform:uppercase;letter-spacing:.7px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:20px 22px;margin-bottom:16px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
+
+.stat{background:#fff;border:1px solid var(--line);border-radius:11px;padding:17px 18px}
+.stat .n{font-size:26px;font-weight:750;color:var(--navy);letter-spacing:-1px;line-height:1.1}
+.stat .l{font-size:12px;color:var(--muted);margin-top:5px}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;margin:10px 0 18px;
+  border:1px solid var(--line);border-radius:9px;overflow:hidden}
+th{background:#eef3f8;text-align:left;padding:10px 13px;font-weight:650;color:var(--navy);
+  font-size:11.5px;text-transform:uppercase;letter-spacing:.55px;border-bottom:1px solid var(--line)}
+td{padding:10px 13px;border-bottom:1px solid #eef2f6;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#f8fbfd}
+
+.tag{display:inline-block;padding:2.5px 9px;border-radius:20px;font-size:10.5px;font-weight:700;
+  letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+.t-red{background:var(--red-soft);color:var(--red)}
+.t-org{background:var(--orange-soft);color:var(--orange)}
+.t-yel{background:var(--yellow-soft);color:var(--yellow)}
+.t-grn{background:var(--green-soft);color:var(--green)}
+.t-tea{background:var(--teal-soft);color:var(--teal)}
+.t-nav{background:#e7eef6;color:var(--navy2)}
+.t-amb{background:var(--amber-soft);color:var(--amber)}
+
+.alert{border-left:4px solid var(--red);background:var(--red-soft);padding:14px 17px;border-radius:0 9px 9px 0;margin-bottom:13px}
+.alert.o{border-color:var(--orange);background:var(--orange-soft)}
+.alert.y{border-color:var(--yellow);background:var(--yellow-soft)}
+.alert.g{border-color:var(--green);background:var(--green-soft)}
+.alert.b{border-color:var(--navy2);background:#eaf1f8}
+.alert strong{display:block;margin-bottom:4px;font-size:14px}
+.alert p{font-size:13.5px;margin:0}
+
+.quote{border-left:3px solid var(--amber);padding:4px 0 4px 16px;margin:16px 0;color:var(--navy2);
+  font-size:16px;font-style:italic;line-height:1.5}
+
+ul.clean{list-style:none;padding:0;margin:0}
+ul.clean li{padding:7px 0 7px 22px;position:relative;font-size:13.5px;border-bottom:1px solid #f0f4f8}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li:before{content:"";position:absolute;left:4px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--amber)}
+ul.chk li:before{content:"☐";background:none;left:0;top:6px;width:auto;height:auto;color:var(--muted);font-size:14px}
+
+.pill-row{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 18px}
+.pill{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;font-size:12.5px;
+  cursor:pointer;transition:.15s;color:var(--muted);user-select:none}
+.pill:hover{border-color:var(--navy2);color:var(--navy2)}
+.pill.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600}
+
+.bar{height:7px;background:#e9eff5;border-radius:5px;overflow:hidden;margin-top:8px}
+.bar > i{display:block;height:100%;border-radius:5px;background:var(--navy2)}
+
+.week{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.day{background:#fff;border:1px solid var(--line);border-radius:9px;padding:13px}
+.day h5{margin:0 0 9px;font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--navy)}
+.day p{font-size:12.5px;margin:0 0 7px;color:var(--muted);padding-left:9px;border-left:2px solid var(--amber)}
+
+.copy{background:#fbfcfe;border:1px solid var(--line);border-left:3px solid var(--navy2);border-radius:0 9px 9px 0;
+  padding:16px 18px;font-size:13.5px;white-space:pre-wrap;margin:10px 0 18px;color:#243342;line-height:1.65}
+.copy .meta{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);
+  margin-bottom:9px;font-weight:700;white-space:normal}
+
+.tl{position:relative;padding-left:26px;margin:14px 0}
+.tl:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl .it{position:relative;margin-bottom:20px}
+.tl .it:before{content:"";position:absolute;left:-24px;top:5px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:3px solid var(--amber)}
+.tl .it h5{margin:0 0 3px;font-size:14.5px;color:var(--navy)}
+.tl .it .when{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:7px}
+
+.swot{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:13px}
+.swot > div{border-radius:11px;padding:17px 19px;border:1px solid}
+.sw-f{background:var(--green-soft);border-color:#bfdcca}
+.sw-o{background:#e7eef6;border-color:#c3d5e6}
+.sw-d{background:var(--orange-soft);border-color:#e6cfae}
+.sw-a{background:var(--red-soft);border-color:#eccac6}
+.swot h5{margin:0 0 9px;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.swot ul{margin:0;padding-left:17px;font-size:13px}
+.swot li{margin-bottom:6px}
+
+a.ext{color:var(--navy2);text-decoration:none;border-bottom:1px solid #b9cee0}
+a.ext:hover{border-color:var(--navy2)}
+.mini{font-size:12px;color:var(--muted)}
+.topbar{display:none}
+@media(max-width:900px){
+  .layout{flex-direction:column}
+  aside{width:100%;flex:none;height:auto;position:static;padding:18px 0}
+  aside nav{display:flex;flex-wrap:wrap;gap:4px;padding:0 14px}
+  nav a{border-left:none;border-radius:7px;padding:7px 12px;font-size:12.5px}
+  nav a.active{border-left:none}
+  nav .grp{display:none}
+  aside .foot{display:none}
+  main{padding:22px 18px 70px}
+  h2{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="brand">
+    <h1>ScribeClaroPUCV</h1>
+    <p>Panel estratégico · Comunicación, recursos, formación e IA<br>Agosto 2026 – Diciembre 2027</p>
+    <p style="font-size:11.5px;margin:10px 0 0"><a href="/" style="color:#e8b96a;text-decoration:none">&larr; Índice</a> <span style="color:#5c7b99">·</span> <a href="/rrss" style="color:#e8b96a;text-decoration:none">Kit de redes sociales</a></p>
+  </div>
+  <nav id="nav">
+    <div class="grp">Situación</div>
+    <a href="#" data-s="resumen" class="active">Resumen ejecutivo</a>
+    <a href="#" data-s="diagnostico">Diagnóstico y brechas</a>
+    <a href="#" data-s="foda">FODA</a>
+    <a href="#" data-s="posicion">Posicionamiento</a>
+    <div class="grp">Ejecución</div>
+    <a href="#" data-s="rrss">Redes sociales</a>
+    <a href="#" data-s="calendario">Calendario editorial</a>
+    <a href="#" data-s="copys">Copys modelo</a>
+    <a href="#" data-s="recursos">Recursos a crear</a>
+    <a href="#" data-s="cursos">Cursos y talleres</a>
+    <a href="#" data-s="ia">Herramientas de IA</a>
+    <div class="grp">Crecimiento</div>
+    <a href="#" data-s="difusion">Difusión y alianzas</a>
+    <a href="#" data-s="roadmap">Plan 90/180/365</a>
+    <a href="#" data-s="kpis">Métricas y riesgos</a>
+    <a href="#" data-s="fuentes">Fuentes</a>
+  </nav>
+  <div class="foot">Documento de trabajo interno.<br>Datos verificados en fuentes públicas.</div>
+</aside>
+
+<main>
+
+<!-- RESUMEN -->
+<section id="resumen" class="on">
+  <h2>Resumen ejecutivo</h2>
+  <p class="sub">ScribeClaroPUCV tiene un capital reputacional superior al que su comunicación refleja. El problema no es la calidad del proyecto: es que casi nadie fuera de sus círculos institucionales sabe que existe, y quienes llegan al sitio no encuentran razones para volver.</p>
+
+  <div class="grid g4">
+    <div class="stat"><div class="n">3</div><div class="l">Personas en el equipo</div></div>
+    <div class="stat"><div class="n">~15</div><div class="l">Piezas de contenido en el sitio</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">Redes sociales activas</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">Recursos propios descargables</div></div>
+  </div>
+
+  <h3>El activo central</h3>
+  <div class="quote">ScribeClaro es la inteligencia artificial que no escribe por ti: te enseña a escribir claro.</div>
+  <p>En un mercado saturado de generadores de texto, ser explícitamente un <em>no generador</em> es una posición de marca rara, ética y perfectamente comunicable. Es el diferenciador que ninguna herramienta global puede copiar sin contradecir su propio modelo de negocio.</p>
+
+  <h3>Lo que ya está ganado</h3>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Validación institucional</h4>
+      <ul class="clean">
+        <li>Usada por funcionarios del Poder Judicial y del Tribunal Constitucional</li>
+        <li>Destacada en el Boletín de Lenguaje Claro de la Corte Suprema</li>
+        <li>Listada por la Academia Judicial de Chile entre las herramientas de IA para tareas judiciales</li>
+        <li>Respaldo de la Vicerrectoría Académica y la Facultad de Derecho PUCV</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Autoridad académica</h4>
+      <ul class="clean">
+        <li>Ponencia en la II Convención de la Red Panhispánica (Lima, oct. 2025) ante ~200 representantes de +550 instituciones</li>
+        <li>Invitación de la Universitat Autònoma de Barcelona (jun. 2026)</li>
+        <li>Colaboración en la Guía de lenguaje claro del Senado de Chile</li>
+        <li>Publicación en el Anuario del Instituto Cervantes 2025</li>
+        <li>Cobertura internacional (El Universo, Ecuador)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Las cinco decisiones que más importan</h3>
+  <table>
+    <thead><tr><th style="width:34px">#</th><th>Decisión</th><th style="width:34%">Por qué</th><th style="width:100px">Plazo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1</strong></td><td>Corregir correo y teléfono, publicar la Declaración de IA Responsable</td><td>Sin esto, ninguna institución seria puede formalizar el uso. Desbloquea todo lo demás</td><td><span class="tag t-red">14 días</span></td></tr>
+      <tr><td><strong>2</strong></td><td>Contratar un ayudante estudiantil de comunicaciones</td><td>Es la condición material para que el 80% del plan exista</td><td><span class="tag t-org">30 días</span></td></tr>
+      <tr><td><strong>3</strong></td><td>Desarrollar el Índice de Claridad ScribeClaro</td><td>Convierte el valor en un número: habilita evaluación, venta institucional, prensa e investigación a la vez</td><td><span class="tag t-yel">6 meses</span></td></tr>
+      <tr><td><strong>4</strong></td><td>Publicar tres recursos propios con DOI</td><td>Da razones para volver, material citable y contactos que capturar</td><td><span class="tag t-yel">6 meses</span></td></tr>
+      <tr><td><strong>5</strong></td><td>Convertir /services/ en oferta formativa real y cerrar el primer programa pagado</td><td>Inicio de la sostenibilidad financiera</td><td><span class="tag t-grn">12 meses</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert b">
+    <strong>Principio innegociable</strong>
+    <p>El asistente sigue siendo gratuito y sin registro. Es el activo de legitimidad del proyecto. Lo que se cobra es la formación, el acompañamiento y la consultoría — nunca el acceso a la herramienta.</p>
+  </div>
+</section>
+
+<!-- DIAGNOSTICO -->
+<section id="diagnostico">
+  <h2>Diagnóstico y brechas</h2>
+  <p class="sub">Auditoría de las siete secciones del sitio y de las fuentes públicas del proyecto. Estos puntos deben resolverse antes de invertir en difusión: amplificar tráfico hacia un sitio con estos problemas desperdicia la inversión.</p>
+
+  <h3>Ficha del proyecto</h3>
+  <table>
+    <tbody>
+      <tr><th style="width:210px">Qué es</th><td>Plataforma web educativa con asistente de escritura basado en IA, orientada a la redacción jurídica clara</td></tr>
+      <tr><th>Origen</th><td>Proyecto de innovación para la docencia — Programa de Desarrollo Docente / Vicerrectoría Académica PUCV</td></tr>
+      <tr><th>Difusión pública inicial</th><td>Enero de 2025</td></tr>
+      <tr><th>Registro legal</th><td>23 de junio de 2026 · Certificado N.º 2026-A-6558</td></tr>
+      <tr><th>Modelo de acceso</th><td>Gratuito, sin registro</td></tr>
+      <tr><th>Equipo</th><td>Claudia Poblete (fundadora y directora) · Pamela Catalán (investigación) · Óscar Sancho (desarrollo web)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Hallazgos críticos</h3>
+  <div class="pill-row" id="fp">
+    <span class="pill on" data-f="all">Todos</span>
+    <span class="pill" data-f="crit">🔴 Críticos</span>
+    <span class="pill" data-f="alto">🟠 Altos</span>
+    <span class="pill" data-f="medio">🟡 Medios</span>
+  </div>
+
+  <div class="fitem crit"><div class="alert"><strong>H1 · El teléfono publicado es un número ficticio</strong><p>En el pie de página figura <code>202-555-0188</code>. El prefijo 555-01xx con código de área 202 es el rango reservado en EE.UU. para ficción: es un dato de relleno de plantilla que nunca se reemplazó. Un funcionario judicial que intente contactar al proyecto encontrará un número inexistente.</p></div></div>
+  <div class="fitem crit"><div class="alert"><strong>H2 · El correo de contacto es una cuenta Gmail</strong><p><code>scribeclaropucv@gmail.com</code> contradice el posicionamiento institucional. Para un interlocutor del Poder Judicial o de un ministerio, señala informalidad y proyecto personal. Solicitar un alias @pucv.cl es la corrección de mayor retorno sobre esfuerzo de todo el plan.</p></div></div>
+  <div class="fitem crit"><div class="alert"><strong>H3 · Ausencia total de presencia en redes sociales</strong><p>Sin cuenta identificable en LinkedIn, Instagram, X, YouTube ni Bluesky. Todo el alcance depende de la agenda personal de la fundadora y de menciones de terceros. Ninguno de los dos es controlable ni escalable.</p></div></div>
+  <div class="fitem crit"><div class="alert"><strong>H4 · Sin política de privacidad ni declaración sobre el tratamiento de los textos</strong><p>La herramienta procesa escritos que pueden contener datos personales o información de causas. Sin declaración expresa sobre almacenamiento, entrenamiento, proveedor y jurisdicción, ninguna institución pública podrá aprobar formalmente su uso. <strong>Este es el techo real de la escalabilidad institucional.</strong></p></div></div>
+
+  <div class="fitem alto"><div class="alert o"><strong>H5 · Sección Noticias inactiva</strong><p>Tres de las cuatro entradas comparten fecha (15/03/2026) y la última es del 31/07/2026. Un visitante no puede distinguir si el proyecto está vivo.</p></div></div>
+  <div class="fitem alto"><div class="alert o"><strong>H6 · Recursos y Biblioteca son enlaces a terceros</strong><p>Los 7 recursos son externos y las 4 publicaciones son de la propia fundadora. Cero material descargable con marca propia: cero contenido citable, cero razón para volver, cero captación de contactos.</p></div></div>
+  <div class="fitem alto"><div class="alert o"><strong>H7 · Ninguna métrica de uso publicada</strong><p>Sin cifras no hay titular de prensa, ni argumento de financiamiento, ni caso de negocio para Educación Continua. Instrumentar analítica es prerrequisito de todo lo demás.</p></div></div>
+  <div class="fitem alto"><div class="alert o"><strong>H8 · Sin mecanismo de captación de contactos</strong><p>Ni newsletter, ni lista de correo, ni formulario de interés institucional. Cada visitante se pierde al cerrar la pestaña.</p></div></div>
+  <div class="fitem alto"><div class="alert o"><strong>H9 · Sitio disponible solo en español</strong><p>El proyecto ya tiene alcance iberoamericano; una versión en inglés abriría el circuito académico internacional y las redes globales de plain language.</p></div></div>
+
+  <div class="fitem medio"><div class="alert y"><strong>H10 · Sin demostración visible del producto</strong><p>Ni video, ni captura anotada, ni ejemplo antes/después. El visitante debe hacer un acto de fe antes de entrar al chat.</p></div></div>
+  <div class="fitem medio"><div class="alert y"><strong>H11 · Sin casos de uso ni testimonios</strong><p>Pese a existir usuarios del Poder Judicial y del Tribunal Constitucional.</p></div></div>
+  <div class="fitem medio"><div class="alert y"><strong>H12 · /services/ describe funciones, no servicios contratables</strong><p>La portada anuncia "Capacitaciones y talleres" pero no hay ninguna oferta publicada. Hay demanda que llega y no encuentra qué comprar.</p></div></div>
+  <div class="fitem medio"><div class="alert y"><strong>H13 · Sin blog ni contenido optimizado para búsqueda</strong><p>El sitio no compite por consultas como "lenguaje claro jurídico" o "cómo redactar una sentencia clara".</p></div></div>
+  <div class="fitem medio"><div class="alert y"><strong>H14 · Sin declaración de accesibilidad (WCAG)</strong><p>Una plataforma cuyo objeto es el derecho a comprender debería ser ejemplar en accesibilidad digital.</p></div></div>
+</section>
+
+<!-- FODA -->
+<section id="foda">
+  <h2>FODA</h2>
+  <p class="sub">Lectura estratégica de la posición actual del proyecto.</p>
+  <div class="swot">
+    <div class="sw-f"><h5>Fortalezas</h5><ul>
+      <li>Diferenciación ética defendible: no genera texto, preserva la autoría</li>
+      <li>Aval del Poder Judicial y de la Academia Judicial de Chile</li>
+      <li>Liderazgo académico con proyección iberoamericana</li>
+      <li>Respaldo VRA + Facultad de Derecho; dominio institucional .pucv.cl</li>
+      <li>Gratuidad sin registro: fricción de entrada casi nula</li>
+      <li>Nicho preciso donde las herramientas globales son genéricas</li>
+    </ul></div>
+    <div class="sw-o"><h5>Oportunidades</h5><ul>
+      <li>El "derecho a comprender" escala a categoría normativa en Iberoamérica</li>
+      <li>Demanda urgente de capacitación en IA responsable en el sector público</li>
+      <li>Vacío de mercado: no hay oferta consolidada de formación en lenguaje claro jurídico + IA en Chile</li>
+      <li>Red de Lenguaje Claro Chile y Red Panhispánica como base instalada de clientes</li>
+      <li>Fondos concursables: InES, FONDECYT, Corfo, cooperación iberoamericana</li>
+      <li>Interés transversal ya manifestado (Mineduc, estudiantes de ingeniería)</li>
+    </ul></div>
+    <div class="sw-d"><h5>Debilidades</h5><ul>
+      <li>Cero presencia en redes sociales</li>
+      <li>Equipo de tres personas con dedicación parcial</li>
+      <li>Dependencia crítica de una sola persona para la visibilidad</li>
+      <li>Sin contenido propio, sin métricas, sin captación de contactos</li>
+      <li>Errores de profesionalismo en datos de contacto</li>
+      <li>Sin marco de privacidad que habilite adopción institucional formal</li>
+      <li>Sin modelo de ingresos ni vía de sostenibilidad declarada</li>
+    </ul></div>
+    <div class="sw-a"><h5>Amenazas</h5><ul>
+      <li>Que los grandes editores incorporen retroalimentación de claridad nativa</li>
+      <li>Gratuidad insostenible si escala el costo de inferencia</li>
+      <li>Erosión reputacional si Noticias sigue congelada</li>
+      <li>Escepticismo institucional hacia la IA en el sector justicia</li>
+      <li>Rotación de la fundadora sin sucesión comunicacional instalada</li>
+      <li>Que otro actor con más músculo ocupe el espacio "lenguaje claro + IA"</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- POSICIONAMIENTO -->
+<section id="posicion">
+  <h2>Posicionamiento y arquitectura de marca</h2>
+  <p class="sub">La categoría en la que ScribeClaro compite no es "corrector de textos" ni "IA legal". Es infraestructura del derecho a comprender.</p>
+
+  <div class="alert b"><strong>Por qué elevar la categoría cambia todo</strong><p>Cambia el interlocutor (de estudiante a autoridad), el presupuesto (de gasto de software a política pública), la prensa (de tecnología a democracia y acceso a la justicia) y la conversación (de funcionalidades a derechos).</p></div>
+
+  <h3>Los cuatro mensajes maestros</h3>
+  <div class="grid g4">
+    <div class="card"><h4>Autoría</h4><p class="mini">"El estudiante siempre es el autor de su texto."</p></div>
+    <div class="card"><h4>Claridad como derecho</h4><p class="mini">"Quien no entiende una resolución no puede ejercer sus derechos."</p></div>
+    <div class="card"><h4>Rigor disciplinar</h4><p class="mini">"Construida por lingüistas y juristas, para el español jurídico."</p></div>
+    <div class="card"><h4>IA responsable</h4><p class="mini">"IA que fortalece la integridad académica en lugar de erosionarla."</p></div>
+  </div>
+
+  <h3>Segmentos y qué ofrecerle a cada uno</h3>
+  <table>
+    <thead><tr><th>Segmento</th><th>Necesidad real</th><th>Oferta</th><th>Canal</th><th>Rol estratégico</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Estudiantes de Derecho</strong></td><td>Aprobar, escribir mejor, no infringir integridad académica</td><td>Asistente + guías + talleres curriculares</td><td>Instagram, docentes</td><td><span class="tag t-nav">Volumen</span></td></tr>
+      <tr><td><strong>Docentes de Derecho</strong></td><td>Corregir menos y mejor sin ser lingüistas</td><td>Rúbricas, guías docentes, taller de integración</td><td>LinkedIn, redes de docencia</td><td><span class="tag t-grn">Multiplicadores</span></td></tr>
+      <tr><td><strong>Poder Judicial</strong></td><td>Cumplir política de lenguaje claro; formar en IA responsable</td><td>Programas cerrados, glosarios, acompañamiento</td><td>Academia Judicial</td><td><span class="tag t-amb">Prestigio + ingresos</span></td></tr>
+      <tr><td><strong>Servicios públicos</strong></td><td>Comunicar con claridad; transparencia</td><td>Diagnóstico + capacitación + reescritura</td><td>Red de Lenguaje Claro</td><td><span class="tag t-amb">Ingresos y escala</span></td></tr>
+      <tr><td><strong>Abogados y estudios</strong></td><td>Diferenciarse; escritos persuasivos y legibles</td><td>Taller ejecutivo, certificación breve</td><td>LinkedIn, colegios</td><td><span class="tag t-amb">Ingresos</span></td></tr>
+      <tr><td><strong>Otras universidades</strong></td><td>Soporte de escritura sin construirlo</td><td>Convenio + formación de formadores</td><td>Redes académicas</td><td><span class="tag t-tea">Escala nacional</span></td></tr>
+      <tr><td><strong>Iberoamérica</strong></td><td>Mismos problemas, mismo idioma</td><td>Adaptación por país, formación en línea</td><td>Red Panhispánica, RAE</td><td><span class="tag t-tea">Largo plazo</span></td></tr>
+      <tr><td><strong>Ciudadanía y prensa</strong></td><td>Entender el lenguaje del Estado</td><td>Contenido divulgativo, glosario abierto</td><td>Prensa, redes</td><td><span class="tag t-nav">Legitimidad</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Identidad verbal</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Tono</h4><p class="mini">Riguroso pero cálido. Docente, no profesoral. Seguro sin ser solemne. Explica sin condescender. Nunca alarmista sobre la IA, nunca ingenuo tampoco.</p></div>
+    <div class="card"><h4>Lo que nunca se dice</h4><p class="mini">"Redacta por ti" · "automatiza tu escritura" · "revoluciona" · "el ChatGPT del Derecho" · cualquier promesa de resultado jurídico garantizado.</p></div>
+  </div>
+  <div class="alert g"><strong>Prueba de coherencia</strong><p>Un proyecto de lenguaje claro que comunica de manera oscura se desacredita solo. Toda pieza pública debe pasar el filtro: frases de menos de 25 palabras en promedio, voz activa, una idea por párrafo, cero jerga innecesaria, siglas explicadas. <strong>Publicar el índice de legibilidad de los propios textos institucionales sería una jugada de marca notable.</strong></p></div>
+
+  <h3>Recurso visual insignia</h3>
+  <p>La dupla <strong>antes / después</strong>: un párrafo jurídico opaco a la izquierda, su versión clara a la derecha, con las intervenciones señaladas. Es autoexplicativo, se comparte solo y demuestra el producto sin necesidad de usarlo. Debe ser reconocible a primera vista, siempre con el mismo formato.</p>
+</section>
+
+<!-- RRSS -->
+<section id="rrss">
+  <h2>Guía de redes sociales</h2>
+  <p class="sub">Con tres personas y carga académica, abrir cinco canales a la vez significa cinco canales abandonados en seis meses. La secuencia importa más que la ambición.</p>
+
+  <h3>Qué canales, en qué orden</h3>
+  <table>
+    <thead><tr><th>Fase</th><th>Canal</th><th>Por qué</th><th>Cadencia realista</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag t-grn">Mes 1-3</span></td><td><strong>LinkedIn</strong> 🥇</td><td>Donde están jueces, funcionarios, abogados, académicos y directivos: todos los que tienen presupuesto y decisión. Mayor retorno por hora invertida</td><td>2 posts/sem en página + 1-2 desde el perfil personal</td></tr>
+      <tr><td><span class="tag t-grn">Mes 1-3</span></td><td><strong>Instagram</strong> 🥈</td><td>Donde están los estudiantes de Derecho. Formato ideal para duplas antes/después y carruseles didácticos</td><td>3 posts/sem (2 carruseles + 1 reel) + stories 3-4 días</td></tr>
+      <tr><td><span class="tag t-tea">Mes 4-6</span></td><td><strong>YouTube</strong></td><td>Repositorio, no canal de crecimiento. Segundo buscador del mundo: un video captura búsquedas durante años</td><td>2 videos/mes</td></tr>
+      <tr><td><span class="tag t-tea">Mes 4-6</span></td><td><strong>Newsletter</strong></td><td>El canal más valioso a largo plazo: el único donde la audiencia es propiedad del proyecto</td><td>Mensual</td></tr>
+      <tr><td><span class="tag t-nav">Mes 7-12</span></td><td>X / Bluesky</td><td>Circuito judicial, periodístico y académico chileno. Bajo costo si se reutiliza contenido</td><td>Reutilización</td></tr>
+      <tr><td><span class="tag t-nav">Mes 7-12</span></td><td>TikTok · WhatsApp Canal</td><td>TikTok solo si aparece un ayudante con talento genuino. WhatsApp: penetración universal, costo casi nulo</td><td>Evaluar</td></tr>
+    </tbody>
+  </table>
+  <p class="mini"><strong>No abrir:</strong> Facebook (audiencia desalineada) · Threads (redundante) · Discord y Telegram (exigen moderación permanente que el equipo no puede sostener).</p>
+
+  <div class="alert b"><strong>Arquitectura en LinkedIn: página + perfil personal</strong><p>Los perfiles personales alcanzan varias veces más que las páginas institucionales. La página aporta legitimidad y es la ficha de referencia; el perfil de la fundadora aporta alcance. La fundadora publica, la página amplifica.</p></div>
+
+  <h3>Sistema de contenido: siete pilares</h3>
+  <p class="mini">Un sistema de pilares evita la pregunta diaria "¿qué publico hoy?", que es lo que mata las cuentas institucionales.</p>
+  <table>
+    <thead><tr><th style="width:44%">Pilar</th><th style="width:58px">%</th><th>Qué logra</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Claridad en acción</strong><br><span class="mini">Duplas antes/después de párrafos reales anonimizados</span></td><td>25%<div class="bar"><i style="width:100%"></i></div></td><td>Demuestra el producto sin venderlo. El más compartible</td></tr>
+      <tr><td><strong>Micro-lecciones</strong><br><span class="mini">Un problema por pieza: gerundios, voz pasiva, latinismos</span></td><td>20%<div class="bar"><i style="width:80%"></i></div></td><td>Utilidad inmediata. Construye autoridad docente</td></tr>
+      <tr><td><strong>Derecho a comprender</strong><br><span class="mini">Datos, casos y normativa sobre por qué la claridad importa</span></td><td>15%<div class="bar"><i style="width:60%"></i></div></td><td>Eleva la conversación. Interesa a autoridades y prensa</td></tr>
+      <tr><td><strong>IA responsable</strong><br><span class="mini">Autoría, integridad académica, uso ético</span></td><td>15%<div class="bar"><i style="width:60%"></i></div></td><td>Territorio propio. El diferenciador de marca</td></tr>
+      <tr><td><strong>Vida del proyecto</strong><br><span class="mini">Hitos, alianzas, congresos, cifras</span></td><td>10%<div class="bar"><i style="width:40%"></i></div></td><td>Prueba social. Señal de que el proyecto está vivo</td></tr>
+      <tr><td><strong>Comunidad</strong><br><span class="mini">Testimonios, preguntas de usuarios, colaboraciones</span></td><td>10%<div class="bar"><i style="width:40%"></i></div></td><td>Genera conversación. Alimenta el algoritmo</td></tr>
+      <tr><td><strong>Recursos y formación</strong><br><span class="mini">Anuncios de guías, talleres y cursos</span></td><td>5%<div class="bar"><i style="width:20%"></i></div></td><td>La única venta directa. Poca, pero clara</td></tr>
+    </tbody>
+  </table>
+  <div class="alert g"><strong>Regla de oro</strong><p>La venta directa no supera el 5%. El otro 95% es utilidad pura. Es exactamente lo que hace que el 5% funcione.</p></div>
+
+  <h3>Series con nombre propio</h3>
+  <p class="mini">Las series generan hábito, se reconocen de inmediato y facilitan la producción porque la plantilla ya existe.</p>
+  <table>
+    <thead><tr><th>Serie</th><th>Frecuencia</th><th>Formato</th><th>Contenido</th></tr></thead>
+    <tbody>
+      <tr><td><strong>#ClaroEstá</strong></td><td>Semanal</td><td>Carrusel</td><td>Dupla antes/después de un párrafo real</td></tr>
+      <tr><td><strong>#UnaPalabraMenos</strong></td><td>Semanal</td><td>Imagen</td><td>Expresión opaca y su alternativa clara ("a mayor abundamiento" → "además")</td></tr>
+      <tr><td><strong>#PreguntaAlScribe</strong></td><td>Quincenal</td><td>Video / carrusel</td><td>Duda real de un usuario, respondida</td></tr>
+      <tr><td><strong>#ClaridadQueImporta</strong></td><td>Mensual</td><td>Carrusel largo</td><td>Caso donde la falta de claridad tuvo consecuencias reales</td></tr>
+      <tr><td><strong>#AutoríaHumana</strong></td><td>Mensual</td><td>Texto / video</td><td>Reflexión sobre IA, autoría e integridad académica</td></tr>
+      <tr><td><strong>#DesdeLaRed</strong></td><td>Mensual</td><td>Repost</td><td>Novedades de la Red de Lenguaje Claro y la Red Panhispánica</td></tr>
+      <tr><td><strong>Minuto claro</strong></td><td>Semanal</td><td>Reel 45-60 s</td><td>Un consejo, un ejemplo, una regla</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Prácticas que sostienen el crecimiento</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Cuatro reglas</h4><ul class="clean">
+      <li>Responder todos los comentarios dentro de 24 h. El factor de crecimiento orgánico más subestimado</li>
+      <li>Enlace en el primer comentario en LinkedIn, no en el cuerpo del post</li>
+      <li>Nunca publicar una pieza que el propio proyecto no pasaría por su test de claridad</li>
+      <li>Un post, una idea. Si tiene dos, son dos posts</li>
+    </ul></div>
+    <div class="card"><h4>Reutilización sistemática</h4><p class="mini">Una charla de la fundadora se convierte en: 1 video de YouTube + 5 recortes verticales + 1 carrusel + 1 artículo de LinkedIn + 1 entrada del boletín + 1 nota de prensa.</p><p class="mini"><strong>Producir una vez, publicar siete veces.</strong> Con un equipo pequeño esto no es una optimización: es la única forma.</p></div>
+  </div>
+
+  <h3>Gobernanza</h3>
+  <table>
+    <thead><tr><th>Rol</th><th>Quién</th><th>Responsabilidad</th></tr></thead>
+    <tbody>
+      <tr><td>Dirección editorial</td><td>Claudia Poblete</td><td>Aprueba la línea, valida contenido técnico, publica desde su perfil</td></tr>
+      <tr><td>Producción de contenido</td><td>Ayudante estudiantil (10 h/sem)</td><td>Redacta borradores, arma carruseles, programa, monitorea</td></tr>
+      <tr><td>Curaduría académica</td><td>Pamela Catalán</td><td>Valida rigor lingüístico y pedagógico</td></tr>
+      <tr><td>Soporte técnico y datos</td><td>Óscar Sancho</td><td>Analítica, integración web, informes</td></tr>
+      <tr><td>Diseño e institucionalidad</td><td>Dir. Comunicación Estratégica PUCV</td><td>Manual de marca, amplificación en canales masivos</td></tr>
+    </tbody>
+  </table>
+  <div class="alert o"><strong>La decisión de mayor impacto de todo el plan</strong><p>Contratar un ayudante estudiantil de comunicaciones. Sin ella, el 80% de lo aquí propuesto no ocurrirá.</p></div>
+
+  <h3>Manejo de preguntas difíciles</h3>
+  <table>
+    <thead><tr><th style="width:32%">Objeción</th><th>Respuesta</th></tr></thead>
+    <tbody>
+      <tr><td><em>"Es IA, hace trampa por los estudiantes"</em></td><td>ScribeClaro no redacta. Analiza lo que el estudiante escribió y le muestra qué dificulta la comprensión. La corrección la hace la persona. Es herramienta de aprendizaje, no de sustitución</td></tr>
+      <tr><td><em>"¿Guarda mis textos? ¿Entrena con ellos?"</em></td><td>Remitir a la política de privacidad publicada. <strong>Exige que la política exista (H4)</strong></td></tr>
+      <tr><td><em>"Simplificar el Derecho lo empobrece"</em></td><td>Claridad no es simplificación. No se elimina precisión técnica, se elimina opacidad innecesaria. Un tecnicismo necesario se mantiene; una subordinación de cinco niveles no aporta rigor</td></tr>
+      <tr><td><em>"La IA se equivoca"</em></td><td>Cierto, por eso ScribeClaro entrega sugerencias, no correcciones automáticas. La decisión final es de quien escribe, que es quien responde por el texto</td></tr>
+      <tr><td><em>"¿Reemplazará a los profesores?"</em></td><td>No. Atiende la retroalimentación de superficie para que el docente dedique su tiempo a la argumentación y al razonamiento jurídico</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- CALENDARIO -->
+<section id="calendario">
+  <h2>Calendario editorial</h2>
+  <p class="sub">Parrilla semanal, anclajes anuales y banco de ideas listas para producir.</p>
+
+  <h3>Parrilla semanal tipo</h3>
+  <div class="week">
+    <div class="day"><h5>Lunes</h5><p><strong>LinkedIn</strong><br>#ClaroEstá (antes/después)</p><p><strong>IG Story</strong><br>Encuesta: "¿cuál se entiende mejor?"</p></div>
+    <div class="day"><h5>Martes</h5><p><strong>Instagram</strong><br>Carrusel #UnaPalabraMenos</p></div>
+    <div class="day"><h5>Miércoles</h5><p><strong>LinkedIn personal</strong><br>Artículo o reflexión</p><p><strong>IG Story</strong><br>Repost del post</p></div>
+    <div class="day"><h5>Jueves</h5><p><strong>LinkedIn</strong><br>Derecho a comprender / proyecto</p><p><strong>Instagram</strong><br>Reel "Minuto claro"</p></div>
+    <div class="day"><h5>Viernes</h5><p><strong>Instagram</strong><br>Carrusel didáctico o #PreguntaAlScribe</p></div>
+    <div class="day"><h5>Fin de semana</h5><p><strong>IG Stories</strong><br>Bastidores, comunidad</p></div>
+  </div>
+  <div class="alert g"><strong>Bloque de producción</strong><p>Una sesión de 3 horas cada quince días produce dos semanas de contenido. Esa es la única forma de sostenerlo con tres personas.</p></div>
+
+  <h3>Anclajes del año</h3>
+  <table>
+    <thead><tr><th style="width:120px">Fecha</th><th style="width:34%">Hito</th><th>Acción</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Marzo</strong></td><td>Inicio del año académico</td><td>Campaña "Empieza claro": guía de escritura para primer año, ronda de talleres</td></tr>
+      <tr><td><strong>Abril</strong></td><td>Cierre de primeras entregas</td><td>Contenido intensivo de micro-lecciones</td></tr>
+      <tr><td><strong>23 abril</strong></td><td>Día del Libro y del Idioma</td><td>Lengua, derecho y comprensión</td></tr>
+      <tr><td><strong>Junio</strong></td><td>Aniversario del registro (23/6) y de la Red Panhispánica (9/6)</td><td>Balance del año, publicación de cifras</td></tr>
+      <tr><td><strong>Julio</strong></td><td>Receso</td><td>Contenido de fondo: informes, guías largas</td></tr>
+      <tr><td><strong>Agosto</strong></td><td>Segundo semestre</td><td>Segunda ronda de talleres</td></tr>
+      <tr><td><strong>Septiembre</strong></td><td>Fiestas Patrias</td><td>Lenguaje del Estado y ciudadanía</td></tr>
+      <tr><td><strong>13 octubre</strong></td><td><span class="tag t-amb">Hito del año</span> Día Internacional del Lenguaje Claro</td><td>Seminario, informe anual, lanzamiento de recurso mayor, campaña coordinada con toda la Red</td></tr>
+      <tr><td><strong>Noviembre</strong></td><td>Cierre académico, tesis y memorias</td><td>Campaña "Tu tesis, clara"</td></tr>
+      <tr><td><strong>Diciembre</strong></td><td>Balance</td><td>Memoria anual, cifras, adelanto del roadmap</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Banco de 30 ideas listas para producir</h3>
+  <div class="pill-row" id="ip">
+    <span class="pill on" data-i="all">Todas</span>
+    <span class="pill" data-i="a">Claridad en acción</span>
+    <span class="pill" data-i="b">Micro-lecciones</span>
+    <span class="pill" data-i="c">Derecho a comprender</span>
+    <span class="pill" data-i="d">IA responsable</span>
+    <span class="pill" data-i="e">Proyecto y comunidad</span>
+  </div>
+  <div class="grid g2" id="ideas">
+    <div class="card iitem a"><h4>Claridad en acción</h4><ul class="clean">
+      <li>Un considerando real de sentencia, anonimizado, antes y después</li>
+      <li>Una notificación judicial reescrita: qué entiende una persona sin estudios de Derecho</li>
+      <li>La cláusula de un contrato de adhesión, traducida</li>
+      <li>Un párrafo de 120 palabras convertido en tres oraciones</li>
+      <li>Una circular administrativa reescrita</li>
+    </ul></div>
+    <div class="card iitem b"><h4>Micro-lecciones</h4><ul class="clean">
+      <li>Cómo el gerundio de posterioridad cambia el sentido de una resolución</li>
+      <li>Por qué la voz pasiva esconde quién decide</li>
+      <li>Cinco latinismos que casi nadie entiende y qué decir en su lugar</li>
+      <li>La regla de la oración de 25 palabras</li>
+      <li>Dónde va realmente la idea principal de un párrafo</li>
+      <li>La doble negación en textos normativos</li>
+      <li>Cómo ordenar los hechos en una relación cronológica</li>
+    </ul></div>
+    <div class="card iitem c"><h4>Derecho a comprender</h4><ul class="clean">
+      <li>Qué significa que exista un "derecho a comprender"</li>
+      <li>La Guía de lenguaje claro legislativo del Senado, explicada</li>
+      <li>Qué pasa cuando alguien no entiende su propia sentencia</li>
+      <li>Lenguaje claro y accesibilidad cognitiva: el mismo problema</li>
+      <li>Qué hacen Contraloría, BCN y el Consejo para la Transparencia</li>
+      <li>El programa "Ley Fácil": iniciativa pionera en Iberoamérica</li>
+    </ul></div>
+    <div class="card iitem d"><h4>IA responsable</h4><ul class="clean">
+      <li>Por qué ScribeClaro deliberadamente no redacta por ti</li>
+      <li>Usar IA sin infringir la integridad académica: qué sí y qué no</li>
+      <li>Qué puede y qué no puede hacer una IA con un texto jurídico</li>
+      <li>La diferencia entre corregir ortografía y aclarar una idea</li>
+      <li>Autoría, responsabilidad y firma: quién responde por un escrito</li>
+    </ul></div>
+    <div class="card iitem e"><h4>Proyecto y comunidad</h4><ul class="clean">
+      <li>Quiénes están detrás de ScribeClaro</li>
+      <li>De proyecto de innovación docente a herramienta del Poder Judicial</li>
+      <li>La ponencia de Lima: IA y lenguaje claro ante 550 instituciones</li>
+      <li>Cifras del año: textos analizados e instituciones usuarias</li>
+      <li>Testimonio de un funcionario judicial usuario</li>
+      <li>Cómo usar ScribeClaro en tres pasos (video)</li>
+      <li>Preguntas frecuentes: ¿guarda mis textos? ¿es gratis? ¿sirve fuera del Derecho?</li>
+    </ul></div>
+  </div>
+
+  <h3>Prácticas operativas</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Etiquetas</h4><p class="mini">5-8 en Instagram, 3-5 en LinkedIn. Tres niveles: <strong>propias</strong> (#ClaroEstá, #ScribeClaroPUCV), <strong>de nicho</strong> (#LenguajeClaro, #EscrituraJurídica, #DerechoAComprender) y <strong>amplias</strong> (#Derecho, #PUCV, #IA).</p></div>
+    <div class="card"><h4>Horarios de referencia (Chile)</h4><p class="mini">LinkedIn: martes a jueves, 8:00-10:00 o 17:00-19:00. Instagram: 13:00-14:00 y 20:00-22:00. Son puntos de partida; a los dos meses la analítica propia manda.</p></div>
+  </div>
+</section>
+
+<!-- COPYS -->
+<section id="copys">
+  <h2>Copys modelo y material listo para usar</h2>
+  <p class="sub">Textos redactados para copiar, adaptar y publicar.</p>
+
+  <h3>Biografías de perfil</h3>
+  <div class="copy"><div class="meta">LinkedIn · página de empresa</div>ScribeClaroPUCV — Plataforma de la Pontificia Universidad Católica de Valparaíso que fortalece la escritura jurídica clara mediante inteligencia artificial. No redacta por ti: analiza tu texto y te muestra qué dificulta su comprensión. Gratuita y sin registro. Un proyecto de la Vicerrectoría Académica y la Facultad de Derecho PUCV.</div>
+
+  <div class="copy"><div class="meta">Instagram · 150 caracteres</div>IA que no escribe por ti: te enseña a escribir claro ⚖️
+Escritura jurídica · PUCV
+Gratis y sin registro 👇</div>
+
+  <div class="copy"><div class="meta">LinkedIn · titular del perfil personal de la fundadora</div>Trabajo para que las personas entiendan lo que el Estado y los tribunales les dicen. Doctora en Filología Española, profesora de Derecho PUCV y directora de ScribeClaroPUCV.</div>
+
+  <h3>Publicaciones modelo</h3>
+  <div class="copy"><div class="meta">LinkedIn · pilar IA responsable</div>Nos preguntan seguido por qué ScribeClaro no redacta textos.
+
+La respuesta es que redactar es un proceso cognitivo. Cuando alguien organiza un argumento jurídico, está pensando, no solo tecleando. Si una máquina hace esa parte, el aprendizaje no ocurre.
+
+Por eso ScribeClaro analiza lo que ya escribiste y te muestra qué dificulta su comprensión: la subordinación excesiva, el párrafo que arrastra tres ideas, la voz pasiva que oculta quién decide.
+
+Tú corriges. Tú decides. El texto sigue siendo tuyo.
+
+No es una limitación técnica. Es el diseño.
+
+👉 scribeclaro.pucv.cl — gratuita, sin registro.
+
+#LenguajeClaro #InteligenciaArtificial #IntegridadAcadémica #Derecho</div>
+
+  <div class="copy"><div class="meta">Instagram · carrusel #ClaroEstá</div>Lámina 1 — "¿Entendiste algo? Nosotros tampoco." + párrafo jurídico opaco
+Lámina 2 — El mismo párrafo, subrayando los tres problemas
+Lámina 3 — La versión clara
+Lámina 4 — "Mismo contenido jurídico. La mitad de palabras. Toda la comprensión."
+Lámina 5 — "Pega tu párrafo en scribeclaro.pucv.cl 👉 enlace en la bio"
+
+PIE: Este párrafo tenía 87 palabras y una sola oración. La versión clara tiene tres oraciones y no perdió ni un ápice de contenido jurídico.
+Escribir claro no es escribir simple. Es escribir para que te entiendan. 💡
+#LenguajeClaro #Derecho #EscrituraJurídica #PUCV #EstudiantesDeDerecho</div>
+
+  <div class="copy"><div class="meta">LinkedIn · perfil personal · pilar Derecho a comprender</div>Hace veinte años, hablar de lenguaje claro en Chile era hablar de un tema desconocido.
+
+Hoy hay una Guía de lenguaje claro en el Senado, una Comisión en la Corte Suprema y una red que reúne a la Contraloría, la Biblioteca del Congreso, el Consejo para la Transparencia y el Poder Judicial.
+
+Lo que cambió no fue la lengua. Fue entender que si una persona no comprende una resolución que la afecta, no puede ejercer sus derechos. La claridad dejó de ser un asunto de estilo y pasó a ser una condición del acceso a la justicia.
+
+Ese es el trabajo.
+
+#LenguajeClaro #AccesoALaJusticia #DerechoAComprender</div>
+
+  <h3>Antes de publicar el primer post</h3>
+  <div class="card"><ul class="clean chk">
+    <li>Correo institucional operativo (H2)</li>
+    <li>Teléfono corregido (H1)</li>
+    <li>Analítica instalada con eventos definidos (H7)</li>
+    <li>Al menos un recurso descargable propio publicado (H6)</li>
+    <li>Video de demostración de 60 segundos</li>
+    <li>12 publicaciones producidas y en cola (un mes de colchón)</li>
+    <li>Coordinación con la Dirección de Comunicación Estratégica PUCV</li>
+    <li>Nombres de usuario reservados en todas las plataformas (@scribeclaropucv)</li>
+  </ul></div>
+</section>
+
+<!-- RECURSOS -->
+<section id="recursos">
+  <h2>Recursos a desarrollar</h2>
+  <p class="sub">Hoy los recursos del sitio son enlaces a la RAE, a Fundéu y al Poder Judicial. Excelentes recursos, pero de otros. No hay ni un solo material propio, descargable y citable.</p>
+
+  <div class="alert o"><strong>El argumento central</strong><p>Producir cinco recursos propios de calidad tendría más impacto en el posicionamiento que seis meses de publicaciones en redes.</p></div>
+
+  <div class="pill-row" id="rp">
+    <span class="pill on" data-r="all">Todos</span>
+    <span class="pill" data-r="p1">Prioridad 1 · 90 días</span>
+    <span class="pill" data-r="p2">Prioridad 2 · mes 4-9</span>
+    <span class="pill" data-r="p3">Prioridad 3 · año 2</span>
+  </div>
+
+  <table>
+    <thead><tr><th style="width:48px">#</th><th style="width:24%">Recurso</th><th>Descripción</th><th style="width:120px">Público</th><th style="width:96px">Prioridad</th></tr></thead>
+    <tbody id="rtbody">
+      <tr class="ritem p1"><td>R1</td><td><strong>Manual de escritura jurídica clara</strong></td><td>PDF de 30-40 páginas: principios, 20 problemas frecuentes con ejemplos reales, listas de verificación. El documento insignia del proyecto</td><td>Todos</td><td><span class="tag t-red">P1</span></td></tr>
+      <tr class="ritem p1"><td>R2</td><td><strong>Glosario de lenguaje jurídico claro</strong></td><td>200-300 expresiones opacas con su equivalente claro. Web buscable + PDF. Alto potencial de búsqueda orgánica y de citación</td><td>Todos</td><td><span class="tag t-red">P1</span></td></tr>
+      <tr class="ritem p1"><td>R3</td><td><strong>Lista de verificación de claridad</strong></td><td>Una página, diez preguntas para revisar cualquier escrito antes de entregarlo. Imprimible. Será el recurso más descargado</td><td>Estudiantes, funcionarios</td><td><span class="tag t-red">P1</span></td></tr>
+      <tr class="ritem p1"><td>R4</td><td><strong>Plantillas comentadas</strong></td><td>Estructura anotada de memorándum, informe en derecho, recurso de protección, resolución administrativa</td><td>Estudiantes, abogados</td><td><span class="tag t-red">P1</span></td></tr>
+      <tr class="ritem p1"><td>R5</td><td><strong>Rúbrica de evaluación de claridad</strong></td><td>Instrumento con niveles de logro para que un docente evalúe la claridad de forma objetiva</td><td>Docentes</td><td><span class="tag t-red">P1</span></td></tr>
+      <tr class="ritem p2"><td>R6</td><td><strong>Corpus abierto de reescrituras</strong></td><td>Colección creciente de párrafos reales anonimizados con su versión clara y el análisis. Material docente, de investigación y de contenido para años</td><td>Académico</td><td><span class="tag t-org">P2</span></td></tr>
+      <tr class="ritem p2"><td>R7</td><td><strong>Guía de uso responsable de IA</strong></td><td>Qué usos preservan la autoría y cuáles no. Muy demandada por unidades de integridad académica</td><td>Universidades</td><td><span class="tag t-org">P2</span></td></tr>
+      <tr class="ritem p2"><td>R8</td><td><strong>Guía "Tu tesis, clara"</strong></td><td>Escritura de memorias y tesis de Derecho. Alta demanda estacional en noviembre</td><td>Estudiantes</td><td><span class="tag t-org">P2</span></td></tr>
+      <tr class="ritem p2"><td>R9</td><td><strong>Informe anual del lenguaje jurídico claro en Chile</strong></td><td>Análisis con datos propios y públicos. El activo de prensa más potente posible: genera un titular anual garantizado</td><td>Prensa, autoridades</td><td><span class="tag t-org">P2</span></td></tr>
+      <tr class="ritem p2"><td>R10</td><td><strong>Infografías descargables</strong></td><td>Una por regla de claridad, formato afiche para sala de clases y oficina</td><td>Todos</td><td><span class="tag t-org">P2</span></td></tr>
+      <tr class="ritem p2"><td>R11</td><td><strong>Guía para servicios públicos</strong></td><td>Lenguaje administrativo: resoluciones, oficios, circulares, formularios</td><td>Sector público</td><td><span class="tag t-org">P2</span></td></tr>
+      <tr class="ritem p2"><td>R12</td><td><strong>Video-cápsulas formativas</strong></td><td>10 videos de 3-5 minutos. Base de los cursos autoformativos</td><td>Todos</td><td><span class="tag t-org">P2</span></td></tr>
+      <tr class="ritem p3"><td>R13</td><td>Boletín mensual "Claro está"</td><td>Arrancar antes si es posible: es el activo de audiencia propia</td><td>Todos</td><td><span class="tag t-yel">P3</span></td></tr>
+      <tr class="ritem p3"><td>R14</td><td>Pódcast "El derecho a comprender"</td><td>Conversaciones con jueces, lingüistas y funcionarios. Bajo costo, alto valor de red</td><td>Todos</td><td><span class="tag t-yel">P3</span></td></tr>
+      <tr class="ritem p3"><td>R15</td><td>Banco de ejercicios autocorregidos</td><td>Práctica interactiva en el sitio</td><td>Estudiantes</td><td><span class="tag t-yel">P3</span></td></tr>
+      <tr class="ritem p3"><td>R16</td><td>Guía para peritajes y lingüística forense</td><td>Nicho propio de la fundadora, sin competencia</td><td>Especializado</td><td><span class="tag t-yel">P3</span></td></tr>
+      <tr class="ritem p3"><td>R17</td><td>Versión en inglés y portugués de R1 y R3</td><td>Habilita el circuito internacional</td><td>Internacional</td><td><span class="tag t-yel">P3</span></td></tr>
+      <tr class="ritem p3"><td>R18</td><td>Guía de escritura clara para otras disciplinas</td><td>Ya hay usuarios de ingeniería; el problema no es exclusivo del Derecho</td><td>Transversal</td><td><span class="tag t-yel">P3</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Cuatro decisiones que multiplican el valor</h3>
+  <div class="grid g2">
+    <div class="card"><h4>1 · Registrar cada recurso con DOI</h4><p class="mini">Depositar en Zenodo o el repositorio institucional. Un recurso con DOI es citable, aparece en Google Scholar, cuenta como producción académica y da presencia permanente en la literatura. <strong>Costo: cero. Impacto: alto y acumulativo.</strong></p></div>
+    <div class="card"><h4>2 · Licenciar en Creative Commons</h4><p class="mini">CC BY-NC-SA permite que otras universidades y servicios usen los materiales citando el origen. Convierte a cada usuario en un difusor. Para instalar una práctica, la circulación importa más que el control.</p></div>
+    <div class="card"><h4>3 · Pedir el correo solo en los recursos mayores</h4><p class="mini">Lista de verificación e infografías: descarga libre. Manual completo e informe anual: a cambio de nombre, correo e institución. Se construye la base de contactos sin castigar el acceso.</p></div>
+    <div class="card"><h4>4 · Cada recurso genera contenido por meses</h4><p class="mini">El manual de 40 páginas contiene al menos 20 publicaciones, 5 videos y 3 talleres. No son productos separados: es el mismo trabajo intelectual en distintos formatos.</p></div>
+  </div>
+</section>
+
+<!-- CURSOS -->
+<section id="cursos">
+  <h2>Cursos y talleres para ofertar</h2>
+  <p class="sub">La intersección "lenguaje claro" + "IA responsable" + "Derecho" en Chile no tiene un oferente consolidado. ScribeClaro puede ocuparla en un año.</p>
+
+  <div class="grid g3">
+    <div class="card"><h4>Demanda que ya llega</h4><p class="mini">La portada ya anuncia "Capacitaciones y talleres", pero no hay oferta publicada. Hay demanda que llega y no encuentra qué comprar.</p></div>
+    <div class="card"><h4>Presupuesto que ya existe</h4><p class="mini">Las instituciones de la Red de Lenguaje Claro tienen compromisos formales de capacitación en sus planes de trabajo, con presupuesto asociado.</p></div>
+    <div class="card"><h4>Urgencia que nadie cubre</h4><p class="mini">El sector público necesita formación en IA responsable ahora, y casi nadie puede ofrecerla con credenciales en lingüística, integridad académica y producto propio funcionando.</p></div>
+  </div>
+
+  <h3>Arquitectura formativa</h3>
+  <table>
+    <thead><tr><th style="width:190px">Nivel</th><th>Qué es</th><th>Función</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0 · Sensibilización</strong></td><td>Charlas y webinars gratuitos (1-2 h)</td><td>Captación</td></tr>
+      <tr><td><strong>1 · Fundamentos</strong></td><td>Talleres prácticos (4-8 h)</td><td>Producto principal</td></tr>
+      <tr><td><strong>2 · Aplicación</strong></td><td>Programas sectoriales (16-24 h)</td><td>Mayor valor unitario</td></tr>
+      <tr><td><strong>3 · Especialización</strong></td><td>Diplomado (120-150 h)</td><td>Prestigio e ingresos</td></tr>
+      <tr><td><strong>4 · Formación de formadores</strong></td><td>Certificación de facilitadores (40 h)</td><td>Escala</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Catálogo de programas</h3>
+  <div class="pill-row" id="cp">
+    <span class="pill on" data-c="all">Todos</span>
+    <span class="pill" data-c="n0">Nivel 0 · gratuitos</span>
+    <span class="pill" data-c="n1">Nivel 1 · talleres</span>
+    <span class="pill" data-c="n2">Nivel 2 · sectoriales</span>
+    <span class="pill" data-c="n34">Nivel 3-4 · especialización</span>
+  </div>
+
+  <div class="grid g2" id="cursoslist">
+    <div class="card citem n0"><h4><span class="tag t-tea">C1 · Nivel 0</span> Charla "El derecho a comprender"</h4><p class="mini"><strong>90 min · presencial o remoto ·</strong> Autoridades, facultades, servicios públicos.<br>Función: abrir puertas. Toda charla termina con una oferta concreta de taller.</p></div>
+    <div class="card citem n0"><h4><span class="tag t-tea">C2 · Nivel 0</span> Webinar "IA y escritura: qué sí y qué no"</h4><p class="mini"><strong>60 min · remoto ·</strong> Docentes y unidades de integridad académica.<br>Función: captación masiva de contactos. Cuatro ediciones al año.</p></div>
+    <div class="card citem n0"><h4><span class="tag t-tea">C3 · Nivel 0</span> Demostración "ScribeClaro en 30 minutos"</h4><p class="mini"><strong>30 min · remoto ·</strong> Cualquier institución interesada.<br>Función: conversión directa. Debería solicitarse desde el sitio con un formulario.</p></div>
+
+    <div class="card citem n1"><h4><span class="tag t-grn">C4 · Nivel 1</span> Escritura jurídica clara: fundamentos</h4><p class="mini"><strong>8 h (2 sesiones) ·</strong> Estudiantes de Derecho y abogados jóvenes.<br>Qué es y qué no es el lenguaje claro · los diez obstáculos frecuentes · estructura del párrafo jurídico · conectores y cohesión · revisión con ScribeClaro · taller de reescritura.<br><strong>Entregable:</strong> cada participante reescribe un texto propio con retroalimentación individual.</p></div>
+    <div class="card citem n1"><h4><span class="tag t-grn">C5 · Nivel 1</span> Claridad en resoluciones judiciales</h4><p class="mini"><strong>8 h ·</strong> Jueces, relatores y funcionarios judiciales.<br>Estructura de la resolución comprensible · el destinatario real · mantener el rigor reduciendo la opacidad · reescritura de resoluciones propias.<br><strong>Aliado natural: Academia Judicial.</strong> El programa de mayor prestigio del catálogo.</p></div>
+    <div class="card citem n1"><h4><span class="tag t-grn">C6 · Nivel 1</span> Comunicación administrativa clara</h4><p class="mini"><strong>8 h ·</strong> Funcionarios de servicios públicos.<br>Oficios, resoluciones, circulares y formularios · el ciudadano como lector · diagnóstico de documentos propios.<br><strong>Entregable de alto valor:</strong> un documento institucional real reescrito durante el taller, listo para usar.</p></div>
+    <div class="card citem n1"><h4><span class="tag t-grn">C7 · Nivel 1</span> IA responsable en la escritura académica</h4><p class="mini"><strong>4 h ·</strong> Docentes universitarios de cualquier disciplina.<br>Qué cambia la IA generativa en la evaluación escrita · diseño de actividades resistentes al uso indebido · herramientas que preservan la autoría · rúbricas de claridad.<br><strong>Mercado amplio:</strong> toda universidad chilena necesita esto ahora.</p></div>
+    <div class="card citem n1"><h4><span class="tag t-grn">C8 · Nivel 1</span> Escritura de tesis y memorias con claridad</h4><p class="mini"><strong>6 h ·</strong> Estudiantes de último año.<br>Alta demanda estacional. Ofrecible como servicio interno PUCV y externo.</p></div>
+
+    <div class="card citem n2"><h4><span class="tag t-amb">C9 · Nivel 2</span> Programa "Institución clara"</h4><p class="mini"><strong>24 h + acompañamiento de 3 meses ·</strong> Servicios públicos, municipios, tribunales.<br>Diagnóstico de documentos → formación del equipo → reescritura acompañada de los 10 documentos de mayor circulación → manual de estilo propio → medición de resultados.<br><strong>El producto de mayor valor unitario</strong> y el que genera casos de éxito publicables.</p></div>
+    <div class="card citem n2"><h4><span class="tag t-amb">C10 · Nivel 2</span> Programa "Facultad clara"</h4><p class="mini"><strong>16 h ·</strong> Escuelas de Derecho de otras universidades.<br>Formación docente + integración de ScribeClaro en asignaturas + rúbricas compartidas + convenio de uso.<br>Vía de expansión nacional del proyecto.</p></div>
+    <div class="card citem n2"><h4><span class="tag t-amb">C11 · Nivel 2</span> Ejecutivo "Escritos que se entienden"</h4><p class="mini"><strong>16 h ·</strong> Estudios jurídicos y direcciones legales.<br>Ángulo comercial: la claridad como ventaja competitiva ante clientes y tribunales.</p></div>
+
+    <div class="card citem n34"><h4><span class="tag t-nav">C12 · Nivel 3</span> Diplomado en Lenguaje Claro y Escritura Jurídica</h4><p class="mini"><strong>120-150 h · semipresencial o en línea ·</strong> vía Educación Continua PUCV.<br>Módulos: fundamentos lingüísticos · lenguaje jurídico y acceso a la justicia · técnicas de reescritura · ámbito judicial · administración pública · IA, autoría e integridad · accesibilidad cognitiva y lenguaje inclusivo · proyecto final aplicado.<br>El producto de mayor prestigio. <strong>Requiere tramitación institucional: iniciarla temprano.</strong></p></div>
+    <div class="card citem n34"><h4><span class="tag t-nav">C13 · Nivel 4</span> Certificación de facilitadores</h4><p class="mini"><strong>40 h ·</strong> Profesionales que replicarán la formación en sus instituciones.<br><strong>La única vía de escalar la formación con tres personas.</strong></p></div>
+    <div class="card citem n34"><h4><span class="tag t-nav">C14 · Transversal</span> Curso autoformativo "Escribe claro"</h4><p class="mini"><strong>6-8 h · asincrónico · con certificado.</strong><br>Construido con las video-cápsulas R12. Se produce una vez y se vende indefinidamente. Mejor relación esfuerzo/retorno del catálogo y vehículo natural para llegar a Iberoamérica.</p></div>
+  </div>
+
+  <h3>Modelo de sostenibilidad</h3>
+  <div class="alert b"><strong>Principio innegociable</strong><p>El asistente sigue siendo gratuito y sin registro. Lo que se cobra es la formación, el acompañamiento y la consultoría, no el acceso a la herramienta.</p></div>
+  <table>
+    <thead><tr><th style="width:34px">#</th><th style="width:30%">Vía</th><th>Descripción</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Venta institucional de programas cerrados</strong></td><td>Un servicio, tribunal o universidad contrata un taller para su equipo. La vía más rápida y la que menos infraestructura requiere. Se factura vía PUCV</td></tr>
+      <tr><td>2</td><td><strong>Convenios con otras universidades</strong></td><td>Aportes por uso institucional de la plataforma más formación docente</td></tr>
+      <tr><td>3</td><td><strong>Educación Continua PUCV</strong></td><td>Diplomado y cursos abiertos comercializados por la estructura existente, que ya tiene canales, facturación y marketing</td></tr>
+      <tr><td>4</td><td><strong>Fondos concursables</strong></td><td>InES, FONDECYT, fondos de modernización del Estado, cooperación iberoamericana (AECID, OEI, SEGIB), fondos de acceso a la justicia</td></tr>
+      <tr><td>5</td><td><strong>Consultoría de reescritura institucional</strong></td><td>Diagnóstico y rediseño de documentos de alta circulación. Alto valor unitario, alta exigencia de horas</td></tr>
+    </tbody>
+  </table>
+  <div class="alert g"><strong>Primer paso concreto</strong><p>Publicar en /services/ una página real de oferta formativa con tres o cuatro programas descritos y un formulario de solicitud de cotización. Hoy esa página describe funciones del sitio, no servicios contratables. Cambiarla cuesta poco y abre la puerta a la primera venta.</p></div>
+
+  <h3>Guion de un taller tipo · C4, 8 horas</h3>
+  <table>
+    <thead><tr><th style="width:170px">Bloque</th><th style="width:90px">Duración</th><th>Actividad</th></tr></thead>
+    <tbody>
+      <tr><td>Apertura</td><td>30 min</td><td>Diagnóstico en vivo: los participantes leen un párrafo opaco real y explican qué entendieron. Rara vez coinciden. Ese desacuerdo es la mejor introducción posible</td></tr>
+      <tr><td>Marco</td><td>45 min</td><td>Qué es el lenguaje claro, qué no es, y por qué es asunto de derechos y no de estilo</td></tr>
+      <tr><td>Los diez obstáculos</td><td>90 min</td><td>Cada obstáculo con ejemplo real y ejercicio breve</td></tr>
+      <tr><td><em>Receso</em></td><td>30 min</td><td></td></tr>
+      <tr><td>Arquitectura del párrafo</td><td>60 min</td><td>Estructura, idea principal, extensión, conectores</td></tr>
+      <tr><td>Taller de reescritura I</td><td>90 min</td><td>Trabajo sobre textos propios de los participantes</td></tr>
+      <tr><td>ScribeClaro en el flujo</td><td>45 min</td><td>Uso práctico sobre los textos ya trabajados</td></tr>
+      <tr><td>Taller de reescritura II</td><td>60 min</td><td>Segunda vuelta con retroalimentación cruzada entre pares</td></tr>
+      <tr><td>Cierre</td><td>30 min</td><td>Lista de verificación personal, recursos y compromiso de aplicación</td></tr>
+    </tbody>
+  </table>
+  <div class="alert g"><strong>Evaluación con doble función</strong><p>Medir la claridad del texto de entrada y del texto de salida de cada participante. Esa medición es simultáneamente evaluación del aprendizaje y <strong>evidencia de impacto publicable</strong>.</p></div>
+</section>
+
+<!-- IA -->
+<section id="ia">
+  <h2>Herramientas de IA a desarrollar</h2>
+  <p class="sub">Toda herramienta nueva debe pasar un solo filtro.</p>
+  <div class="quote">¿Le muestra a la persona algo sobre su propio texto, o escribe el texto por ella?</div>
+  <p>Lo primero se construye. Lo segundo, no. Esta restricción no es una limitación: es la marca. El día que ScribeClaro genere texto, deja de ser ScribeClaro y pasa a competir con productos infinitamente mejor financiados en un terreno donde no puede ganar.</p>
+
+  <div class="pill-row" id="tp">
+    <span class="pill on" data-t="all">Todo el roadmap</span>
+    <span class="pill" data-t="c">Corto · 0-6 meses</span>
+    <span class="pill" data-t="m">Medio · 6-18 meses</span>
+    <span class="pill" data-t="l">Largo · 18+ meses</span>
+  </div>
+
+  <div class="grid g2" id="ialist">
+    <div class="card titem c"><h4><span class="tag t-red">T1 · Prioridad 1</span> Índice de Claridad ScribeClaro (ICS)</h4><p class="mini">Puntaje 0-100 con desglose: longitud oracional, densidad de subordinación, voz pasiva, densidad terminológica, longitud de párrafo, conectores.<br><strong>Por qué es la prioridad absoluta:</strong> convierte una impresión subjetiva en un número. Un número se compara antes y después, se reporta a una autoridad, se usa como evidencia de impacto en un taller, se publica como cifra de prensa y se cita en un paper. Habilita evaluación, venta institucional y comunicación a la vez.</p></div>
+    <div class="card titem c"><h4><span class="tag t-red">T2</span> Comparador antes/después</h4><p class="mini">Vista de dos columnas con diferencias resaltadas y cambio de ICS. La herramienta didáctica más potente posible, y produce automáticamente el contenido visual de la serie #ClaroEstá.</p></div>
+    <div class="card titem c"><h4><span class="tag t-red">T3</span> Informe descargable de análisis</h4><p class="mini">PDF con el análisis, el ICS y las recomendaciones. Un estudiante lo adjunta a su trabajo; un funcionario lo lleva a su jefatura; un docente lo usa como evidencia de proceso.</p></div>
+    <div class="card titem c"><h4><span class="tag t-red">T4</span> Detector de expresiones opacas</h4><p class="mini">Subrayado automático de las expresiones del glosario R2 con equivalentes claros en contexto. Sinergia: el glosario alimenta la herramienta y la herramienta alimenta el glosario.</p></div>
+    <div class="card titem c"><h4><span class="tag t-red">T5</span> Modos de análisis por tipo de documento</h4><p class="mini">El estándar no es el mismo para una sentencia, un examen de grado, un oficio o una comunicación al público. Perfiles diferenciados aumentan drásticamente la pertinencia percibida por cada segmento.</p></div>
+
+    <div class="card titem m"><h4><span class="tag t-org">T6 · Prioridad 1</span> Panel institucional</h4><p class="mini">Espacio para que una institución vea la evolución agregada y anónima de la claridad de sus documentos.<br><strong>Este es el producto que convierte un uso individual en un contrato institucional.</strong> Sin panel no hay venta a una organización, porque no hay forma de demostrarle valor a quien firma.</p></div>
+    <div class="card titem m"><h4><span class="tag t-org">T7</span> Extensión de navegador</h4><p class="mini">Análisis dentro de los sistemas donde efectivamente se escribe: correo, gestores documentales, plataformas judiciales. Elimina la fricción de copiar y pegar, hoy la principal barrera de uso cotidiano.</p></div>
+    <div class="card titem m"><h4><span class="tag t-org">T8</span> Módulo docente</h4><p class="mini">El profesor crea una actividad, los estudiantes envían textos, el sistema entrega el análisis y el docente ve el progreso del curso. Convierte a ScribeClaro de herramienta individual en infraestructura de asignatura.</p></div>
+    <div class="card titem m"><h4><span class="tag t-org">T9</span> Explicador de textos jurídicos para ciudadanía</h4><p class="mini">Dado un documento judicial o administrativo, explica en lenguaje llano qué dice, qué implica y qué plazos corren.<br><strong>Advertencia:</strong> aquí la frontera con "generar texto" se vuelve delicada y exige resguardos explícitos. Pero es la herramienta de mayor impacto social imaginable y la que mejor encarna el derecho a comprender.</p></div>
+    <div class="card titem m"><h4><span class="tag t-org">T10</span> API institucional</h4><p class="mini">Integración del análisis en sistemas de gestión documental de tribunales y servicios. La vía técnica de escala real.</p></div>
+
+    <div class="card titem l"><h4><span class="tag t-yel">T11</span> Modelo propio afinado sobre corpus jurídico chileno</h4><p class="mini">Independencia de proveedores externos, mejor pertinencia, menor costo por consulta y —relevante para el sector público— posibilidad de procesamiento local. También material de investigación de primer nivel.</p></div>
+    <div class="card titem l"><h4><span class="tag t-yel">T12</span> Corpus anotado del español jurídico chileno</h4><p class="mini">Recurso de investigación abierto. Habilita publicaciones, tesis y colaboraciones internacionales. Puede convertirse en el activo académico más duradero del proyecto.</p></div>
+    <div class="card titem l"><h4><span class="tag t-yel">T13</span> Adaptaciones nacionales</h4><p class="mini">Variantes por país para la expansión iberoamericana, respetando tradiciones jurídicas y usos locales.</p></div>
+    <div class="card titem l"><h4><span class="tag t-yel">T14</span> Análisis de accesibilidad cognitiva</h4><p class="mini">Evaluación conforme a criterios de lectura fácil, para personas con discapacidad cognitiva o baja alfabetización. Cierra el círculo del derecho a comprender.</p></div>
+  </div>
+
+  <h3>Consideraciones técnicas</h3>
+  <ul class="clean">
+    <li><strong>Trazabilidad de versiones.</strong> Documentar qué versión del modelo y de las reglas produjo cada análisis. Sin esto, la investigación sobre la herramienta no es replicable</li>
+    <li><strong>Validación del índice.</strong> Antes de publicar cifras de mejora, definir cómo se mide la claridad y validar el instrumento. El ICS debe tener respaldo metodológico publicado. <em>Un proyecto de lenguaje claro no puede tener una caja negra en su centro</em></li>
+    <li><strong>Costos de inferencia.</strong> Si el uso escala, el costo escala. Modelar escenarios ahora, no cuando el presupuesto ya se desbordó</li>
+    <li><strong>Rendimiento móvil.</strong> Buena parte del público estudiantil llegará desde el teléfono</li>
+    <li><strong>Accesibilidad WCAG AA.</strong> Obligatoria por coherencia con la misión</li>
+  </ul>
+
+  <h3>Ética, privacidad y gobernanza</h3>
+  <div class="alert"><strong>Este es el cuello de botella de la escalabilidad institucional</strong><p>Ningún tribunal ni servicio público podrá autorizar formalmente el uso de la herramienta mientras no exista documentación explícita sobre el tratamiento de los textos.</p></div>
+  <div class="card"><h4>Lo que debe declararse</h4><ul class="clean">
+    <li><strong>Qué ocurre con los textos.</strong> ¿Se almacenan? ¿Por cuánto tiempo? ¿Se usan para entrenamiento? ¿Se anonimizan?</li>
+    <li><strong>Quién los procesa.</strong> Si hay un proveedor de modelo externo, decirlo. Si los datos salen de Chile, decirlo</li>
+    <li><strong>Advertencia de contenido sensible.</strong> Instrucción visible de no ingresar datos personales de terceros ni información reservada de causas</li>
+    <li><strong>Límites declarados.</strong> No valida contenido jurídico, no verifica citas normativas, no constituye asesoría legal</li>
+    <li><strong>Sesgos y variedad lingüística.</strong> Reconocer que los criterios de claridad tienen supuestos y que no se impone una única variedad correcta del español</li>
+    <li><strong>Canal de reclamos y corrección.</strong> A quién escribir si el análisis es inadecuado</li>
+  </ul></div>
+  <div class="alert g"><strong>Recomendación: la "Declaración de IA Responsable de ScribeClaroPUCV"</strong><p>Publicarla en el sitio, en lenguaje claro —congruencia obligatoria— y de una sola página. Cumple el requisito legal-institucional, es una pieza de contenido de alto valor en sí misma y sería, con alta probabilidad, la primera de su tipo publicada por una herramienta de IA jurídica en Chile. Es decir: un requisito convertido en hito de prensa.</p></div>
+</section>
+
+<!-- DIFUSION -->
+<section id="difusion">
+  <h2>Difusión, alianzas y alcance</h2>
+  <p class="sub">El error frecuente en proyectos universitarios es apostar todo al motor mediático, que es el más visible y el menos duradero. Para ScribeClaro el orden es exactamente el inverso.</p>
+
+  <h3>Cuatro motores de crecimiento</h3>
+  <table>
+    <thead><tr><th>Motor</th><th>Qué es</th><th>Velocidad</th><th>Durabilidad</th><th>Prioridad</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Institucional</strong></td><td>Convenios y adopción formal por organizaciones</td><td>Lenta</td><td>Muy alta</td><td>🥇</td></tr>
+      <tr><td><strong>Académico</strong></td><td>Publicaciones, congresos, docencia, citas</td><td>Lenta</td><td>Muy alta</td><td>🥈</td></tr>
+      <tr><td><strong>Comunitario</strong></td><td>Redes, boletín, embajadores, boca a boca</td><td>Media</td><td>Alta</td><td>🥉</td></tr>
+      <tr><td><strong>Mediático</strong></td><td>Prensa, entrevistas, columnas</td><td>Rápida</td><td>Baja</td><td>4.º</td></tr>
+    </tbody>
+  </table>
+  <div class="alert b"><strong>Regla práctica</strong><p>La prensa amplifica lo que ya existe; no lo crea. Cada aparición mediática debe apoyarse en un hito real y conducir a un destino que capture al visitante. Sin eso, un artículo en un diario nacional produce un pico de tráfico de 48 horas y ningún efecto permanente.</p></div>
+
+  <h3>Mapa de alianzas: 25 objetivos concretos</h3>
+  <div class="pill-row" id="ap">
+    <span class="pill on" data-a="all">Todas</span>
+    <span class="pill" data-a="ya">Activar ahora</span>
+    <span class="pill" data-a="6m">6 meses</span>
+    <span class="pill" data-a="int">Internacional</span>
+  </div>
+  <table>
+    <thead><tr><th style="width:32%">Institución</th><th>Acción concreta</th><th style="width:110px">Plazo</th></tr></thead>
+    <tbody>
+      <tr class="aitem ya"><td><strong>Academia Judicial de Chile</strong></td><td>Ya lista a ScribeClaro entre sus herramientas de IA. Convertirlo en un programa formativo conjunto (C5)</td><td><span class="tag t-red">Ahora</span></td></tr>
+      <tr class="aitem ya"><td><strong>Comisión de Lenguaje Claro, Corte Suprema</strong></td><td>Ya lo destacó en su boletín. Proponer colaboración estable: contenido para el boletín, taller para funcionarios</td><td><span class="tag t-red">Ahora</span></td></tr>
+      <tr class="aitem ya"><td><strong>Red de Lenguaje Claro Chile</strong></td><td>PUCV es miembro. Proponer a ScribeClaro como herramienta de referencia de la Red y ofrecer formación a las instituciones integrantes</td><td><span class="tag t-red">Ahora</span></td></tr>
+      <tr class="aitem ya"><td><strong>Biblioteca del Congreso (Ley Fácil)</strong></td><td>Colaboración natural entre dos proyectos de la misma familia. Contenido conjunto</td><td><span class="tag t-red">Ahora</span></td></tr>
+      <tr class="aitem ya"><td><strong>Senado de Chile</strong></td><td>Vínculo existente por la Guía de lenguaje claro legislativo. Proponer aplicación a textos legislativos</td><td><span class="tag t-red">Ahora</span></td></tr>
+      <tr class="aitem ya"><td><strong>Facultad de Derecho PUCV</strong></td><td>Integración curricular formal en asignaturas de primer y segundo año</td><td><span class="tag t-red">Ahora</span></td></tr>
+      <tr class="aitem ya"><td><strong>Dir. Comunicación Estratégica PUCV</strong></td><td>Convertir a ScribeClaro en caso destacado institucional; acceso a canales masivos</td><td><span class="tag t-red">Ahora</span></td></tr>
+      <tr class="aitem ya"><td><strong>Programa de Desarrollo Docente PUCV</strong></td><td>El origen del proyecto. Sostener la difusión interna y extenderlo a otras facultades</td><td><span class="tag t-red">Ahora</span></td></tr>
+      <tr class="aitem 6m"><td>Contraloría General de la República</td><td>Taller C6 y diagnóstico de documentos</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem 6m"><td>Consejo para la Transparencia</td><td>Colaboración natural: la transparencia exige comprensión</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem 6m"><td>Defensoría Penal Pública</td><td>Comunicación con personas privadas de libertad: claridad crítica</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem 6m"><td>Ministerio de Justicia y DD.HH.</td><td>Política pública de acceso a la justicia</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem 6m"><td>Ministerio de Educación</td><td>Ya manifestó interés tras el seminario de la Red</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem 6m"><td>Laboratorio de Gobierno</td><td>Innovación pública, prototipos, difusión</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem 6m"><td>SEGPRES</td><td>Modernización del Estado</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem 6m"><td>Colegio de Abogados de Chile</td><td>Formación continua a colegiados</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem 6m"><td>Otras escuelas de Derecho (U. de Chile, PUC, UDP, UACh)</td><td>Programa C10 "Facultad clara"</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem 6m"><td>Tribunal Constitucional</td><td>Ya es usuario. Formalizar y documentar el caso</td><td><span class="tag t-org">6 meses</span></td></tr>
+      <tr class="aitem int"><td><strong>Red Panhispánica (RAE)</strong></td><td>Vínculo por Lima 2025 y la reunión preparatoria de Madrid 2026 sobre IA. Postular a la III Convención</td><td><span class="tag t-tea">Año 2</span></td></tr>
+      <tr class="aitem int"><td>Academias de la lengua de la región</td><td>Difusión y coautorías</td><td><span class="tag t-tea">Año 2</span></td></tr>
+      <tr class="aitem int"><td>Cumbre Judicial Iberoamericana</td><td>Presentación ante poderes judiciales de la región</td><td><span class="tag t-tea">Año 2</span></td></tr>
+      <tr class="aitem int"><td>Universidades iberoamericanas (UAB, UBA, UNAM, PUCP)</td><td>Convenios docentes. Ya hay contacto con la UAB</td><td><span class="tag t-tea">Año 2</span></td></tr>
+      <tr class="aitem int"><td>Clarity International / PLAIN</td><td>Redes globales de plain language. Requiere la versión en inglés (R17)</td><td><span class="tag t-tea">Año 2</span></td></tr>
+      <tr class="aitem int"><td>BID · CEJA · OEA</td><td>Financiamiento para acceso a la justicia</td><td><span class="tag t-tea">Año 2</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Presencia en buscadores</h3>
+  <p class="mini">Hoy el sitio no compite por ninguna consulta relevante porque no tiene contenido. Con quince páginas es imposible posicionar; con el catálogo de recursos, sí.</p>
+  <div class="grid g2">
+    <div class="card"><h4>Consultas objetivo</h4><p class="mini"><code>lenguaje claro jurídico</code> · <code>escritura jurídica clara</code> · <code>cómo redactar una sentencia clara</code> · <code>lenguaje claro Chile</code> · <code>glosario jurídico lenguaje claro</code> · <code>IA para escribir mejor Derecho</code> · <code>redacción de tesis de Derecho</code> · <code>derecho a comprender</code></p></div>
+    <div class="card"><h4>Acciones de alto retorno</h4><ul class="clean">
+      <li><strong>Publicar el glosario (R2) como páginas web indexables</strong>, no solo PDF. 300 términos son 300 puertas de entrada desde buscadores. La acción de SEO más rentable disponible</li>
+      <li>Abrir un blog y publicar contenido de fondo dos veces al mes</li>
+      <li>Datos estructurados (schema.org) para organización, cursos y artículos</li>
+      <li>Pedir el enlace en cada mención institucional</li>
+      <li>Optimizar velocidad y experiencia móvil</li>
+      <li>Perfil de Google Scholar y depósito de recursos con DOI</li>
+    </ul></div>
+  </div>
+
+  <h3>Prensa</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Cinco ángulos noticiosos</h4><ul class="clean">
+      <li>"La IA que se niega a escribir por ti" — contracorriente y memorable</li>
+      <li>"El Poder Judicial usa una herramienta creada para estudiantes" — el recorrido inesperado</li>
+      <li>"El derecho a comprender: por qué una sentencia que nadie entiende es un problema constitucional"</li>
+      <li>"Una universidad chilena responde a la trampa académica con IA"</li>
+      <li>"Informe: cuán claro escribe la justicia chilena" — el informe anual R9 como noticia propia y recurrente</li>
+    </ul></div>
+    <div class="card"><h4>Kit de prensa a publicar</h4><p class="mini">Ficha del proyecto en una página · biografía y fotografía de la fundadora · logotipos en alta resolución · capturas de la herramienta · cifras actualizadas · tres citas ya redactadas · datos de contacto reales.</p>
+    <h4>Medios objetivo</h4><p class="mini">El Mercurio (Legal y Cuerpo A) · La Tercera · Diario Financiero · El Mostrador · Ex-Ante · CIPER · Radio Cooperativa · Radio U. de Chile · Diario Constitucional · Idealex · El Jurista · medios de Valparaíso. Antecedente internacional: El Universo (Ecuador).</p></div>
+  </div>
+  <div class="alert g"><strong>La vía más eficiente: columnas de opinión</strong><p>Una columna firmada por la fundadora, publicada trimestralmente en un medio nacional, construye autoridad de manera más sólida y controlada que cualquier entrevista.</p></div>
+
+  <h3>Circuito académico y comunidad</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Circuito académico</h4><ul class="clean">
+      <li><strong>Publicar sobre la herramienta</strong>, no solo con ella: evaluación de impacto, validación del índice, análisis del corpus</li>
+      <li>Revistas objetivo: Revista de Llengua i Dret, Revista de Derecho PUCV, revistas de lingüística aplicada y docencia universitaria</li>
+      <li>Congresos: Red Panhispánica, Red de Lenguaje Claro Chile, lingüística aplicada, innovación en educación superior, Cumbre Judicial Iberoamericana</li>
+      <li>Dirigir tesis sobre lenguaje claro: cada una es investigación, difusión y un futuro embajador, sin costo adicional</li>
+    </ul></div>
+    <div class="card"><h4>Programa de embajadores estudiantiles</h4><p class="mini">10-15 estudiantes de Derecho de distintas universidades, seleccionados anualmente. Reciben formación gratuita (C4), materiales y certificación; a cambio difunden la herramienta en su facultad, aportan textos para el corpus y retroalimentan el desarrollo.</p><p class="mini">Costo casi nulo, alcance descentralizado y —quizás lo más valioso— una fuente permanente de contacto directo con el usuario real que ningún panel de métricas reemplaza.</p></div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <h2>Plan de ejecución 90 / 180 / 365</h2>
+  <p class="sub">Secuencia calibrada para un equipo de tres personas con carga académica paralela.</p>
+
+  <div class="tl">
+    <div class="it">
+      <div class="when">Días 1 – 90</div>
+      <h5>Reparar y preparar</h5>
+      <div class="card"><ul class="clean chk">
+        <li>Corregir teléfono y habilitar correo institucional (H1, H2)</li>
+        <li>Publicar política de privacidad y Declaración de IA Responsable (H4)</li>
+        <li>Instalar analítica con eventos definidos (H7)</li>
+        <li>Crear cuentas de LinkedIn e Instagram; reservar nombres en todas las plataformas</li>
+        <li>Producir R3 (lista de verificación) y R2 inicial (glosario, 100 términos)</li>
+        <li>Grabar video de demostración de 60 segundos</li>
+        <li>Producir el primer mes de contenido antes de publicar</li>
+        <li>Reconvertir /services/ en página real de oferta formativa con formulario</li>
+        <li>Contactar a Academia Judicial y Comisión de Lenguaje Claro</li>
+        <li>Contratar ayudante estudiantil de comunicaciones</li>
+        <li>Reactivar la sección Noticias con cadencia quincenal</li>
+      </ul></div>
+    </div>
+    <div class="it">
+      <div class="when">Días 91 – 180</div>
+      <h5>Activar</h5>
+      <div class="card"><ul class="clean chk">
+        <li>Publicar R1 (manual) con DOI y captación de contactos</li>
+        <li>Lanzar el boletín "Claro está"</li>
+        <li>Desarrollar T1 (Índice de Claridad) y T2 (comparador)</li>
+        <li>Primer webinar abierto (C2) con captación masiva</li>
+        <li>Primeros dos talleres piloto (C4 y C5) con medición de impacto</li>
+        <li>Abrir canal de YouTube con las primeras cinco cápsulas</li>
+        <li>Publicar el kit de prensa y primera ronda de contacto con medios</li>
+        <li>Firmar convenio con al menos una universidad externa</li>
+      </ul></div>
+    </div>
+    <div class="it">
+      <div class="when">Días 181 – 365</div>
+      <h5>Escalar</h5>
+      <div class="card"><ul class="clean chk">
+        <li>Publicar el primer Informe anual (R9) — hito de prensa del año</li>
+        <li>Seminario del Día Internacional del Lenguaje Claro, 13 de octubre</li>
+        <li>Desarrollar T6 (panel institucional) y T3 (informe descargable)</li>
+        <li>Cerrar el primer programa institucional pagado (C9)</li>
+        <li>Iniciar la tramitación del diplomado (C12)</li>
+        <li>Lanzar el programa de embajadores</li>
+        <li>Postular a la III Convención de la Red Panhispánica</li>
+        <li>Publicar el primer artículo académico sobre el impacto de la herramienta</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- KPIS -->
+<section id="kpis">
+  <h2>Métricas, gobernanza y riesgos</h2>
+  <div class="alert o"><strong>Regla previa</strong><p>Hoy no existe línea base publicada. El primer mes de analítica define el punto de partida; las metas se fijan recién entonces. Fijar metas antes de tener línea base es inventar.</p></div>
+
+  <h3>Indicadores</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Uso de la plataforma</h4><ul class="clean">
+      <li>Usuarios únicos mensuales</li><li>Textos analizados</li><li>Usuarios recurrentes</li>
+      <li>Duración de sesión</li><li>Distribución por dispositivo</li><li>Origen del tráfico</li><li>Alcance geográfico</li>
+    </ul></div>
+    <div class="card"><h4>Impacto formativo</h4><ul class="clean">
+      <li>Variación del Índice de Claridad entre entrada y salida</li><li>Participantes formados</li>
+      <li>Satisfacción de talleres</li><li>Instituciones con adopción formal</li><li>Asignaturas que integran la herramienta</li>
+    </ul></div>
+    <div class="card"><h4>Comunicación</h4><ul class="clean">
+      <li>Seguidores y tasa de crecimiento</li><li>Interacción por publicación</li><li>Tráfico derivado de redes al sitio</li>
+      <li>Suscriptores del boletín y tasa de apertura</li><li>Descargas por recurso</li><li>Menciones en prensa</li><li>Posiciones logradas en buscadores</li>
+    </ul></div>
+    <div class="card"><h4>Institucional y académico</h4><ul class="clean">
+      <li>Convenios firmados</li><li>Instituciones capacitadas</li><li>Publicaciones y citas</li>
+      <li>Presentaciones en congresos</li><li>Ingresos o financiamiento obtenido</li>
+    </ul></div>
+  </div>
+  <p class="mini"><strong>Ritmo de revisión:</strong> informe interno mensual de una página · revisión estratégica trimestral · memoria pública anual.</p>
+
+  <h3>Riesgos y mitigación</h3>
+  <table>
+    <thead><tr><th style="width:30%">Riesgo</th><th style="width:90px">Impacto</th><th>Mitigación</th></tr></thead>
+    <tbody>
+      <tr><td>Dependencia excesiva de una sola persona</td><td><span class="tag t-red">Alto</span></td><td>Construir la marca del proyecto además de la personal; vocerías compartidas; documentar procesos</td></tr>
+      <tr><td>Redes abandonadas a los tres meses</td><td><span class="tag t-red">Alto</span></td><td>Ayudante dedicado; producción en bloque quincenal; solo dos canales al inicio</td></tr>
+      <tr><td>Bloqueo institucional por falta de marco de privacidad</td><td><span class="tag t-red">Alto</span></td><td>Resolver en los primeros 90 días. Es prerrequisito, no complemento</td></tr>
+      <tr><td>Crecimiento del costo de inferencia</td><td><span class="tag t-org">Medio</span></td><td>Modelar escenarios; explorar modelo propio (T11); ingresos por formación</td></tr>
+      <tr><td>Cuestionamiento público sobre IA en justicia</td><td><span class="tag t-org">Medio</span></td><td>Mensajería preparada; transparencia total; postura ya diferenciada</td></tr>
+      <tr><td>Competidor con más recursos</td><td><span class="tag t-org">Medio</span></td><td>Consolidar el foso: aval institucional, corpus propio, comunidad, evidencia académica</td></tr>
+      <tr><td>Sobrecarga del equipo por demanda formativa</td><td><span class="tag t-org">Medio</span></td><td>Certificación de facilitadores (C13); curso autoformativo (C14)</td></tr>
+      <tr><td>Expectativas desalineadas sobre la herramienta</td><td><span class="tag t-yel">Bajo</span></td><td>Límites explícitos y visibles en la interfaz</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FUENTES -->
+<section id="fuentes">
+  <h2>Fuentes</h2>
+  <p class="sub">Toda la información de este panel proviene de fuentes públicas verificadas. Cuando un dato no está publicado, se indica expresamente en lugar de estimarlo.</p>
+
+  <h3>Sitio del proyecto</h3>
+  <div class="card"><ul class="clean">
+    <li><a class="ext" href="https://scribeclaro.pucv.cl/" target="_blank" rel="noopener">ScribeClaroPUCV — Home</a></li>
+    <li><a class="ext" href="https://scribeclaro.pucv.cl/chat/" target="_blank" rel="noopener">Asistente / Chat</a></li>
+    <li><a class="ext" href="https://scribeclaro.pucv.cl/recursos/" target="_blank" rel="noopener">Recursos</a></li>
+    <li><a class="ext" href="https://scribeclaro.pucv.cl/biblioteca/" target="_blank" rel="noopener">Biblioteca</a></li>
+    <li><a class="ext" href="https://scribeclaro.pucv.cl/news/" target="_blank" rel="noopener">Noticias</a></li>
+    <li><a class="ext" href="https://scribeclaro.pucv.cl/services/" target="_blank" rel="noopener">Servicios</a></li>
+    <li><a class="ext" href="https://scribeclaro.pucv.cl/about/" target="_blank" rel="noopener">Nosotros</a></li>
+  </ul></div>
+
+  <h3>Institucionales PUCV</h3>
+  <div class="card"><ul class="clean">
+    <li><a class="ext" href="https://www.pucv.cl/uuaa/derecho-pucv/noticias/scribeclaropucv-innovadora-herramienta-para-una-redaccion-juridica-clara" target="_blank" rel="noopener">ScribeClaroPUCV: innovadora herramienta para una redacción jurídica clara</a></li>
+    <li><a class="ext" href="https://www.pucv.cl/pucv/noticias/vida-universitaria/scribeclaropucv-plataforma-de-ia-para-mejorar-la-redaccion-es-utilizada" target="_blank" rel="noopener">Plataforma de IA para mejorar la redacción es utilizada por el Poder Judicial</a></li>
+    <li><a class="ext" href="https://www.pucv.cl/pucv/noticias/vida-universitaria/poder-judicial-destaca-iniciativa-scribeclaropucv-originada-en-proyecto" target="_blank" rel="noopener">Poder Judicial destaca iniciativa ScribeClaroPUCV</a></li>
+    <li><a class="ext" href="https://desarrollodocente.pucv.cl/poder-judicial-destaca-iniciativa-scribeclaro-pucv-originada-en-proyecto-de-innovacion-para-la-docencia/" target="_blank" rel="noopener">Desarrollo Docente PUCV — proyecto de innovación para la docencia</a></li>
+    <li><a class="ext" href="https://www.pucv.cl/pucv/noticias/primera-persona/lenguaje-claro-y-el-derecho-a-comprender-academica-lidera-avances-en-el" target="_blank" rel="noopener">Lenguaje Claro y el derecho a comprender: Académica lidera avances en el país</a></li>
+    <li><a class="ext" href="https://www.pucv.cl/uuaa/derecho-pucv/noticias/profesora-claudia-poblete-participo-en-la-ii-convencion-de-la-red" target="_blank" rel="noopener">Participación en la II Convención de la Red Panhispánica (Lima, 2025)</a></li>
+    <li><a class="ext" href="https://www.pucv.cl/pucv/noticias/destacadas/pucv-integra-red-que-promueve-el-uso-del-lenguaje-claro" target="_blank" rel="noopener">PUCV integra red que promueve el uso del lenguaje claro</a></li>
+    <li><a class="ext" href="https://www.pucv.cl/uuaa/site/docs/20240318/20240318170236/manual_redes_sociales_2024.pdf" target="_blank" rel="noopener">Manual de Estilo para Redes Sociales PUCV 2024</a></li>
+  </ul></div>
+
+  <h3>Ecosistema de lenguaje claro</h3>
+  <div class="card"><ul class="clean">
+    <li><a class="ext" href="https://ia.academiajudicial.cl/herramientas-ia/scribeclaro/" target="_blank" rel="noopener">Academia Judicial de Chile — ScribeClaro</a></li>
+    <li><a class="ext" href="https://www.rae.es/la-institucion/red-panhispanica-de-lenguaje-claro-y-accesible" target="_blank" rel="noopener">Red Panhispánica de Lenguaje Claro y Accesible — RAE</a></li>
+    <li><a class="ext" href="https://www.lenguajeclarochile.cl/" target="_blank" rel="noopener">Red de Lenguaje Claro Chile</a> · <a class="ext" href="http://www.lenguajeclarochile.cl/plan-anual/" target="_blank" rel="noopener">Plan anual</a></li>
+    <li><a class="ext" href="https://www.pjud.cl/docs/download/126748" target="_blank" rel="noopener">Boletín Lenguaje Claro N.º 2, Poder Judicial (octubre 2025)</a></li>
+    <li><a class="ext" href="https://cdn.senado.cl/portal-senado-produccion/s3fs-public/2025-10/guia-de-lenguaje-claro-para-el-ambito-legislativo.-formato-accesible.pdf" target="_blank" rel="noopener">Guía de lenguaje claro para el ámbito legislativo — Senado de Chile</a></li>
+    <li><a class="ext" href="https://www.pjud.cl/prensa-y-comunicaciones/noticias-del-poder-judicial/41028" target="_blank" rel="noopener">Seminario internacional de la Red de Lenguaje Claro en la Corte Suprema</a></li>
+  </ul></div>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var links=document.querySelectorAll('#nav a');
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      links.forEach(function(x){x.classList.remove('active')});
+      a.classList.add('active');
+      document.querySelectorAll('main section').forEach(function(s){s.classList.remove('on')});
+      var t=document.getElementById(a.dataset.s);
+      if(t){t.classList.add('on')}
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  function filt(wrapId, attr, itemSel){
+    var wrap=document.getElementById(wrapId); if(!wrap) return;
+    wrap.querySelectorAll('.pill').forEach(function(p){
+      p.addEventListener('click',function(){
+        wrap.querySelectorAll('.pill').forEach(function(x){x.classList.remove('on')});
+        p.classList.add('on');
+        var v=p.getAttribute(attr);
+        document.querySelectorAll(itemSel).forEach(function(it){
+          it.style.display=(v==='all'||it.classList.contains(v))?'':'none';
+        });
+      });
+    });
+  }
+  filt('fp','data-f','.fitem');
+  filt('ip','data-i','.iitem');
+  filt('rp','data-r','.ritem');
+  filt('cp','data-c','.citem');
+  filt('tp','data-t','.titem');
+  filt('ap','data-a','.aitem');
+})();
+</script>
+</body>
+</html>

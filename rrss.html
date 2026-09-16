@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit de redes sociales · ScribeClaroPUCV</title>
+<style>
+:root{
+  --navy:#00284d; --navy2:#003f75; --ink:#16202b; --muted:#5c6b7a;
+  --line:#dde5ec; --bg:#f4f7fa; --card:#fff;
+  --amber:#c8811c; --amber-soft:#fdf3e2;
+  --red:#b3261e; --red-soft:#fdecea;
+  --org:#a85a10; --org-soft:#fdf0e3;
+  --yel:#8a6d0b; --yel-soft:#fbf6e0;
+  --grn:#1d6b45; --grn-soft:#e8f4ed;
+  --tea:#0f5f6b; --tea-soft:#e4f2f4;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.layout{display:flex;min-height:100vh}
+aside{width:260px;flex:0 0 260px;background:var(--navy);color:#dce7f1;position:sticky;top:0;height:100vh;overflow-y:auto;padding:24px 0}
+aside .brand{padding:0 20px 18px;border-bottom:1px solid rgba(255,255,255,.13);margin-bottom:12px}
+aside .brand h1{font-size:16px;margin:0 0 5px;color:#fff}
+aside .brand p{font-size:11.5px;margin:0;color:#8fb0cc;line-height:1.45}
+nav a{display:block;padding:9px 20px;color:#c2d6e8;text-decoration:none;font-size:13.5px;border-left:3px solid transparent;transition:.15s}
+nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+nav a.active{background:rgba(255,255,255,.11);color:#fff;border-left-color:var(--amber);font-weight:600}
+nav .grp{padding:15px 20px 5px;font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:#6f92b3;font-weight:700}
+main{flex:1;min-width:0;padding:32px 44px 90px;max-width:1160px}
+section{display:none}section.on{display:block}
+h2{font-size:27px;margin:0 0 6px;letter-spacing:-.6px;color:var(--navy)}
+.sub{color:var(--muted);font-size:14.5px;margin:0 0 24px;max-width:760px}
+h3{font-size:18px;margin:32px 0 12px;color:var(--navy2)}
+h4{font-size:13px;margin:18px 0 8px;text-transform:uppercase;letter-spacing:.7px}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:20px 22px;margin-bottom:15px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(165px,1fr))}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;margin:10px 0 18px;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+th{background:#eef3f8;text-align:left;padding:10px 13px;font-weight:650;color:var(--navy);font-size:11.5px;text-transform:uppercase;letter-spacing:.55px;border-bottom:1px solid var(--line)}
+td{padding:10px 13px;border-bottom:1px solid #eef2f6;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#f8fbfd}
+code{background:#eef3f8;padding:1px 6px;border-radius:4px;font-size:12.5px;color:var(--navy2)}
+.tag{display:inline-block;padding:2.5px 9px;border-radius:20px;font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+.t-red{background:var(--red-soft);color:var(--red)}.t-org{background:var(--org-soft);color:var(--org)}
+.t-yel{background:var(--yel-soft);color:var(--yel)}.t-grn{background:var(--grn-soft);color:var(--grn)}
+.t-tea{background:var(--tea-soft);color:var(--tea)}.t-nav{background:#e7eef6;color:var(--navy2)}
+.t-amb{background:var(--amber-soft);color:var(--amber)}
+.alert{border-left:4px solid var(--red);background:var(--red-soft);padding:14px 17px;border-radius:0 9px 9px 0;margin-bottom:13px}
+.alert.o{border-color:var(--org);background:var(--org-soft)}
+.alert.y{border-color:var(--yel);background:var(--yel-soft)}
+.alert.g{border-color:var(--grn);background:var(--grn-soft)}
+.alert.b{border-color:var(--navy2);background:#eaf1f8}
+.alert strong{display:block;margin-bottom:4px;font-size:14px}
+.alert p{font-size:13.5px;margin:0}
+ul.clean{list-style:none;padding:0;margin:0}
+ul.clean li{padding:7px 0 7px 22px;position:relative;font-size:13.5px;border-bottom:1px solid #f0f4f8}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li:before{content:"";position:absolute;left:4px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--amber)}
+ul.chk li:before{content:"☐";background:none;left:0;top:6px;width:auto;height:auto;color:var(--muted);font-size:14px}
+a.ext{color:var(--navy2);text-decoration:none;border-bottom:1px solid #b9cee0}
+a.ext:hover{border-color:var(--navy2)}
+.mini{font-size:12.5px;color:var(--muted)}
+/* COPY BLOCKS */
+.cb{background:#fbfcfe;border:1px solid var(--line);border-radius:10px;margin:10px 0 18px;overflow:hidden}
+.cb-h{display:flex;align-items:center;gap:10px;padding:9px 14px;background:#eef3f8;border-bottom:1px solid var(--line)}
+.cb-h .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--navy);font-weight:700;flex:1}
+.cb-h .cnt{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cpy{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:5px 13px;font-size:11.5px;font-weight:600;cursor:pointer;transition:.15s;white-space:nowrap;font-family:inherit}
+.cpy:hover{background:var(--navy2)}
+.cpy.ok{background:var(--grn)}
+.cb pre{margin:0;padding:15px 17px;white-space:pre-wrap;word-wrap:break-word;font-family:inherit;font-size:13.5px;line-height:1.65;color:#243342;max-height:520px;overflow-y:auto}
+.pill-row{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 18px}
+.pill{background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;font-size:12.5px;cursor:pointer;color:var(--muted);user-select:none;transition:.15s}
+.pill:hover{border-color:var(--navy2);color:var(--navy2)}
+.pill.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600}
+.spec{background:#fff;border:1px solid var(--line);border-radius:10px;padding:15px 17px}
+.spec .big{font-size:21px;font-weight:750;color:var(--navy);letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+.spec .lbl{font-size:12px;color:var(--muted);margin-top:3px}
+.spec .rat{font-size:11px;color:var(--amber);font-weight:700;margin-top:5px;text-transform:uppercase;letter-spacing:.5px}
+.tl{position:relative;padding-left:26px;margin:14px 0}
+.tl:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl .it{position:relative;margin-bottom:18px}
+.tl .it:before{content:"";position:absolute;left:-24px;top:5px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--amber)}
+.tl .it h5{margin:0 0 3px;font-size:14.5px;color:var(--navy)}
+.tl .it .when{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:6px}
+.lam{display:grid;grid-template-columns:44px 1fr;gap:0;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;margin:10px 0 16px}
+.lam .n{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;border-bottom:1px solid rgba(255,255,255,.15)}
+.lam .c{padding:10px 14px;font-size:13.5px;border-bottom:1px solid #eef2f6}
+.lam > :nth-last-child(-n+2){border-bottom:none}
+@media(max-width:900px){
+  .layout{flex-direction:column}
+  aside{width:100%;flex:none;height:auto;position:static;padding:16px 0}
+  aside nav{display:flex;flex-wrap:wrap;gap:4px;padding:0 12px}
+  nav a{border-left:none;border-radius:7px;padding:7px 12px;font-size:12.5px}
+  nav a.active{border-left:none}
+  nav .grp{display:none}
+  main{padding:20px 16px 70px}
+  h2{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="brand">
+    <h1>Kit de redes sociales</h1>
+    <p>ScribeClaroPUCV · Creación, contenidos y crecimiento<br>Todos los textos con botón de copiado</p>
+    <p style="font-size:11.5px;margin:10px 0 0"><a href="/" style="color:#e8b96a;text-decoration:none">&larr; Índice</a> <span style="color:#5c7b99">·</span> <a href="/estrategia" style="color:#e8b96a;text-decoration:none">Panel estratégico</a></p>
+  </div>
+  <nav id="nav">
+    <div class="grp">Montaje</div>
+    <a href="#" data-s="inicio" class="active">Antes de empezar</a>
+    <a href="#" data-s="linkedin">Crear LinkedIn</a>
+    <a href="#" data-s="instagram">Crear Instagram</a>
+    <a href="#" data-s="otros">Otros canales</a>
+    <div class="grp">Técnico</div>
+    <a href="#" data-s="medidas">Medidas y límites</a>
+    <a href="#" data-s="graficos">Activos gráficos</a>
+    <div class="grp">Contenido</div>
+    <a href="#" data-s="primeras">Primeras 10 publicaciones</a>
+    <a href="#" data-s="calendario">Calendario 30 días</a>
+    <a href="#" data-s="copys">40 copys</a>
+    <a href="#" data-s="reels">12 reels</a>
+    <div class="grp">Crecimiento</div>
+    <a href="#" data-s="seguidores">Ganar seguidores</a>
+    <a href="#" data-s="contactos">Captar contactos</a>
+    <a href="#" data-s="mensajes">Mensajes y correos</a>
+    <div class="grp">Operación</div>
+    <a href="#" data-s="produccion">Producción</a>
+    <a href="#" data-s="metricas">Métricas</a>
+    <a href="#" data-s="links">Todos los enlaces</a>
+  </nav>
+</aside>
+<main>
+<section id="inicio" class="on">
+  <h2>Antes de empezar</h2>
+  <p class="sub">Seis decisiones que hay que tomar antes de tocar ningún formulario. Resolverlas ahora evita rehacer todo en tres meses.</p>
+
+  <div class="alert"><strong>Bloqueante n.º 1 · Correo institucional</strong><p>No crear ninguna cuenta con <code>scribeclaropucv@gmail.com</code>. Las cuentas quedan atadas a ese correo para siempre y migrarlas después es engorroso. Solicitar a TI un alias <code>contacto@scribeclaro.pucv.cl</code>. Un correo @pucv.cl señala institución; un Gmail señala proyecto personal, y es lo primero que mira un funcionario público antes de responder.</p></div>
+  <div class="alert o"><strong>Bloqueante n.º 2 · El teléfono del sitio es ficticio</strong><p>El pie de página muestra <code>202-555-0188</code>: es el rango reservado en EE.UU. para ficción, un dato de plantilla que nunca se reemplazó. Corregirlo antes de dirigir tráfico al sitio.</p></div>
+
+  <h3>Las seis decisiones</h3>
+  <table>
+    <thead><tr><th style="width:34px">#</th><th style="width:26%">Decisión</th><th>Qué hacer</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Coordinación institucional</strong></td><td>Escribir a la Dirección de Comunicación Estratégica PUCV. No es trámite: es fuente de recursos. Pueden aportar diseño, validación de marca y amplificación desde cuentas con decenas de miles de seguidores</td></tr>
+      <tr><td>2</td><td><strong>Nombre de usuario</strong></td><td><code>scribeclaropucv</code> (reserva: <code>scribeclaro</code>). <strong>Reservarlo hoy en todas las plataformas</strong>, aunque el canal se abra en seis meses. Cuesta diez minutos ahora y es caro después</td></tr>
+      <tr><td>3</td><td><strong>Correo institucional</strong></td><td>Ver alerta arriba. Bloquea todo lo demás</td></tr>
+      <tr><td>4</td><td><strong>Quién tiene acceso</strong></td><td>Tres administradores, no una contraseña compartida. Vincular Instagram a Meta Business Suite. Verificación en dos pasos activa</td></tr>
+      <tr><td>5</td><td><strong>Qué se publica</strong></td><td>Ningún texto jurídico real sin anonimizar. Lo más seguro y limpio: <strong>construir párrafos sintéticos</strong> que reproduzcan los vicios típicos sin ser un documento real</td></tr>
+      <tr><td>6</td><td><strong>Coherencia con la misión</strong></td><td>Una cuenta de lenguaje claro que publica textos confusos se desacredita sola. Filtro obligatorio antes de cada publicación (abajo)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Filtro obligatorio antes de publicar</h3>
+  <div class="card"><ul class="clean chk">
+    <li>¿Las oraciones tienen menos de 25 palabras en promedio?</li>
+    <li>¿Está en voz activa?</li>
+    <li>¿Hay una sola idea por publicación?</li>
+    <li>¿Toda sigla está explicada la primera vez?</li>
+    <li>¿Un estudiante de primer año lo entendería sin releer?</li>
+    <li>¿La imagen tiene contraste suficiente y texto alternativo?</li>
+  </ul><p class="mini" style="margin-top:12px">Si alguna respuesta es no, no se publica.</p></div>
+
+  <h3>Orden de apertura de canales</h3>
+  <table>
+    <thead><tr><th>Fase</th><th>Canal</th><th>Por qué</th><th>Cadencia</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag t-grn">Mes 1</span></td><td><strong>LinkedIn</strong> 🥇</td><td>Jueces, funcionarios, académicos, directivos: todos los que deciden y tienen presupuesto</td><td>2 posts/sem página + 1-2 perfil personal</td></tr>
+      <tr><td><span class="tag t-grn">Mes 1</span></td><td><strong>Instagram</strong> 🥈</td><td>Estudiantes de Derecho chilenos. Formato ideal para antes/después</td><td>3 posts/sem + stories 3-4 días</td></tr>
+      <tr><td><span class="tag t-tea">Mes 4</span></td><td>YouTube</td><td>Repositorio, no canal de crecimiento. Segundo buscador del mundo</td><td>2 videos/mes</td></tr>
+      <tr><td><span class="tag t-tea">Mes 4</span></td><td>Boletín</td><td>El único canal donde la audiencia es propiedad del proyecto</td><td>Mensual</td></tr>
+      <tr><td><span class="tag t-nav">Mes 6-7</span></td><td>WhatsApp · Bluesky · X</td><td>Reutilización pura, cero producción original</td><td>Variable</td></tr>
+    </tbody>
+  </table>
+  <p class="mini"><strong>No abrir:</strong> Facebook (audiencia desalineada) · Threads (redundante) · Discord y Telegram (exigen moderación permanente que tres personas no pueden sostener).</p>
+</section>
+
+<section id="linkedin">
+  <h2>Crear la presencia en LinkedIn</h2>
+  <p class="sub">Prioridad máxima. Arquitectura de dos piezas: una <strong>página de empresa</strong> que aporta legitimidad y una <strong>cuenta personal de la fundadora</strong> que aporta alcance real.</p>
+
+  <div class="alert b"><strong>Por qué las dos, y no solo la página</strong><p>En LinkedIn los perfiles personales alcanzan varias veces más que las páginas institucionales, porque el algoritmo privilegia el contenido de personas. <strong>La fundadora publica. La página amplifica</strong> compartiendo la publicación el mismo día o al siguiente.</p></div>
+
+  <h3>Página de empresa</h3>
+  <p class="mini">Crear desde un perfil personal existente en <a class="ext" href="https://www.linkedin.com/company/setup/new/" target="_blank" rel="noopener">linkedin.com/company/setup/new</a>. Lo natural es que la cree la fundadora y luego agregue a los demás.</p>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Nombre</span><button class="cpy">Copiar</button></div><pre>ScribeClaroPUCV</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">URL pública</span><button class="cpy">Copiar</button></div><pre>linkedin.com/company/scribeclaropucv</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Eslogan · máx. 120 caracteres</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>IA que no escribe por ti: te enseña a escribir claro. Un proyecto de la PUCV.</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Descripción "Acerca de" · máx. 2.000 caracteres</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>ScribeClaroPUCV es una plataforma web de la Pontificia Universidad Católica de Valparaíso que fortalece la escritura jurídica clara mediante inteligencia artificial.
+
+Su diseño parte de una decisión deliberada: la herramienta no redacta por ti. Analiza el texto que ya escribiste y te muestra qué dificulta su comprensión —la subordinación excesiva, el párrafo que arrastra tres ideas, la voz pasiva que oculta quién decide— para que tú corrijas. El texto sigue siendo tuyo. La escritura es un proceso cognitivo y debe asumirlo quien crea el documento.
+
+Nació como un proyecto de innovación para la docencia, con apoyo de la Vicerrectoría Académica y la Facultad de Derecho PUCV, para acompañar a estudiantes de Derecho. Hoy la usan también funcionarios del Poder Judicial, abogados en ejercicio y profesionales del sector público, en Chile y fuera de él.
+
+Trabajamos desde una convicción: quien no comprende una resolución que lo afecta no puede ejercer sus derechos. El lenguaje claro no es un asunto de estilo, sino una condición del acceso a la justicia.
+
+La plataforma es gratuita y no requiere registro.
+
+🔗 scribeclaro.pucv.cl</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Especialidades · hasta 20, decisivas para aparecer en búsquedas</span><button class="cpy">Copiar</button></div><pre>lenguaje claro
+escritura jurídica
+lenguaje jurídico claro
+redacción jurídica
+inteligencia artificial educativa
+integridad académica
+acceso a la justicia
+derecho a comprender
+alfabetización académica
+lingüística aplicada
+educación superior
+innovación docente
+comunicación pública
+lectura fácil
+asistente de escritura
+español jurídico</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Texto del banner de página (1128 × 191 px)</span><button class="cpy">Copiar</button></div><pre>El derecho a comprender · scribeclaro.pucv.cl</pre></div>
+
+  <h4>Otros campos</h4>
+  <table>
+    <tbody>
+      <tr><th style="width:200px">Sitio web</th><td><code>https://scribeclaro.pucv.cl</code></td></tr>
+      <tr><th>Sector</th><td>Investigación · Educación superior (si obliga a uno: <em>Servicios de investigación</em>)</td></tr>
+      <tr><th>Tamaño</th><td>De 2 a 10 empleados</td></tr>
+      <tr><th>Tipo</th><td>Institución educativa</td></tr>
+      <tr><th>Ubicación</th><td>Av. Brasil 2950, Valparaíso, Región de Valparaíso, Chile</td></tr>
+      <tr><th>Logo</th><td>300 × 300 px (subir a 1000 × 1000) · máx. 4 MB · se ve circular: centrar el símbolo</td></tr>
+      <tr><th>Banner</th><td>1128 × 191 px · máx. 4 MB · muy apaisado, solo cabe una frase y el logotipo</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Después de crear la página</h4>
+  <div class="card"><ul class="clean chk">
+    <li><strong>Agregar administradores</strong> → Panel → Configuración → Administradores de página. Sumar a Pamela Catalán y Óscar Sancho</li>
+    <li><strong>Botón de llamado a la acción</strong> → <em>Visitar sitio web</em> apuntando a scribeclaro.pucv.cl</li>
+    <li><strong>Publicar tres publicaciones antes de invitar a nadie.</strong> Una página vacía a la que se invita a 200 personas convierte pésimo</li>
+    <li><strong>Invitar contactos de a 30 por semana</strong>, no todos de golpe: las invitaciones no aceptadas consumen crédito</li>
+    <li><strong>Vincular la página al perfil de la fundadora</strong> como experiencia laboral actual</li>
+  </ul></div>
+
+  <h3>Perfil personal de la fundadora</h3>
+  <div class="alert g"><strong>Este es el canal de mayor alcance del proyecto</strong><p>Más que la propia página. Activar el <strong>modo creador</strong> (Panel de recursos → Modo de creador): cambia "Conectar" por "Seguir", habilita el boletín nativo y da métricas de publicaciones. Para quien busca audiencia y no red de contactos, es la configuración correcta.</p></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Titular · máx. 220 caracteres · se ve en cada comentario que se haga</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Trabajo para que las personas entiendan lo que el Estado y los tribunales les dicen | Doctora en Filología Española | Profesora de Derecho PUCV | Directora de ScribeClaroPUCV</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Sección "Acerca de" · máx. 2.600 caracteres</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Hace veinte años, hablar de lenguaje claro en Chile era hablar de un tema desconocido. Hoy hay una Guía de lenguaje claro en el Senado, una Comisión en la Corte Suprema y una red que reúne a la Contraloría, la Biblioteca del Congreso, el Consejo para la Transparencia y el Poder Judicial.
+
+Lo que cambió no fue la lengua. Fue entender que si una persona no comprende una resolución que la afecta, no puede ejercer sus derechos. La claridad dejó de ser un asunto de estilo y pasó a ser una condición del acceso a la justicia.
+
+Soy doctora en Filología Española por la Universitat Autònoma de Barcelona, magíster en Lingüística Aplicada y perito lingüista forense. Enseño en la Escuela de Derecho de la Pontificia Universidad Católica de Valparaíso, donde coordino el área de Integridad Académica e integro el grupo de investigación en Lenguaje Claro y Derecho.
+
+Dirijo ScribeClaroPUCV, una plataforma de inteligencia artificial que, deliberadamente, no escribe por nadie: analiza el texto que la persona ya escribió y le muestra qué dificulta su comprensión. La usan estudiantes de Derecho, funcionarios del Poder Judicial y profesionales del sector público. Es gratuita y no requiere registro.
+
+He colaborado en el diseño de la Guía de lenguaje claro para el ámbito legislativo presentada al Senado de Chile, publiqué sobre iniciativas de lenguaje claro en América Latina en el Anuario del Instituto Cervantes 2025, y presenté ScribeClaro en la II Convención de la Red Panhispánica de Lenguaje Claro y Accesible en Lima.
+
+Escribo aquí sobre escritura jurídica, lenguaje claro, inteligencia artificial responsable y el derecho a comprender.
+
+📩 Para talleres, colaboraciones o consultas institucionales: [correo institucional]
+🔗 scribeclaro.pucv.cl</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Texto del banner personal (1584 × 396 px)</span><button class="cpy">Copiar</button></div><pre>El derecho a comprender
+scribeclaro.pucv.cl</pre></div>
+
+  <p class="mini"><strong>Zona segura del banner:</strong> el círculo de la foto de perfil tapa la esquina inferior izquierda. El texto va centrado o a la derecha.</p>
+
+  <h4>Dos secciones más que rinden</h4>
+  <div class="grid g2">
+    <div class="card"><h4>Destacado</h4><p class="mini">Anclar arriba: (1) el sitio de ScribeClaro, (2) la nota de la PUCV sobre el uso por el Poder Judicial, (3) el primer recurso descargable cuando exista.</p></div>
+    <div class="card"><h4>Servicios</h4><p class="mini">Activar la sección y listar: <em>Formación corporativa · Consultoría educativa · Redacción de contenidos</em>. Hace que el perfil aparezca en las búsquedas de quien busca capacitación.</p></div>
+  </div>
+</section>
+<section id="instagram">
+  <h2>Crear la cuenta de Instagram</h2>
+  <p class="sub">Segunda prioridad. Es donde están los estudiantes de Derecho chilenos y donde las duplas antes/después funcionan mejor.</p>
+
+  <div class="alert o"><strong>Paso crítico inmediato tras crear la cuenta</strong><p>Convertirla a <strong>profesional</strong>: Configuración → Tipo de cuenta y herramientas → Cambiar a cuenta profesional → categoría <strong>Educación</strong>. Sin esto no hay estadísticas, ni enlaces múltiples, ni programación desde Meta Business Suite.</p></div>
+  <p class="mini">Crear en <a class="ext" href="https://www.instagram.com/accounts/emailsignup/" target="_blank" rel="noopener">instagram.com/accounts/emailsignup</a> con el correo institucional.</p>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Nombre de usuario</span><button class="cpy">Copiar</button></div><pre>scribeclaropucv</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Nombre visible · máx. 30 caracteres · es indexable en la búsqueda de Instagram</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>ScribeClaro · Escritura jurídica</pre></div>
+
+  <div class="alert b"><strong>Por qué el nombre visible importa tanto</strong><p>Instagram indexa el nombre visible en su buscador, no solo el usuario. Poner "ScribeClaro · Escritura jurídica" en lugar de solo "ScribeClaroPUCV" hace que la cuenta aparezca cuando alguien busca "escritura jurídica". Es espacio gratuito de posicionamiento que casi nadie aprovecha.</p></div>
+
+  <h3>Biografía · máx. 150 caracteres</h3>
+  <p class="mini">Tres versiones según el énfasis. Elegir una y probar otra a los dos meses.</p>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Versión 1 · recomendada · equilibrio marca + utilidad</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>IA que no escribe por ti: te enseña a escribir claro ⚖️
+Escritura jurídica clara · PUCV
+Gratis y sin registro 👇</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Versión 2 · enfocada en el estudiante</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>¿Tu profe dice que escribes enredado? Te mostramos por qué 📝
+Escritura jurídica · PUCV
+Gratis, sin registro 👇</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Versión 3 · enfocada en la misión</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>El derecho a comprender ⚖️
+Analizamos tu texto jurídico y te mostramos qué lo hace difícil
+Universidad Católica de Valparaíso 👇</pre></div>
+
+  <h3>Enlaces del perfil</h3>
+  <div class="alert g"><strong>No hace falta Linktree</strong><p>Instagram permite <strong>hasta 5 enlaces nativos</strong> en el perfil. Son mejores que un Linktree porque no sacan al usuario de la plataforma ni pierden clics en un salto intermedio.</p></div>
+  <table>
+    <thead><tr><th style="width:44px">#</th><th style="width:32%">Etiqueta</th><th>Destino</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Usar el asistente (gratis)</td><td><code>https://scribeclaro.pucv.cl</code></td></tr>
+      <tr><td>2</td><td>Descargar la lista de verificación</td><td>Recurso R3, cuando exista</td></tr>
+      <tr><td>3</td><td>Manual de escritura jurídica clara</td><td>Recurso R1, con captura de correo</td></tr>
+      <tr><td>4</td><td>Boletín "Claro está"</td><td>Suscripción</td></tr>
+      <tr><td>5</td><td>Talleres y capacitaciones</td><td>Página /services/ reconvertida</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Historias destacadas · crear las cinco desde el día uno</h3>
+  <p class="mini">Con portadas del mismo estilo. Un perfil sin destacadas parece recién abierto aunque tenga contenido.</p>
+  <div class="grid g3">
+    <div class="card"><h4>1 · Qué es</h4><p class="mini">Qué hace ScribeClaro, en cuatro historias</p></div>
+    <div class="card"><h4>2 · Cómo usarlo</h4><p class="mini">Tutorial paso a paso</p></div>
+    <div class="card"><h4>3 · Antes/Después</h4><p class="mini">Los mejores ejemplos, archivados</p></div>
+    <div class="card"><h4>4 · Preguntas</h4><p class="mini">Respuestas a las dudas frecuentes</p></div>
+    <div class="card"><h4>5 · Talleres</h4><p class="mini">Oferta formativa</p></div>
+  </div>
+
+  <h3>Respuesta automática al primer mensaje</h3>
+  <p class="mini">Configurable en cuentas profesionales. Evita que una consulta institucional quede sin respuesta durante días.</p>
+  <div class="cb"><div class="cb-h"><span class="lbl">Mensaje de bienvenida</span><button class="cpy">Copiar</button></div><pre>¡Hola! Gracias por escribir a ScribeClaroPUCV 👋
+
+Puedes usar el asistente gratis y sin registro en scribeclaro.pucv.cl
+
+Si tu consulta es sobre talleres o colaboraciones institucionales, escríbenos a [correo institucional] y te respondemos dentro de 48 horas.</pre></div>
+</section>
+
+<section id="otros">
+  <h2>Otros canales</h2>
+  <p class="sub">Se abren después. Reservar los nombres de usuario hoy, de todas formas.</p>
+
+  <h3>YouTube · fase 2, mes 4</h3>
+  <div class="alert b"><strong>Función: repositorio, no canal de crecimiento</strong><p>Su valor es doble: es el segundo buscador del mundo —un video titulado "Cómo redactar una resolución judicial clara" captura búsquedas durante años— y permite incrustar videos en el propio sitio sin costo de alojamiento.</p></div>
+  <p class="mini">Crear en <a class="ext" href="https://www.youtube.com/create_channel" target="_blank" rel="noopener">youtube.com/create_channel</a> · Nombre: <code>ScribeClaroPUCV</code> · Identificador: <code>@scribeclaropucv</code></p>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Descripción del canal</span><button class="cpy">Copiar</button></div><pre>ScribeClaroPUCV es una plataforma de la Pontificia Universidad Católica de Valparaíso que fortalece la escritura jurídica clara mediante inteligencia artificial.
+
+Aquí publicamos cápsulas formativas sobre redacción jurídica, clases abiertas, seminarios y tutoriales de la plataforma.
+
+La herramienta es gratuita y no requiere registro: scribeclaro.pucv.cl
+
+📩 Contacto: [correo institucional]</pre></div>
+
+  <p class="mini"><strong>Listas de reproducción a crear desde el inicio:</strong> Cápsulas de escritura clara · Antes y después · Cómo usar ScribeClaro · Charlas y seminarios · IA y autoría</p>
+
+  <h3>Boletín "Claro está" · fase 2, mes 4</h3>
+  <div class="alert g"><strong>Probablemente el canal más valioso a largo plazo</strong><p>Es el único donde la audiencia pertenece al proyecto y no a una plataforma. Un cambio de algoritmo puede borrar el alcance de Instagram de un día para otro; una lista de correo no.</p></div>
+  <table>
+    <thead><tr><th style="width:30%">Opción</th><th>Ventaja</th><th>Desventaja</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Boletín nativo de LinkedIn</strong></td><td>Cero fricción: los seguidores reciben notificación y se suscriben con un clic. Crecimiento inmediato</td><td>La lista pertenece a LinkedIn</td></tr>
+      <tr><td><strong>Plataforma de correo</strong><br><span class="mini">MailerLite · Beehiiv · Substack</span></td><td>La lista es propiedad del proyecto, exportable, con métricas reales</td><td>Hay que construirla desde cero</td></tr>
+    </tbody>
+  </table>
+  <p class="mini"><strong>Recomendación: ambos, en ese orden.</strong> Empezar con LinkedIn para conseguir suscriptores rápido y en paralelo abrir la lista propia alimentada por las descargas de recursos. A los seis meses, el mismo contenido va a los dos lugares.</p>
+
+  <h4>Estructura fija de cada edición · lectura de cinco minutos</h4>
+  <div class="grid g4">
+    <div class="card"><h4>1 · Un caso</h4><p class="mini">Un párrafo reescrito, con el análisis de qué se cambió y por qué</p></div>
+    <div class="card"><h4>2 · Un recurso</h4><p class="mini">Algo útil, propio o ajeno</p></div>
+    <div class="card"><h4>3 · Una noticia</h4><p class="mini">Qué pasó este mes en lenguaje claro, en Chile o la región</p></div>
+    <div class="card"><h4>4 · Un consejo</h4><p class="mini">Algo que el lector pueda usar hoy</p></div>
+  </div>
+
+  <h3>Canales de fase 3</h3>
+  <table>
+    <thead><tr><th style="width:18%">Canal</th><th style="width:26%">Nombre</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td><strong>WhatsApp Canal</strong></td><td>ScribeClaroPUCV</td><td>Penetración casi universal en Chile. Costo de producción casi nulo: texto + enlace. Muy eficaz con estudiantes. <span class="tag t-grn">Mes 6</span></td></tr>
+      <tr><td><strong>Bluesky</strong></td><td><code>@scribeclaropucv.bsky.social</code></td><td>Circuito académico y judicial. Reutilización pura, cero producción original. <span class="tag t-nav">Mes 7</span></td></tr>
+      <tr><td><strong>X</strong></td><td><code>@scribeclaropucv</code></td><td>Igual que Bluesky. Reservar el nombre desde ya. <span class="tag t-nav">Mes 7</span></td></tr>
+      <tr><td><strong>TikTok</strong></td><td><code>@scribeclaropucv</code></td><td>Solo si aparece un ayudante con talento genuino para el formato. Alto alcance potencial, alto costo de producción, riesgo de tono. <strong>No forzarlo</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+<section id="medidas">
+  <h2>Medidas, pesos y límites</h2>
+  <p class="sub">Especificaciones verificadas en agosto de 2026. Las plataformas las modifican sin aviso: reverificar una vez al año.</p>
+
+  <h3>Referencia rápida</h3>
+  <div class="grid g4">
+    <div class="spec"><div class="big">1080 × 1350</div><div class="lbl">Carrusel de Instagram · imagen de LinkedIn</div><div class="rat">4:5 vertical</div></div>
+    <div class="spec"><div class="big">1080 × 1080</div><div class="lbl">Carrusel PDF de LinkedIn</div><div class="rat">1:1 cuadrado</div></div>
+    <div class="spec"><div class="big">1080 × 1920</div><div class="lbl">Reel · historia · TikTok · Short</div><div class="rat">9:16 vertical</div></div>
+    <div class="spec"><div class="big">1000 × 1000</div><div class="lbl">Foto de perfil, cualquier plataforma</div><div class="rat">1:1</div></div>
+    <div class="spec"><div class="big">1584 × 396</div><div class="lbl">Banner LinkedIn personal</div><div class="rat">4:1</div></div>
+    <div class="spec"><div class="big">1128 × 191</div><div class="lbl">Banner LinkedIn página</div><div class="rat">~6:1</div></div>
+    <div class="spec"><div class="big">1280 × 720</div><div class="lbl">Miniatura de YouTube</div><div class="rat">16:9</div></div>
+    <div class="spec"><div class="big">1920 × 1080</div><div class="lbl">Portada de artículo LinkedIn</div><div class="rat">16:9</div></div>
+  </div>
+  <div class="alert g"><strong>Regla práctica</strong><p>Diseñar todo en Canva a <strong>1080 × 1350 px</strong> y exportar una variante cuadrada. Con esos dos tamaños se cubre el 90% de las necesidades del proyecto.</p></div>
+
+  <h3>Instagram · imágenes</h3>
+  <table>
+    <thead><tr><th style="width:30%">Formato</th><th style="width:22%">Medida</th><th style="width:12%">Proporción</th><th>Nota</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Vertical (recomendado)</strong></td><td><strong>1080 × 1350 px</strong></td><td>4:5</td><td>Ocupa más pantalla en el feed. <strong>Formato por defecto del proyecto</strong></td></tr>
+      <tr><td>Vertical extendido</td><td>1080 × 1440 px</td><td>3:4</td><td>Coincide exactamente con la vista previa de la grilla, sin recorte</td></tr>
+      <tr><td>Cuadrado</td><td>1080 × 1080 px</td><td>1:1</td><td>Predecible, sin sorpresas en la grilla</td></tr>
+      <tr><td>Horizontal</td><td>1080 × 566 px</td><td>1.91:1</td><td>Poco recomendable: ocupa menos pantalla</td></tr>
+      <tr><td>Historias y reels</td><td>1080 × 1920 px</td><td>9:16</td><td></td></tr>
+      <tr><td>Foto de perfil</td><td>1000 × 1000 px (mín. 320)</td><td>1:1</td><td>Se ve circular a ~110 px</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Instagram · carrusel, reels e historias</h3>
+  <div class="grid g3">
+    <div class="card"><h4>Carrusel</h4><ul class="clean">
+      <li>Hasta <strong>20 láminas</strong> (fotos y videos mezclados)</li>
+      <li><strong>La primera lámina fija la proporción de todas.</strong> Si la primera es 4:5, todas se muestran 4:5</li>
+      <li>Se pueden reordenar después de publicar</li>
+      <li><strong>Para este proyecto: 5 a 8 láminas.</strong> Suficiente para desarrollar una idea, no tanto como para que abandonen</li>
+    </ul></div>
+    <div class="card"><h4>Reels</h4><ul class="clean">
+      <li>1080 × 1920 px · 9:16</li>
+      <li>Máximo ~3 min, pero <strong>bajo 90 s rinde mejor</strong>. Punto óptimo del proyecto: <strong>30 a 60 s</strong></li>
+      <li><strong>Zona segura:</strong> texto y elementos clave dentro de los 1080 × 1350 px centrales</li>
+      <li>Mantener bajo 500 MB · MP4 (H.264 + AAC), 30 fps</li>
+    </ul></div>
+    <div class="card"><h4>Historias</h4><ul class="clean">
+      <li>1080 × 1920 px</li>
+      <li><strong>Zona segura: dejar 250 px libres arriba y abajo</strong> — ahí van el usuario, la barra de progreso y el cuadro de respuesta</li>
+      <li>Duran 24 h salvo que se archiven en Destacadas</li>
+    </ul></div>
+  </div>
+
+  <h3>Instagram · límites de texto</h3>
+  <table>
+    <thead><tr><th style="width:44%">Elemento</th><th>Límite</th></tr></thead>
+    <tbody>
+      <tr><td>Pie de publicación</td><td><strong>2.200 caracteres</strong></td></tr>
+      <tr><td>Texto visible antes de "más"</td><td>~125 caracteres — <strong>la primera línea es lo único que casi todos leen</strong></td></tr>
+      <tr><td>Biografía</td><td>150 caracteres</td></tr>
+      <tr><td>Nombre visible / usuario</td><td>30 caracteres cada uno</td></tr>
+      <tr><td>Hashtags</td><td>Máximo 30 · <strong>usar 5 a 8</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>LinkedIn · imágenes</h3>
+  <table>
+    <thead><tr><th style="width:36%">Formato</th><th style="width:26%">Medida</th><th style="width:14%">Proporción</th><th>Peso máx.</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Vertical (recomendado)</strong></td><td><strong>1080 × 1350 px</strong></td><td>4:5</td><td>5 MB</td></tr>
+      <tr><td>Cuadrado</td><td>1200 × 1200 px</td><td>1:1</td><td>5 MB</td></tr>
+      <tr><td>Horizontal</td><td>1200 × 627 px</td><td>1.91:1</td><td>5 MB</td></tr>
+      <tr><td>Logo de página</td><td>300 × 300 px (subir 1000 × 1000)</td><td>1:1</td><td>4 MB</td></tr>
+      <tr><td>Banner de página</td><td>1128 × 191 px</td><td>~6:1</td><td>4 MB</td></tr>
+      <tr><td>Foto de perfil personal</td><td>400 × 400 px (subir 1000 × 1000)</td><td>1:1</td><td>8 MB</td></tr>
+      <tr><td>Banner de perfil personal</td><td>1584 × 396 px</td><td>4:1</td><td>8 MB</td></tr>
+      <tr><td>Portada de artículo</td><td>1920 × 1080 px</td><td>16:9</td><td>—</td></tr>
+      <tr><td>Portada de boletín</td><td>744 × 400 px · icono 300 × 300 px</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p class="mini">Formatos aceptados: JPG, PNG, GIF no animado.</p>
+
+  <h3>Carrusel de documento · el formato más potente de LinkedIn</h3>
+  <div class="alert g"><strong>Por qué usarlo siempre que se pueda</strong><p>Es un PDF que LinkedIn muestra como carrusel deslizable. Genera consistentemente más interacción que una imagen suelta porque obliga al usuario a detenerse y deslizar, y el algoritmo mide ese tiempo de permanencia. Es además la forma natural de reciclar un recurso descargable en contenido de red.</p></div>
+  <table>
+    <tbody>
+      <tr><th style="width:230px">Formatos aceptados</th><td>PDF, PPT, PPTX, DOC, DOCX</td></tr>
+      <tr><th>Medida por página</th><td><strong>1080 × 1080 px</strong> (cuadrado) o <strong>1080 × 1350 px</strong> (vertical)</td></tr>
+      <tr><th>Peso máximo</th><td>100 MB</td></tr>
+      <tr><th>Páginas</th><td>Máximo técnico 300 · <strong>óptimo 5 a 15</strong></td></tr>
+      <tr><th>Nombre del archivo</th><td><strong>Aparece como título del carrusel.</strong> No <code>carrusel_final_v3.pdf</code> sino <code>Cinco-errores-que-oscurecen-un-escrito-juridico.pdf</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>LinkedIn · video y límites de texto</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Video</h4><ul class="clean">
+      <li>1080 × 1920 (vertical) · 1080 × 1080 (cuadrado) · 1920 × 1080 (horizontal)</li>
+      <li>De 3 s a 10 min · <strong>óptimo 30 a 90 s</strong></li>
+      <li>Máx. 5 GB · MP4 (H.264 + AAC) · 10-60 fps</li>
+      <li><strong>Subtítulos incrustados obligatorios:</strong> la enorme mayoría reproduce sin sonido</li>
+    </ul></div>
+    <div class="card"><h4>Texto</h4><ul class="clean">
+      <li>Publicación desde perfil personal: <strong>3.000 caracteres</strong></li>
+      <li>Publicación desde página: <strong>700 caracteres</strong></li>
+      <li>Visible antes de "ver más": <strong>~210 caracteres — las tres primeras líneas deciden todo</strong></li>
+      <li>Longitud óptima: 150 a 250 palabras</li>
+      <li>Encuesta: pregunta 140 car. · opciones de 30 car., entre 2 y 4</li>
+      <li>Hashtags: <strong>3 a 5</strong></li>
+    </ul></div>
+  </div>
+
+  <h3>Archivos: formato y peso</h3>
+  <table>
+    <thead><tr><th style="width:24%">Tipo</th><th>Recomendación</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Piezas con mucho texto</strong><br><span class="mini">carruseles del proyecto</span></td><td><strong>PNG</strong> — mantiene los bordes del texto nítidos</td></tr>
+      <tr><td><strong>Fotografías</strong></td><td><strong>JPG</strong> al 80-90% de calidad</td></tr>
+      <tr><td>Espacio de color</td><td>sRGB siempre</td></tr>
+      <tr><td>Peso de imagen</td><td>Instagram admite ~30 MB, pero mantener bajo 10 MB</td></tr>
+      <tr><td>Video</td><td>MP4 (H.264 + AAC). Bajo 500 MB aunque el límite sea mayor</td></tr>
+    </tbody>
+  </table>
+  <div class="alert b"><strong>Texto alternativo obligatorio en cada imagen</strong><p>Instagram: Configuración avanzada → Escribir texto alternativo. No es opcional para este proyecto: una plataforma cuyo objeto es el derecho a comprender debe ser ejemplar en accesibilidad.</p></div>
+</section>
+
+<section id="graficos">
+  <h2>Activos gráficos</h2>
+  <p class="sub">No se abre una cuenta sin estos archivos. Una cuenta con foto genérica y sin portada parece abandonada desde el minuto cero.</p>
+
+  <h3>Lista mínima</h3>
+  <table>
+    <thead><tr><th style="width:28%">Activo</th><th style="width:26%">Uso</th><th style="width:20%">Medida</th><th>Formato</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Isotipo cuadrado</strong></td><td>Foto de perfil en todas las plataformas</td><td>1000 × 1000 px</td><td>PNG con fondo sólido</td></tr>
+      <tr><td>Logotipo horizontal</td><td>Portadas, documentos, presentaciones</td><td>2400 × 600 px</td><td>PNG transparente</td></tr>
+      <tr><td>Portada LinkedIn página</td><td>Banner de empresa</td><td>1128 × 191 px</td><td>PNG</td></tr>
+      <tr><td>Portada LinkedIn personal</td><td>Banner de la fundadora</td><td>1584 × 396 px</td><td>PNG</td></tr>
+      <tr><td>Plantilla carrusel vertical</td><td>Instagram y LinkedIn</td><td>1080 × 1350 px</td><td>Editable en Canva</td></tr>
+      <tr><td>Plantilla carrusel cuadrado</td><td>LinkedIn documento</td><td>1080 × 1080 px</td><td>Editable en Canva</td></tr>
+      <tr><td>Plantilla story / reel</td><td>Instagram</td><td>1080 × 1920 px</td><td>Editable en Canva</td></tr>
+      <tr><td><strong>Plantilla antes/después</strong></td><td>La pieza insignia</td><td>1080 × 1350 px</td><td>Editable en Canva</td></tr>
+      <tr><td>Marca de agua discreta</td><td>Esquina de cada pieza</td><td>—</td><td>PNG transparente</td></tr>
+    </tbody>
+  </table>
+
+  <h3>El isotipo</h3>
+  <div class="alert o"><strong>Se ve a 110 píxeles de diámetro</strong><p>Y aún más pequeño en las notificaciones. Un logotipo con texto completo es ilegible a ese tamaño. <strong>Probarlo siempre reducido a 40 × 40 px antes de aprobarlo.</strong> Si a ese tamaño es una mancha, no sirve.</p></div>
+  <p class="mini">Opciones que funcionan para este proyecto: una <strong>"C" mayúscula</strong> en tipografía muy legible sobre azul PUCV · un <strong>símbolo de párrafo (¶)</strong> estilizado, que dice "texto" de inmediato · <strong>dos líneas horizontales</strong>, una quebrada y otra recta, que sugieren "antes / después".</p>
+
+  <h3>La plantilla antes/después</h3>
+  <p>Es el recurso visual que hará reconocible a la cuenta. <strong>Debe verse igual siempre.</strong></p>
+  <div class="cb"><div class="cb-h"><span class="lbl">Especificación de la plantilla · 1080 × 1350 px</span><button class="cpy">Copiar</button></div><pre>┌──────────────────────────────┐
+│  Franja superior azul PUCV   │  ← 180 px de alto, rótulo #ClaroEstá
+├──────────────────────────────┤
+│                              │
+│   ANTES                      │  ← etiqueta en rojo apagado
+│   [párrafo opaco]            │  ← tipografía 34-40 px
+│                              │
+│   ─────────────────          │
+│                              │
+│   DESPUÉS                    │  ← etiqueta en verde apagado
+│   [párrafo claro]            │
+│                              │
+├──────────────────────────────┤
+│  87 palabras → 34 palabras   │  ← franja inferior con el dato duro
+└──────────────────────────────┘</pre></div>
+  <div class="alert g"><strong>El dato duro al pie es lo que hace que la pieza se comparta</strong><p>"87 palabras → 34 palabras" o "1 oración → 3 oraciones" convierte una opinión en un hecho. Sin ese número, la pieza es una impresión personal; con él, es evidencia.</p></div>
+
+  <h3>Reglas tipográficas</h3>
+  <div class="card"><ul class="clean">
+    <li><strong>Tamaño mínimo de texto: 32 px</strong> sobre lienzo de 1080 px de ancho. Menos es ilegible en un teléfono</li>
+    <li><strong>Máximo 40 palabras por lámina.</strong> Si no cabe, es otra lámina</li>
+    <li><strong>Contraste mínimo 4.5:1</strong> entre texto y fondo. Verificar en <a class="ext" href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a></li>
+    <li><strong>Margen de seguridad: 80 px</strong> desde cada borde — Instagram recorta la vista previa de la grilla</li>
+    <li><strong>Tipografías gratuitas de alto rendimiento</strong> en <a class="ext" href="https://fonts.google.com/" target="_blank" rel="noopener">Google Fonts</a>: <em>Source Sans 3</em>, <em>Inter</em>, <em>Public Sans</em>, <em>Atkinson Hyperlegible</em></li>
+  </ul></div>
+  <div class="alert b"><strong>Sobre Atkinson Hyperlegible</strong><p>Fue diseñada específicamente para máxima legibilidad, incluyendo lectores con baja visión. Elegirla sería una decisión coherente con la misión del proyecto —y un detalle que vale la pena contar en una publicación.</p></div>
+</section>
+<section id="primeras">
+  <h2>Las primeras 10 publicaciones</h2>
+  <p class="sub">Ordenadas como argumento, no como calendario: primero se dice qué es y por qué existe, luego se demuestra, luego se enseña, luego se justifica éticamente. Cada una prepara la siguiente.</p>
+
+  <div class="alert"><strong>Regla de oro del lanzamiento</strong><p>No publicar la primera pieza hasta tener las diez listas. Una cuenta que publica una vez y desaparece dos semanas está peor que una cuenta que no existe: comunica abandono. Producirlas en un bloque y programarlas garantiza tres semanas de presencia mientras el equipo aprende el ritmo.</p></div>
+
+  <h3>P1 · Presentación <span class="tag t-nav">Día 1 · ambas plataformas</span></h3>
+  <p class="mini"><strong>Pieza gráfica LinkedIn (1080 × 1350):</strong> fondo azul PUCV, texto centrado en blanco, tipografía grande: <em>"Existe una IA que se niega a escribir por ti."</em> Al pie, en menor tamaño: <code>ScribeClaroPUCV · scribeclaro.pucv.cl</code></p>
+  <div class="cb"><div class="cb-h"><span class="lbl">LinkedIn · texto completo</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Existe una inteligencia artificial que se niega a escribir por ti.
+
+La construimos así a propósito.
+
+ScribeClaroPUCV analiza el texto jurídico que ya escribiste y te muestra qué dificulta su comprensión: la oración de noventa palabras, el párrafo que arrastra tres ideas, la voz pasiva que oculta quién decide.
+
+Después te devuelve el texto. Corriges tú.
+
+Podríamos haber hecho que redactara. Habría sido más fácil y más vistoso. Pero redactar es un proceso cognitivo: cuando alguien organiza un argumento jurídico está pensando, no solo tecleando. Si una máquina hace esa parte, el aprendizaje no ocurre y la autoría se diluye.
+
+Es un proyecto de la Pontificia Universidad Católica de Valparaíso, con apoyo de la Vicerrectoría Académica y la Facultad de Derecho. Nació para acompañar a estudiantes de Derecho. Hoy la usan también funcionarios del Poder Judicial, abogados y profesionales del sector público.
+
+Es gratuita y no pide registro.
+
+Acá vamos a publicar lo que aprendemos: ejemplos reales de textos jurídicos que mejoran, reglas de escritura clara, y nuestra postura sobre cómo usar la IA sin renunciar a la autoría.
+
+Bienvenidos.
+
+🔗 scribeclaro.pucv.cl
+
+#LenguajeClaro #EscrituraJurídica #InteligenciaArtificial #Derecho #PUCV</pre></div>
+
+  <h4>Instagram · carrusel de 6 láminas (1080 × 1350)</h4>
+  <div class="lam">
+    <div class="n">1</div><div class="c"><strong>"Existe una IA que se niega a escribir por ti."</strong> Fondo azul, texto grande</div>
+    <div class="n">2</div><div class="c">"Se llama ScribeClaro. La hicimos así a propósito."</div>
+    <div class="n">3</div><div class="c">"Pegas tu texto jurídico. Ella te muestra qué lo hace difícil de entender."</div>
+    <div class="n">4</div><div class="c">"No lo reescribe. Lo corriges tú. El texto sigue siendo tuyo."</div>
+    <div class="n">5</div><div class="c">"Un proyecto de la Universidad Católica de Valparaíso. Gratis. Sin registro."</div>
+    <div class="n">6</div><div class="c">"scribeclaro.pucv.cl — enlace en la bio"</div>
+  </div>
+  <div class="cb"><div class="cb-h"><span class="lbl">Instagram · pie</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Podríamos haber hecho que redactara sola. Habría sido más fácil.
+
+Pero escribir es pensar. Si la máquina piensa por ti, no aprendiste nada y el texto no es tuyo.
+
+Por eso ScribeClaro analiza y explica, pero no escribe. ⚖️
+
+Gratis y sin registro. Enlace en la bio 👆
+
+#LenguajeClaro #EscrituraJurídica #Derecho #EstudiantesDeDerecho #PUCV #InteligenciaArtificial #DerechoChile</pre></div>
+
+  <h3>P2 · Primera dupla antes/después <span class="tag t-nav">Día 3 · serie #ClaroEstá</span></h3>
+  <div class="alert b"><strong>Esta publicación define visualmente la cuenta. Debe quedar impecable.</strong><p>El ejemplo es <strong>sintético</strong>: reproduce problemas reales sin corresponder a ningún documento existente. Mantener siempre esa práctica.</p></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">ANTES · 78 palabras, una sola oración</span><button class="cpy">Copiar</button></div><pre>Que, habiéndose analizado los antecedentes acompañados por la parte solicitante, y sin perjuicio de lo señalado precedentemente en cuanto a la oportunidad procesal en que fueron incorporados, este Tribunal estima que no concurren en la especie los presupuestos que la ley exige para acceder a lo pedido, motivo por el cual, y en mérito de lo dispuesto en las normas citadas, se procederá a rechazar la solicitud impetrada en todas sus partes.</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">DESPUÉS · 32 palabras, tres oraciones</span><button class="cpy">Copiar</button></div><pre>Revisamos los documentos que usted presentó. La ley exige ciertos requisitos para acceder a lo que solicita y estos no se cumplen en su caso. Por eso rechazamos su solicitud.</pre></div>
+
+  <h4>Instagram · carrusel de 5 láminas</h4>
+  <div class="lam">
+    <div class="n">1</div><div class="c"><strong>"¿Entendiste algo? Nosotros tampoco."</strong> + el párrafo original completo</div>
+    <div class="n">2</div><div class="c">El mismo párrafo con los tres problemas subrayados en color</div>
+    <div class="n">3</div><div class="c">La versión clara</div>
+    <div class="n">4</div><div class="c"><strong>"78 palabras → 32 palabras. Mismo contenido jurídico."</strong></div>
+    <div class="n">5</div><div class="c">"Pega tu párrafo en scribeclaro.pucv.cl 👉 enlace en la bio"</div>
+  </div>
+  <div class="cb"><div class="cb-h"><span class="lbl">Instagram · pie</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>78 palabras. Una sola oración. Cero puntos seguidos.
+
+Y la persona que recibe esa resolución tiene que entender que le dijeron que no. 😐
+
+Lo que cambiamos:
+1️⃣ Una oración kilométrica → tres oraciones cortas
+2️⃣ El tribunal dejó de esconderse: "revisamos", "rechazamos"
+3️⃣ Fuera cuatro fórmulas que no aportan nada jurídico
+
+Escribir claro no es escribir simple. Es escribir para que te entiendan.
+
+#ClaroEstá #LenguajeClaro #EscrituraJurídica #Derecho #EstudiantesDeDerecho #DerechoChile #PUCV</pre></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">LinkedIn · texto completo</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>78 palabras. Una sola oración. Cero puntos seguidos.
+
+Y la persona que recibe esa resolución tiene que entender que le dijeron que no.
+
+[imagen]
+
+Los tres cambios:
+
+1. La oración de 78 palabras pasó a tres oraciones cortas. Nada se perdió.
+
+2. El tribunal dejó de esconderse detrás de la voz impersonal. "Se procederá a rechazar" es nadie. "Rechazamos" es alguien que decide y responde.
+
+3. Salieron cuatro fórmulas sin contenido jurídico: "sin perjuicio de lo señalado precedentemente", "en la especie", "en mérito de lo dispuesto", "impetrada". Ninguna aportaba precisión. Todas aportaban opacidad.
+
+El contenido jurídico es idéntico. La comprensión, no.
+
+Escribir claro no es escribir simple: es no poner obstáculos innecesarios entre la decisión y quien debe entenderla.
+
+#ClaroEstá #LenguajeClaro #EscrituraJurídica #AccesoALaJusticia</pre></div>
+
+  <h3>P3 · Primera micro-lección <span class="tag t-nav">Día 5</span></h3>
+  <p class="mini">Tema: la regla de las 25 palabras. Carrusel de 7 láminas.</p>
+  <div class="lam">
+    <div class="n">1</div><div class="c"><strong>"Si tu oración pasa las 25 palabras, tu lector se perdió."</strong></div>
+    <div class="n">2</div><div class="c">"No es una regla de estilo. Es cómo funciona la memoria de trabajo."</div>
+    <div class="n">3</div><div class="c">"Leemos guardando información hasta encontrar el verbo principal. Mientras más lejos esté, más carga."</div>
+    <div class="n">4</div><div class="c">Ejemplo de oración de 60 palabras, marcando dónde está el verbo principal</div>
+    <div class="n">5</div><div class="c">La misma idea en tres oraciones</div>
+    <div class="n">6</div><div class="c"><strong>"Truco: lee en voz alta. Donde necesites respirar, va un punto."</strong></div>
+    <div class="n">7</div><div class="c">"Más reglas en scribeclaro.pucv.cl"</div>
+  </div>
+  <div class="cb"><div class="cb-h"><span class="lbl">Instagram · pie</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>No es una regla de estilo. Es cómo funciona tu cerebro. 🧠
+
+Cuando lees, vas guardando información en la memoria de trabajo hasta encontrar el verbo principal. Mientras más lejos esté ese verbo, más carga acumulas. Pasadas ciertas palabras, sueltas el hilo.
+
+Por eso una oración de 78 palabras no es "más rigurosa". Es más difícil.
+
+El truco más simple que existe: lee tu párrafo en voz alta. Donde necesitaste respirar, ahí faltaba un punto. ✍️
+
+Guarda este post para tu próxima entrega 📌
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura #EstudiantesDeDerecho #Derecho #PUCV</pre></div>
+
+  <h3>P4 · La postura sobre IA <span class="tag t-nav">Día 8 · LinkedIn, solo texto</span></h3>
+  <div class="alert o"><strong>Sin imagen, a propósito</strong><p>En LinkedIn las publicaciones de texto puro con una idea fuerte funcionan muy bien, y aquí el argumento <em>es</em> el contenido. <strong>Esta publicación probablemente genere debate: responder todos los comentarios el mismo día.</strong> Las respuestas del autor son lo que más impulsa el alcance.</p></div>
+  <div class="cb"><div class="cb-h"><span class="lbl">LinkedIn · texto completo</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Nos preguntan seguido por qué ScribeClaro no redacta textos.
+
+La respuesta corta: porque queremos que aprendas.
+
+La larga:
+
+Redactar es un proceso cognitivo. Cuando alguien organiza un argumento jurídico está tomando decisiones —qué va primero, qué se subordina a qué, dónde cae el peso—. Esas decisiones son el razonamiento jurídico, no su envoltorio. Si una máquina las toma, no queda nada que aprender.
+
+Hay algo más, y es de fondo: quien firma un escrito responde por él. Ante un cliente, ante un tribunal, ante una comisión evaluadora. Una herramienta que redacta por ti crea una distancia incómoda entre la firma y el texto. Nosotros preferimos no crearla.
+
+Por eso ScribeClaro analiza lo que ya escribiste y te devuelve el diagnóstico: acá hay una oración de 78 palabras, acá el sujeto desapareció, acá hay tres ideas peleando por el mismo párrafo.
+
+Tú corriges. Tú decides. Tú firmas.
+
+No es una limitación técnica. Podríamos haberlo hecho de la otra forma. Es el diseño.
+
+🔗 scribeclaro.pucv.cl — gratuita, sin registro.
+
+#AutoríaHumana #InteligenciaArtificial #IntegridadAcadémica #LenguajeClaro #Derecho</pre></div>
+
+  <h3>P5 · El equipo <span class="tag t-nav">Día 10 · ambas plataformas</span></h3>
+  <p class="mini">Las personas superan consistentemente a los logotipos en interacción. Humaniza el proyecto y multiplica el alcance, porque los tres comparten desde sus propios perfiles.</p>
+  <div class="cb"><div class="cb-h"><span class="lbl">Instagram · pie</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Una lingüista forense, una investigadora en literatura y un desarrollador que estudió música. 🎼⚖️💻
+
+Esa combinación explica bastante bien por qué ScribeClaro funciona distinto a otras herramientas.
+
+Claudia Poblete — doctora en Filología Española, perito lingüista forense, profesora de Derecho PUCV. Lleva veinte años trabajando en lenguaje claro.
+
+Pamela Catalán — máster en Literatura, asesora pedagógica. Se encarga de que la herramienta enseñe, no solo corrija.
+
+Óscar Sancho — desarrollador full stack, licenciado en Ciencias y Artes Musicales PUCV. Construyó la plataforma.
+
+#PUCV #LenguajeClaro #EquipoScribeClaro #Derecho</pre></div>
+
+  <h3>P6 · #UnaPalabraMenos <span class="tag t-nav">Día 12 · Instagram</span></h3>
+  <p class="mini"><strong>Imagen simple (1080 × 1350):</strong> "NO ESCRIBAS: <em>a mayor abundamiento</em> / ESCRIBE: <em>además</em>"</p>
+  <div class="cb"><div class="cb-h"><span class="lbl">Instagram · pie</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>"A mayor abundamiento" no agrega rigor. Agrega cuatro palabras.
+
+Otras que sobran en casi todos los contextos:
+
+❌ "de conformidad a lo dispuesto en" → ✅ "según"
+❌ "en el evento de que" → ✅ "si"
+❌ "proceder a rechazar" → ✅ "rechazar"
+❌ "con el objeto de" → ✅ "para"
+❌ "en la especie" → ✅ (bórrala, no dice nada)
+
+Ojo: no se trata de eliminar los tecnicismos. "Prescripción", "litisconsorcio" o "cosa juzgada" son términos precisos que no tienen reemplazo. El problema no es el vocabulario técnico: es el relleno ceremonial. 🎯
+
+¿Cuál agregarías tú? 👇
+
+#UnaPalabraMenos #LenguajeClaro #EscrituraJurídica #Derecho #EstudiantesDeDerecho</pre></div>
+  <div class="alert g"><strong>La pregunta final no es decorativa</strong><p>Los comentarios de esta publicación son materia prima gratuita para el glosario del proyecto y para las siguientes ediciones de la serie.</p></div>
+
+  <h3>P7 · Primer reel <span class="tag t-nav">Día 15 · 45 s</span></h3>
+  <p class="mini">Guion completo en la sección <strong>12 reels</strong> (Reel 1). Formato: la fundadora a cámara, plano medio, con texto sobreimpreso.</p>
+  <div class="cb"><div class="cb-h"><span class="lbl">Instagram · pie</span><button class="cpy">Copiar</button></div><pre>La pregunta que más nos hacen. 🎥
+
+Respuesta corta: porque escribir es pensar, y no queremos pensar por ti.
+
+Enlace en la bio · gratis y sin registro
+
+#LenguajeClaro #InteligenciaArtificial #Derecho #EstudiantesDeDerecho #PUCV</pre></div>
+
+  <h3>P8 · Prueba institucional <span class="tag t-nav">Día 17 · LinkedIn</span></h3>
+  <div class="alert b"><strong>Esta es la publicación que genera credibilidad ante el segmento institucional</strong><p>Que es el que trae convenios y presupuesto.</p></div>
+  <div class="cb"><div class="cb-h"><span class="lbl">LinkedIn · texto completo</span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Cuando construimos ScribeClaro pensábamos en estudiantes de segundo año de Derecho.
+
+Hoy la usan funcionarios del Poder Judicial.
+
+No lo teníamos planeado. La herramienta nació como un proyecto de innovación para la docencia en la Universidad Católica de Valparaíso, con un objetivo acotado: que los estudiantes recibieran retroalimentación sobre sus escritos sin que un profesor tuviera que corregir doscientos textos a mano.
+
+Después ocurrieron varias cosas seguidas:
+
+→ La Comisión de Lenguaje Claro de la Corte Suprema la destacó en su boletín.
+→ La Academia Judicial la incorporó a su listado de herramientas de IA para tareas judiciales.
+→ Llegaron usuarios del Tribunal Constitucional, abogados en ejercicio y funcionarios de servicios públicos.
+→ Y también estudiantes de ingeniería, que no eran para nada el público objetivo.
+
+Lo último nos hizo pensar. El problema que atacamos —escribir de manera que otro entienda— no es un problema del Derecho. Es un problema de cualquiera que escriba para ser leído por alguien que no está dentro de su cabeza.
+
+Seguimos siendo un proyecto universitario pequeño. Pero la señal es clara: hay una necesidad que no estaba cubierta.
+
+🔗 scribeclaro.pucv.cl
+
+#LenguajeClaro #PoderJudicial #InnovaciónDocente #PUCV #AccesoALaJusticia</pre></div>
+
+  <h3>P9 · Utilidad pura <span class="tag t-nav">Día 19 · ambas plataformas</span></h3>
+  <p class="mini">Tema: los cinco errores más frecuentes. Alto valor de guardado, y guardar es una de las señales que más pesa en el alcance.</p>
+  <div class="lam">
+    <div class="n">1</div><div class="c"><strong>"5 errores que hacen ilegible un escrito jurídico"</strong></div>
+    <div class="n">2</div><div class="c">"1. La oración interminable" + ejemplo breve</div>
+    <div class="n">3</div><div class="c">"2. El sujeto desaparecido" (voz pasiva e impersonal)</div>
+    <div class="n">4</div><div class="c">"3. El párrafo con tres ideas"</div>
+    <div class="n">5</div><div class="c">"4. El relleno ceremonial"</div>
+    <div class="n">6</div><div class="c">"5. El orden invertido" (la conclusión al final de todo)</div>
+    <div class="n">7</div><div class="c"><strong>"Bonus: si lo lees en voz alta y te falta el aire, hay un problema."</strong></div>
+    <div class="n">8</div><div class="c">"Guarda este post 📌 · scribeclaro.pucv.cl"</div>
+  </div>
+  <p class="mini"><strong>En LinkedIn: publicar como carrusel PDF</strong> (1080 × 1080), que suele ser el formato de mayor alcance. Nombre del archivo: <code>Cinco-errores-que-oscurecen-un-escrito-juridico.pdf</code></p>
+
+  <h3>P10 · Conversación abierta <span class="tag t-nav">Día 21</span></h3>
+  <p class="mini">Después de tres semanas de dar, se pide algo: participación. Ya hay confianza suficiente.</p>
+  <div class="cb"><div class="cb-h"><span class="lbl">LinkedIn · encuesta nativa</span><button class="cpy">Copiar</button></div><pre>PREGUNTA (máx. 140 caracteres):
+¿Qué es lo que más dificulta entender un documento jurídico?
+
+OPCIONES (máx. 30 caracteres cada una):
+Oraciones larguísimas
+Vocabulario técnico
+Estructura desordenada
+Todas las anteriores
+
+TEXTO DE ACOMPAÑAMIENTO:
+Llevamos años analizando qué hace incomprensible un texto jurídico. Tenemos nuestra hipótesis, pero queremos contrastarla con lo que ustedes ven todos los días.
+
+Voten y, si tienen un minuto, cuenten en los comentarios cuál es el documento más difícil que han tenido que leer o escribir. Los mejores casos se convierten —anonimizados— en material de nuestra serie #ClaroEstá.
+
+#LenguajeClaro #EscrituraJurídica #Derecho</pre></div>
+  <div class="cb"><div class="cb-h"><span class="lbl">Instagram · historia con caja de preguntas</span><button class="cpy">Copiar</button></div><pre>Cuéntanos: ¿cuál es el documento más enredado que has tenido que leer? 📩
+(Lo reescribimos en el próximo post, sin nombres)</pre></div>
+  <div class="alert g"><strong>Las encuestas hacen dos cosas a la vez</strong><p>Generan interacción, que es lo que el algoritmo premia, y entregan investigación de audiencia gratuita que orienta los siguientes tres meses de contenido.</p></div>
+</section>
+<section id="calendario">
+  <h2>Calendario de los primeros 30 días</h2>
+  <p class="sub">Más una semana previa de preparación. Nada de esto funciona si se improvisa día a día.</p>
+
+  <h3>Semana 0 · antes de publicar nada</h3>
+  <table>
+    <thead><tr><th style="width:70px">Día</th><th>Tarea</th></tr></thead>
+    <tbody>
+      <tr><td><strong>-14</strong></td><td>Escribir a la Dirección de Comunicación Estratégica PUCV. Solicitar correo institucional a TI</td></tr>
+      <tr><td><strong>-12</strong></td><td>Reservar <code>scribeclaropucv</code> en LinkedIn, Instagram, YouTube, TikTok, X y Bluesky</td></tr>
+      <tr><td><strong>-10</strong></td><td>Producir los activos gráficos: isotipo, banners, plantillas en Canva</td></tr>
+      <tr><td><strong>-8</strong></td><td>Crear página de LinkedIn e Instagram profesional. Completar todos los campos</td></tr>
+      <tr><td><strong>-7</strong></td><td>Instalar analítica en el sitio y configurar los eventos</td></tr>
+      <tr><td><strong>-6</strong></td><td>Grabar el video de demostración de 60 segundos</td></tr>
+      <tr><td><strong>-5</strong></td><td>Producir las 10 publicaciones completas (gráficas + textos)</td></tr>
+      <tr><td><strong>-3</strong></td><td>Revisión cruzada del equipo: filtro de claridad y de datos sensibles</td></tr>
+      <tr><td><strong>-2</strong></td><td>Programar las 10 publicaciones en Meta Business Suite / Metricool</td></tr>
+      <tr><td><strong>-1</strong></td><td>Crear las 5 historias destacadas de Instagram con sus portadas</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Días 1 a 30</h3>
+  <table>
+    <thead><tr><th style="width:52px">Día</th><th style="width:24%">LinkedIn</th><th style="width:24%">Instagram</th><th>Acción adicional</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1</strong></td><td><strong>P1</strong> Presentación</td><td><strong>P1</strong> Carrusel</td><td>Los tres del equipo comparten en sus perfiles. Avisar a Comunicación PUCV</td></tr>
+      <tr><td><strong>2</strong></td><td>Compartir P1 desde la página</td><td>Historia: "ya estamos acá" + encuesta</td><td>Invitar a 30 contactos a seguir la página</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>P2</strong> Antes/después</td><td><strong>P2</strong> Carrusel #ClaroEstá</td><td>Responder todos los comentarios el mismo día</td></tr>
+      <tr><td><strong>4</strong></td><td>—</td><td>Historia: repost + "¿cuál se entiende mejor?"</td><td>Comentar en 5 publicaciones ajenas del sector</td></tr>
+      <tr><td><strong>5</strong></td><td><strong>P3</strong> adaptado</td><td><strong>P3</strong> Regla de las 25 palabras</td><td></td></tr>
+      <tr><td><strong>6</strong></td><td>—</td><td>Historia: cita del día</td><td>Escribir a la Comisión de Lenguaje Claro</td></tr>
+      <tr><td><strong>7</strong></td><td>—</td><td>Historia: bastidores del equipo</td><td>Primer informe: ¿qué funcionó?</td></tr>
+      <tr><td><strong>8</strong></td><td><strong>P4</strong> Postura sobre IA</td><td>Historia: repost de P4</td><td><span class="tag t-org">Día clave</span> Responder cada comentario</td></tr>
+      <tr><td><strong>9</strong></td><td>—</td><td>Historia: pregunta abierta</td><td>Invitar otros 30 contactos</td></tr>
+      <tr><td><strong>10</strong></td><td><strong>P5</strong> Equipo</td><td><strong>P5</strong> Carrusel equipo</td><td>Los tres comparten desde sus perfiles</td></tr>
+      <tr><td><strong>11</strong></td><td>—</td><td>Historia: encuesta "¿cuál sobra?"</td><td>Comentar en 5 publicaciones ajenas</td></tr>
+      <tr><td><strong>12</strong></td><td>—</td><td><strong>P6</strong> #UnaPalabraMenos</td><td>Recopilar aportes de comentarios para el glosario</td></tr>
+      <tr><td><strong>13</strong></td><td>Republicar P2 con nuevo ángulo</td><td>Historia: destacar mejor comentario</td><td></td></tr>
+      <tr><td><strong>14</strong></td><td>—</td><td>Historia: cuenta regresiva del reel</td><td>Revisión de la semana 2</td></tr>
+      <tr><td><strong>15</strong></td><td>Subir el reel como video nativo</td><td><strong>P7</strong> Primer reel</td><td>Los videos nativos superan a los enlaces en ambas plataformas</td></tr>
+      <tr><td><strong>16</strong></td><td>—</td><td>Historia: repost del reel</td><td></td></tr>
+      <tr><td><strong>17</strong></td><td><strong>P8</strong> Prueba institucional</td><td>Historia: repost de P8</td><td>Escribir a la Academia Judicial</td></tr>
+      <tr><td><strong>18</strong></td><td>—</td><td>Historia: caja de preguntas</td><td>Comentar en 5 publicaciones ajenas</td></tr>
+      <tr><td><strong>19</strong></td><td><strong>P9</strong> como carrusel PDF</td><td><strong>P9</strong> 5 errores</td><td>El carrusel PDF suele ser el formato de mayor alcance</td></tr>
+      <tr><td><strong>20</strong></td><td>—</td><td>Historia: "guarda este post"</td><td></td></tr>
+      <tr><td><strong>21</strong></td><td><strong>P10</strong> Encuesta</td><td><strong>P10</strong> Caja de preguntas</td><td>Revisión de la semana 3</td></tr>
+      <tr><td><strong>22</strong></td><td>Compartir resultados parciales</td><td>Historia: resultados</td><td></td></tr>
+      <tr><td><strong>23</strong></td><td>Nueva dupla antes/después</td><td>Carrusel #ClaroEstá n.º 2</td><td>Contenido generado desde respuestas de la audiencia</td></tr>
+      <tr><td><strong>24</strong></td><td>—</td><td>Historia: bastidores de producción</td><td></td></tr>
+      <tr><td><strong>25</strong></td><td>Micro-lección: la voz pasiva</td><td>Carrusel micro-lección</td><td></td></tr>
+      <tr><td><strong>26</strong></td><td>—</td><td>#UnaPalabraMenos n.º 2</td><td>Invitar otros 30 contactos</td></tr>
+      <tr><td><strong>27</strong></td><td>Contenido #DerechoAComprender</td><td>Historia: dato del día</td><td>Escribir a la Red de Lenguaje Claro</td></tr>
+      <tr><td><strong>28</strong></td><td>—</td><td>Reel n.º 2</td><td></td></tr>
+      <tr><td><strong>29</strong></td><td>#PreguntaAlScribe: la duda más repetida</td><td>Carrusel de respuestas</td><td>Las preguntas reales de la audiencia son el mejor contenido</td></tr>
+      <tr><td><strong>30</strong></td><td>Balance del primer mes con cifras</td><td>Historia: agradecimiento</td><td><span class="tag t-grn">Informe del mes y ajuste del plan</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Del día 31 en adelante · la parrilla estable</h3>
+  <table>
+    <thead><tr><th style="width:150px">Día</th><th style="width:38%">LinkedIn</th><th>Instagram</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lunes</strong></td><td>#ClaroEstá (antes/después)</td><td>Historia: encuesta "¿cuál se entiende mejor?"</td></tr>
+      <tr><td><strong>Martes</strong></td><td>—</td><td>Carrusel #UnaPalabraMenos</td></tr>
+      <tr><td><strong>Miércoles</strong></td><td>Reflexión desde el perfil personal</td><td>Historia: repost</td></tr>
+      <tr><td><strong>Jueves</strong></td><td>#DerechoAComprender o vida del proyecto</td><td>Reel "Minuto claro"</td></tr>
+      <tr><td><strong>Viernes</strong></td><td>—</td><td>Carrusel didáctico o #PreguntaAlScribe</td></tr>
+      <tr><td><strong>Sábado y domingo</strong></td><td>—</td><td>Historias libres</td></tr>
+    </tbody>
+  </table>
+  <div class="alert o"><strong>Sostenerlo exige una sola cosa</strong><p>Un bloque de producción de <strong>tres horas cada quince días</strong> que genere las dos semanas siguientes completas. No se produce el mismo día que se publica. Nunca funciona.</p></div>
+
+  <h3>Anclajes del año</h3>
+  <table>
+    <thead><tr><th style="width:110px">Fecha</th><th style="width:30%">Hito</th><th>Acción</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Marzo</strong></td><td>Inicio del año académico</td><td>Campaña "Empieza claro": guía para primer año, ronda de talleres</td></tr>
+      <tr><td><strong>23 abril</strong></td><td>Día del Libro y del Idioma</td><td>Lengua, derecho y comprensión</td></tr>
+      <tr><td><strong>Junio</strong></td><td>Aniversario del registro (23/6) y de la Red Panhispánica (9/6)</td><td>Balance del año, publicación de cifras</td></tr>
+      <tr><td><strong>Julio</strong></td><td>Receso</td><td>Contenido de fondo: informes, guías largas</td></tr>
+      <tr><td><strong>Agosto</strong></td><td>Segundo semestre</td><td>Segunda ronda de talleres</td></tr>
+      <tr><td><strong>13 octubre</strong></td><td><span class="tag t-amb">Hito del año</span> Día Internacional del Lenguaje Claro</td><td>Seminario, informe anual, lanzamiento de recurso mayor, campaña coordinada con toda la Red. Se prepara con dos meses de anticipación</td></tr>
+      <tr><td><strong>Noviembre</strong></td><td>Cierre académico, tesis y memorias</td><td>Campaña "Tu tesis, clara"</td></tr>
+      <tr><td><strong>Diciembre</strong></td><td>Balance</td><td>Memoria anual, cifras, adelanto del roadmap</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Horarios de referencia (Chile)</h3>
+  <div class="grid g2">
+    <div class="card"><h4>LinkedIn</h4><p class="mini">Martes a jueves, <strong>8:00-10:00</strong> o <strong>17:00-19:00</strong></p></div>
+    <div class="card"><h4>Instagram</h4><p class="mini"><strong>13:00-14:00</strong> y <strong>20:00-22:00</strong></p></div>
+  </div>
+  <p class="mini">Son puntos de partida. A los dos meses, la analítica propia manda sobre cualquier recomendación general.</p>
+</section>
+<section id="copys">
+  <h2>40 copys listos para copiar</h2>
+  <p class="sub">Cada uno completo, con emojis y hashtags. Todos los ejemplos de textos jurídicos son <strong>sintéticos</strong>: reproducen problemas reales sin corresponder a ningún documento existente. Al usarlos, mantener esa práctica.</p>
+
+  <div class="pill-row" id="cp">
+    <span class="pill on" data-c="all">Los 40</span>
+    <span class="pill" data-c="claroesta">#ClaroEstá · 8</span>
+    <span class="pill" data-c="palabra">#UnaPalabraMenos · 6</span>
+    <span class="pill" data-c="leccion">Micro-lecciones · 10</span>
+    <span class="pill" data-c="derecho">Derecho a comprender · 7</span>
+    <span class="pill" data-c="ia">IA responsable · 5</span>
+    <span class="pill" data-c="proyecto">Proyecto y comunidad · 4</span>
+  </div>
+
+  <div class="citem claroesta">
+    <div class="cb"><div class="cb-h"><span class="lbl">C1 · La notificación <span class="tag t-red" style="margin-left:6px">#ClaroEstá</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Recibiste esto en tu domicilio. Tienes cinco días para responder.
+
+Suerte entendiendo qué te están pidiendo. 📬
+
+ANTES:
+&quot;Notifíquese a la parte demandada a fin de que, dentro del plazo legal correspondiente contado desde la presente diligencia, comparezca a hacer valer sus derechos bajo apercibimiento de continuarse el procedimiento en su rebeldía.&quot;
+
+DESPUÉS:
+&quot;Usted tiene 15 días hábiles desde hoy para responder a esta demanda. Si no responde dentro de ese plazo, el juicio continuará sin usted.&quot;
+
+Fíjate en lo que cambió: el plazo dejó de ser &quot;el plazo legal correspondiente&quot; y pasó a ser un número. La consecuencia dejó de ser &quot;apercibimiento de rebeldía&quot; y pasó a ser lo que efectivamente ocurre.
+
+Nadie perdió rigor. Alguien ganó la posibilidad de defenderse.
+
+#ClaroEstá #LenguajeClaro #AccesoALaJusticia #Derecho</pre></div>
+  </div>
+
+  <div class="citem claroesta">
+    <div class="cb"><div class="cb-h"><span class="lbl">C2 · La cláusula del contrato <span class="tag t-red" style="margin-left:6px">#ClaroEstá</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Firmaste esto. ¿Sabías lo que decía? 📄
+
+ANTES:
+&quot;El contratante declara conocer y aceptar que la institución podrá, unilateralmente y sin necesidad de aviso previo, modificar las condiciones generales del presente instrumento, las que se entenderán incorporadas de pleno derecho transcurridos treinta días desde su publicación en el sitio web institucional.&quot;
+
+DESPUÉS:
+&quot;Podemos cambiar las condiciones de este contrato sin avisarte. Los cambios empiezan a regir 30 días después de publicarlos en nuestro sitio web. Al firmar, aceptas esto.&quot;
+
+La versión clara dice exactamente lo mismo. Solo que ahora te das cuenta de lo que estás aceptando.
+
+Ese es todo el punto. 🎯
+
+#ClaroEstá #LenguajeClaro #DerechoDelConsumidor #Derecho</pre></div>
+  </div>
+
+  <div class="citem claroesta">
+    <div class="cb"><div class="cb-h"><span class="lbl">C3 · El párrafo con tres ideas <span class="tag t-red" style="margin-left:6px">#ClaroEstá</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Este párrafo tiene tres ideas peleando por el mismo espacio. Ninguna gana. 🥊
+
+ANTES:
+&quot;Que en cuanto a la excepción opuesta, la que fue formulada en tiempo y forma según consta en autos, y considerando que los antecedentes acompañados dan cuenta de circunstancias que este sentenciador no puede desatender, resulta procedente acogerla, sin perjuicio de lo cual deberá tenerse presente lo que se dirá respecto de las costas.&quot;
+
+DESPUÉS:
+&quot;La excepción fue presentada dentro de plazo.
+Los antecedentes acompañados la respaldan.
+Por eso la acogemos. Sobre las costas, resolvemos más adelante.&quot;
+
+Cuatro ideas, cuatro oraciones. Una idea por oración.
+
+Es la regla más simple de la escritura clara y la que más cuesta aplicar. 📝
+
+#ClaroEstá #LenguajeClaro #EscrituraJurídica #Derecho</pre></div>
+  </div>
+
+  <div class="citem claroesta">
+    <div class="cb"><div class="cb-h"><span class="lbl">C4 · La circular administrativa <span class="tag t-red" style="margin-left:6px">#ClaroEstá</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Esto lo escribió un servicio público. Para ciudadanos. 🏛️
+
+ANTES:
+&quot;Se hace presente que, con el objeto de dar cumplimiento a lo instruido, los usuarios deberán proceder a la actualización de sus antecedentes mediante los canales dispuestos al efecto, en el entendido de que la omisión de dicho trámite podrá acarrear la suspensión de los beneficios asociados.&quot;
+
+DESPUÉS:
+&quot;Actualiza tus datos antes del 30 de septiembre en nuestra oficina o en el sitio web. Si no lo haces, suspenderemos tu beneficio.&quot;
+
+De 54 palabras a 25. Con fecha concreta, con canales concretos, con consecuencia concreta.
+
+La versión de arriba no informa: se protege. 🛡️
+
+#ClaroEstá #LenguajeClaro #ComunicaciónPública #Estado</pre></div>
+  </div>
+
+  <div class="citem claroesta">
+    <div class="cb"><div class="cb-h"><span class="lbl">C5 · El sujeto desaparecido <span class="tag t-red" style="margin-left:6px">#ClaroEstá</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>¿Quién decide acá? Nadie sabe. 👻
+
+ANTES:
+&quot;Se procederá a evaluar la procedencia de la solicitud y, de estimarse pertinente, se dispondrá lo que corresponda.&quot;
+
+DESPUÉS:
+&quot;Evaluaremos su solicitud. Le responderemos dentro de 20 días hábiles.&quot;
+
+La voz impersonal tiene una función real en algunos contextos jurídicos. Pero cuando se usa para que nadie quede como responsable de la decisión, deja de ser técnica y pasa a ser evasiva.
+
+&quot;Se dispondrá lo que corresponda&quot; no significa nada. Y quien lo lee lo sabe.
+
+#ClaroEstá #LenguajeClaro #EscrituraJurídica #Derecho</pre></div>
+  </div>
+
+  <div class="citem claroesta">
+    <div class="cb"><div class="cb-h"><span class="lbl">C6 · El correo del abogado al cliente <span class="tag t-red" style="margin-left:6px">#ClaroEstá</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Tu cliente no estudió Derecho. Tu correo debería recordarlo. ✉️
+
+ANTES:
+&quot;Estimado: informo a usted que se ha verificado la notificación de la resolución que provee el escrito de fecha 12, encontrándose el proceso en estado de recibir la causa a prueba, sin perjuicio de los recursos que en derecho procedan.&quot;
+
+DESPUÉS:
+&quot;Estimado Juan: el tribunal ya notificó nuestra presentación del 12. El siguiente paso es que abra el período de prueba, donde presentaremos los documentos y testigos. Le aviso apenas ocurra.&quot;
+
+Mismo contenido. Pero ahora el cliente sabe qué pasó, qué viene y qué tiene que hacer.
+
+Escribir claro también es una forma de servicio. 🤝
+
+#ClaroEstá #LenguajeClaro #EjercicioProfesional #Abogados</pre></div>
+  </div>
+
+  <div class="citem claroesta">
+    <div class="cb"><div class="cb-h"><span class="lbl">C7 · El considerando <span class="tag t-red" style="margin-left:6px">#ClaroEstá</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Un considerando de 91 palabras. Una sola oración. 😵‍💫
+
+ANTES:
+&quot;Que, atendido el mérito de autos y lo expuesto por las partes en sus respectivas presentaciones, las que han sido latamente analizadas en los motivos precedentes, y teniendo especialmente presente que la prueba rendida, apreciada de acuerdo a las reglas de la sana crítica, resulta insuficiente para acreditar los hechos en que se funda la pretensión, este Tribunal no puede sino concluir que la demanda deberá ser desestimada, sin que obste a ello lo alegado en cuanto a la buena fe, materia sobre la cual se dirá lo pertinente.&quot;
+
+DESPUÉS:
+&quot;La prueba presentada no acredita los hechos en que se funda la demanda. Por eso la rechazamos. Sobre la buena fe alegada, nos referimos en el considerando siguiente.&quot;
+
+91 → 33 palabras. El razonamiento jurídico es idéntico.
+
+Lo que se fue: &quot;atendido el mérito de autos&quot;, &quot;latamente analizadas&quot;, &quot;no puede sino concluir&quot;, &quot;sin que obste a ello&quot;. Ninguna de esas expresiones aporta contenido. Todas aportan distancia.
+
+#ClaroEstá #LenguajeClaro #SentenciasClaras #Derecho</pre></div>
+  </div>
+
+  <div class="citem claroesta">
+    <div class="cb"><div class="cb-h"><span class="lbl">C8 · La respuesta a una solicitud de información <span class="tag t-red" style="margin-left:6px">#ClaroEstá</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Alguien pidió información pública. Recibió esto. 📑
+
+ANTES:
+&quot;En atención a su presentación, cúmpleme manifestar a usted que, revisados los registros institucionales, no se ha logrado ubicar documentación que satisfaga los términos de lo requerido, sin perjuicio de lo cual se sugiere reformular la solicitud en términos que permitan su adecuada individualización.&quot;
+
+DESPUÉS:
+&quot;Buscamos en nuestros registros y no encontramos los documentos que usted pide. Es posible que estén registrados con otro nombre. Si nos indica la fecha aproximada o el número de expediente, volvemos a buscar.&quot;
+
+La primera versión cierra la puerta con cortesía. La segunda la deja abierta y explica cómo entrar.
+
+#ClaroEstá #LenguajeClaro #Transparencia #AccesoALaInformación</pre></div>
+  </div>
+
+  <div class="citem palabra">
+    <div class="cb"><div class="cb-h"><span class="lbl">C9 <span class="tag t-org" style="margin-left:6px">#UnaPalabraMenos</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>❌ &quot;de conformidad a lo dispuesto en el artículo 5º&quot;
+✅ &quot;según el artículo 5º&quot;
+
+Cinco palabras menos. Cero pérdida de precisión.
+
+&quot;De conformidad a lo dispuesto en&quot; es una fórmula ceremonial. No agrega rigor jurídico: agrega longitud.
+
+#UnaPalabraMenos #LenguajeClaro #EscrituraJurídica</pre></div>
+  </div>
+
+  <div class="citem palabra">
+    <div class="cb"><div class="cb-h"><span class="lbl">C10 <span class="tag t-org" style="margin-left:6px">#UnaPalabraMenos</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>❌ &quot;en el evento de que&quot;
+✅ &quot;si&quot;
+
+Tres palabras se convierten en una. La condición sigue siendo exactamente la misma condición.
+
+Prueba a buscar esta expresión en tu último escrito. Casi siempre está. 🔍
+
+#UnaPalabraMenos #LenguajeClaro #EscrituraJurídica</pre></div>
+  </div>
+
+  <div class="citem palabra">
+    <div class="cb"><div class="cb-h"><span class="lbl">C11 <span class="tag t-org" style="margin-left:6px">#UnaPalabraMenos</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>❌ &quot;proceder a rechazar&quot;
+✅ &quot;rechazar&quot;
+
+&quot;Proceder a&quot; antes de un verbo nunca aporta nada. Es un rodeo.
+
+Familia completa:
+&quot;proceder a notificar&quot; → &quot;notificar&quot;
+&quot;proceder a resolver&quot; → &quot;resolver&quot;
+&quot;proceder a la evaluación de&quot; → &quot;evaluar&quot;
+
+#UnaPalabraMenos #LenguajeClaro #EscrituraJurídica</pre></div>
+  </div>
+
+  <div class="citem palabra">
+    <div class="cb"><div class="cb-h"><span class="lbl">C12 <span class="tag t-org" style="margin-left:6px">#UnaPalabraMenos</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>❌ &quot;en la especie&quot;
+✅ (bórralo)
+
+Es la expresión más fácil de eliminar del español jurídico chileno, porque no significa nada que el contexto no diga ya.
+
+&quot;En la especie, no concurren los requisitos&quot; → &quot;No concurren los requisitos&quot;
+
+Nadie va a extrañarla. 👋
+
+#UnaPalabraMenos #LenguajeClaro #DerechoChile</pre></div>
+  </div>
+
+  <div class="citem palabra">
+    <div class="cb"><div class="cb-h"><span class="lbl">C13 <span class="tag t-org" style="margin-left:6px">#UnaPalabraMenos</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>❌ &quot;sin perjuicio de lo señalado precedentemente&quot;
+✅ &quot;aunque&quot; · &quot;sin embargo&quot; · o simplemente un punto seguido
+
+Ocho palabras para decir &quot;pero&quot;.
+
+Ojo: &quot;sin perjuicio de&quot; sí tiene un uso técnico legítimo cuando indica que una cosa no afecta a otra. El problema es su uso decorativo, que es la mayoría de las veces.
+
+#UnaPalabraMenos #LenguajeClaro #EscrituraJurídica</pre></div>
+  </div>
+
+  <div class="citem palabra">
+    <div class="cb"><div class="cb-h"><span class="lbl">C14 <span class="tag t-org" style="margin-left:6px">#UnaPalabraMenos</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>❌ &quot;impetrar&quot; · &quot;incoar&quot; · &quot;asaz&quot; · &quot;ab initio&quot;
+✅ &quot;pedir&quot; · &quot;iniciar&quot; · &quot;muy&quot; · &quot;desde el principio&quot;
+
+Aclaración importante: no estamos contra los tecnicismos.
+
+&quot;Prescripción&quot;, &quot;litisconsorcio&quot;, &quot;cosa juzgada&quot; o &quot;excepción dilatoria&quot; son términos precisos, insustituibles y necesarios. Eliminarlos empobrecería el texto.
+
+Lo que sobra es distinto: son palabras arcaicas que tienen un sinónimo común exacto. Ahí el tecnicismo no aporta precisión, solo distancia. ⚖️
+
+#UnaPalabraMenos #LenguajeClaro #EscrituraJurídica</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C15 · La voz pasiva <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>&quot;Se resolvió rechazar la solicitud.&quot;
+
+¿Quién resolvió? 🤔
+
+La voz pasiva y la impersonal borran al sujeto. A veces eso es correcto —cuando el actor es irrelevante o desconocido—. Pero en un texto jurídico el actor casi nunca es irrelevante: es quien decide y quien responde.
+
+&quot;Se resolvió&quot; → &quot;El tribunal resolvió&quot; o &quot;Resolvimos&quot;
+
+Al recuperar el sujeto pasan dos cosas: la oración se acorta y la responsabilidad aparece.
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C16 · Dónde va la conclusión <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Regla que casi nadie aplica: la conclusión va primero. 🔝
+
+La estructura habitual de un escrito jurídico es: antecedentes → análisis → conclusión. Es la estructura del razonamiento, no la de la lectura.
+
+Quien lee quiere saber qué se decidió. Después evalúa si el razonamiento lo convence.
+
+Prueba a poner la conclusión en la primera oración del párrafo y desarrollarla después. Vas a notar la diferencia de inmediato.
+
+(Los periodistas descubrieron esto hace un siglo. Lo llaman pirámide invertida.) 📰
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C17 · La densidad de subordinación <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>&quot;Que, considerando que, habiéndose acreditado que, y teniendo presente que...&quot;
+
+Cada &quot;que&quot; abre un nivel. Cuatro niveles y el lector perdió el hilo. 🧵
+
+La subordinación no es mala: es como se construyen relaciones lógicas complejas. El problema es la acumulación.
+
+Regla práctica: máximo dos niveles de subordinación por oración. Si necesitas más, es que había más de una oración.
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C18 · Los conectores <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>El párrafo se entiende mal, pero no encuentras el error. 🔍
+
+Muchas veces el problema no está en las oraciones: está entre ellas.
+
+Un texto claro dice explícitamente cómo se relaciona cada idea con la anterior: &quot;por eso&quot;, &quot;en cambio&quot;, &quot;además&quot;, &quot;sin embargo&quot;, &quot;en consecuencia&quot;.
+
+Cuando faltan, el lector tiene que adivinar la relación lógica. Y a veces adivina mal.
+
+Ejercicio: toma un párrafo tuyo y subraya los conectores. Si hay menos de dos, probablemente estás pidiéndole al lector que arme el razonamiento solo.
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C19 · El párrafo de una idea <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Un párrafo = una idea. 📐
+
+Cómo saber si lo estás cumpliendo: intenta ponerle un título de tres palabras a cada párrafo que escribiste.
+
+Si no puedes, es porque hay más de una idea adentro.
+
+Si el título es demasiado general (&quot;consideraciones varias&quot;), también.
+
+Es la prueba más rápida que existe para revisar la estructura de un escrito. Toma dos minutos. ⏱️
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C20 · El gerundio de posterioridad <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>&quot;El tribunal acogió la demanda, condenando al demandado al pago.&quot;
+
+Error frecuente y con consecuencias jurídicas. ⚠️
+
+El gerundio expresa una acción simultánea o anterior, no posterior. Si la condena es consecuencia de acoger la demanda, el gerundio es incorrecto.
+
+✅ &quot;El tribunal acogió la demanda y condenó al demandado al pago.&quot;
+
+Puede parecer un detalle de gramática. Pero en un texto donde la secuencia temporal de los actos importa jurídicamente, no lo es. ⚖️
+
+#LenguajeClaro #EscrituraJurídica #Gramática #Derecho</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C21 · La lectura en voz alta <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>El mejor corrector de estilo es gratis y lo tienes puesto. 🗣️
+
+Lee tu escrito en voz alta.
+
+→ Donde te falte el aire, faltaba un punto.
+→ Donde tengas que releer, hay algo mal construido.
+→ Donde te trabes, hay una palabra que no corresponde.
+→ Donde te aburras, se aburre también quien lee.
+
+Ninguna herramienta detecta esas cuatro cosas mejor que tu propia respiración.
+
+(Y sí, ScribeClaro tampoco. Por eso decimos que la escritura es tuya.) ✍️
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C22 · Los números <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>&quot;Dentro del plazo legal correspondiente&quot; ❌
+&quot;Dentro de 15 días hábiles&quot; ✅
+
+&quot;A la brevedad&quot; ❌
+&quot;Antes del 30 de septiembre&quot; ✅
+
+&quot;Una cantidad significativa&quot; ❌
+&quot;$2.400.000&quot; ✅
+
+Cada vez que reemplazas una fórmula vaga por un número, alguien deja de tener que preguntar. 🔢
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C23 · Las siglas <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Regla simple: la primera vez, completa. Después, sigla.
+
+❌ &quot;Conforme a lo resuelto por el TC en relación con la LBPA...&quot;
+✅ &quot;Conforme a lo resuelto por el Tribunal Constitucional (TC) sobre la Ley de Bases de Procedimientos Administrativos (LBPA)...&quot;
+
+Y si en todo el documento la sigla aparece una sola vez, no la uses. Escribe el nombre completo y listo.
+
+Las siglas ahorran espacio al que escribe y se lo cobran al que lee. 📖
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura</pre></div>
+  </div>
+
+  <div class="citem leccion">
+    <div class="cb"><div class="cb-h"><span class="lbl">C24 · Las listas <span class="tag t-yel" style="margin-left:6px">Micro-lección</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Cuando enumeras tres o más cosas dentro de una oración, el lector pierde la cuenta.
+
+❌ &quot;Deberá acompañar copia de la cédula de identidad, certificado de residencia emitido dentro de los últimos 60 días, comprobante de domicilio, y en caso de actuar por mandato, copia autorizada del poder respectivo.&quot;
+
+✅ &quot;Debe acompañar:
+1. Copia de su cédula de identidad
+2. Certificado de residencia (emitido en los últimos 60 días)
+3. Comprobante de domicilio
+4. Si actúa por mandato: copia autorizada del poder&quot;
+
+Mismo contenido. Pero ahora se puede usar como lista de verificación.
+
+Las listas no son informales. Son funcionales. ✅
+
+#LenguajeClaro #EscrituraJurídica #TipsDeEscritura</pre></div>
+  </div>
+
+  <div class="citem derecho">
+    <div class="cb"><div class="cb-h"><span class="lbl">C25 <span class="tag t-tea" style="margin-left:6px">Derecho a comprender</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Una persona recibe una sentencia que la afecta directamente.
+
+La lee tres veces. No entiende si ganó o perdió.
+
+Llama a un abogado para que le explique. El abogado cobra.
+
+Si no puede pagar, se queda sin saber.
+
+Esto no es un problema de estilo. Es un problema de acceso a la justicia. ⚖️
+
+El lenguaje claro no es una preferencia estética. Es la condición material para que un derecho pueda ejercerse.
+
+#DerechoAComprender #AccesoALaJusticia #LenguajeClaro</pre></div>
+  </div>
+
+  <div class="citem derecho">
+    <div class="cb"><div class="cb-h"><span class="lbl">C26 <span class="tag t-tea" style="margin-left:6px">Derecho a comprender</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>En 2022, la Real Academia Española creó la Red Panhispánica de Lenguaje Claro y Accesible.
+
+En 2024 se reunió en Madrid. En 2025, en Lima, con representantes de más de 550 instituciones: cortes supremas, academias de la lengua, universidades, fiscalías y defensorías de todo el mundo hispanohablante.
+
+Lo que se instaló en esas convenciones fue una idea con consecuencias: la ciudadanía tiene un derecho fundamental a entender las comunicaciones de la autoridad.
+
+No es un consejo de redacción. Es una obligación de quien escribe desde el poder. 🏛️
+
+#DerechoAComprender #LenguajeClaro #RedPanhispánica</pre></div>
+  </div>
+
+  <div class="citem derecho">
+    <div class="cb"><div class="cb-h"><span class="lbl">C27 <span class="tag t-tea" style="margin-left:6px">Derecho a comprender</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>En Chile trabajan en lenguaje claro, al mismo tiempo:
+
+→ La Corte Suprema, con su Comisión de Lenguaje Claro
+→ El Senado, con su Guía para el ámbito legislativo
+→ La Biblioteca del Congreso, con el programa Ley Fácil
+→ La Contraloría General de la República
+→ El Consejo para la Transparencia
+→ La Defensoría Penal Pública
+→ Y varias universidades, entre ellas la PUCV
+
+Hace veinte años esto no existía.
+
+No es una moda. Es un cambio en cómo el Estado entiende su obligación de comunicarse. 📈
+
+#DerechoAComprender #LenguajeClaro #Chile #Estado</pre></div>
+  </div>
+
+  <div class="citem derecho">
+    <div class="cb"><div class="cb-h"><span class="lbl">C28 <span class="tag t-tea" style="margin-left:6px">Derecho a comprender</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Objeción frecuente: &quot;simplificar el lenguaje jurídico lo empobrece&quot;. 🎓
+
+Es una preocupación legítima y vale la pena responderla en serio.
+
+Claridad no es simplificación. Nadie propone eliminar &quot;prescripción&quot;, &quot;litisconsorcio&quot; o &quot;cosa juzgada&quot;: son conceptos precisos sin equivalente exacto en lengua común. Eliminarlos sí empobrecería el texto y lo haría menos exacto.
+
+Lo que proponemos eliminar es otra cosa: la oración de noventa palabras, el arcaísmo que tiene sinónimo exacto, la fórmula ceremonial que no aporta contenido, la voz impersonal que esconde al responsable.
+
+Nada de eso es rigor. Es costumbre. 📚
+
+#DerechoAComprender #LenguajeClaro #EscrituraJurídica</pre></div>
+  </div>
+
+  <div class="citem derecho">
+    <div class="cb"><div class="cb-h"><span class="lbl">C29 <span class="tag t-tea" style="margin-left:6px">Derecho a comprender</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>El lenguaje claro no beneficia a todos por igual.
+
+Beneficia especialmente a quien:
+→ tiene menos años de escolaridad
+→ no tiene con quién consultar
+→ enfrenta una barrera cognitiva o comunicacional
+→ no puede pagar asesoría
+→ está en una situación de vulnerabilidad y por eso mismo recibió ese documento
+
+Es decir: beneficia más a quien más lo necesita.
+
+Por eso lo entendemos como una política de equidad, no como una preferencia de estilo. 🤝
+
+#DerechoAComprender #AccesoALaJusticia #Inclusión #LenguajeClaro</pre></div>
+  </div>
+
+  <div class="citem derecho">
+    <div class="cb"><div class="cb-h"><span class="lbl">C30 <span class="tag t-tea" style="margin-left:6px">Derecho a comprender</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>&quot;El derecho a comprender.&quot;
+
+La expresión suena a eslogan, pero tiene una base concreta.
+
+Si un derecho solo puede ejercerse cuando se conoce, y solo se conoce cuando se comprende la comunicación que lo informa, entonces la comprensión no es un extra: es parte de la garantía.
+
+Un plazo que no se entiende es un plazo que se vence.
+Una resolución que no se comprende es una resolución que no se puede impugnar.
+Un formulario indescifrable es un beneficio que no se solicita. 📋
+
+#DerechoAComprender #AccesoALaJusticia #LenguajeClaro</pre></div>
+  </div>
+
+  <div class="citem derecho">
+    <div class="cb"><div class="cb-h"><span class="lbl">C31 <span class="tag t-tea" style="margin-left:6px">Derecho a comprender</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>El programa Ley Fácil, de la Biblioteca del Congreso Nacional, explica leyes chilenas en lenguaje comprensible desde hace años.
+
+Fue una de las primeras iniciativas de este tipo en Iberoamérica.
+
+Vale la pena decirlo porque a veces el lenguaje claro se presenta como algo nuevo o importado. En Chile hay experiencia acumulada, hay instituciones trabajando en esto desde antes de que fuera tema, y hay resultados. 🇨🇱
+
+Nosotros llegamos después y nos apoyamos en eso.
+
+#DerechoAComprender #LenguajeClaro #LeyFácil #Chile</pre></div>
+  </div>
+
+  <div class="citem ia">
+    <div class="cb"><div class="cb-h"><span class="lbl">C32 <span class="tag t-nav" style="margin-left:6px">IA responsable</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>&quot;¿Usar ScribeClaro es hacer trampa?&quot;
+
+Nos preguntan esto seguido, y la pregunta es sana. 🤔
+
+La respuesta depende de qué haga la herramienta.
+
+Una IA que redacta por ti produce un texto que no es tuyo. Ahí sí hay un problema de autoría.
+
+Una IA que analiza tu texto y te muestra que tienes una oración de 78 palabras hace lo mismo que un profesor que te devuelve un trabajo con anotaciones al margen. Nadie diría que eso es hacer trampa.
+
+ScribeClaro es lo segundo. A propósito. ✍️
+
+#AutoríaHumana #IntegridadAcadémica #InteligenciaArtificial</pre></div>
+  </div>
+
+  <div class="citem ia">
+    <div class="cb"><div class="cb-h"><span class="lbl">C33 <span class="tag t-nav" style="margin-left:6px">IA responsable</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Qué SÍ y qué NO con IA en un trabajo académico.
+
+✅ Pedirle que te explique un concepto que no entiendes
+✅ Pedirle que revise tu texto y señale problemas
+✅ Usarla para ordenar ideas que ya tienes
+✅ Pedirle contraargumentos a tu tesis
+
+❌ Pedirle que escriba el texto
+❌ Pedirle que &quot;mejore la redacción&quot; reescribiendo párrafos completos
+❌ Usarla para generar citas o referencias (las inventa)
+❌ Entregar cualquier cosa que no puedas explicar y defender
+
+Prueba definitiva: si tu profesor te pregunta por qué escribiste algo así y no puedes responder, ese texto no es tuyo. 🎓
+
+Guarda este post 📌
+
+#IntegridadAcadémica #InteligenciaArtificial #Universidad #EstudiantesDeDerecho</pre></div>
+  </div>
+
+  <div class="citem ia">
+    <div class="cb"><div class="cb-h"><span class="lbl">C34 <span class="tag t-nav" style="margin-left:6px">IA responsable</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>La IA no verifica si tu argumento jurídico es correcto.
+
+Vale la pena decirlo con todas sus letras, porque hay confusión. ⚠️
+
+ScribeClaro te dice si tu oración es demasiado larga, si perdiste el sujeto, si el párrafo tiene tres ideas. Eso es análisis de forma.
+
+No te dice si citaste bien la norma, si el razonamiento se sostiene, si la jurisprudencia aplica. Eso es contenido jurídico, y es tuyo.
+
+Un texto puede estar perfectamente escrito y ser jurídicamente equivocado. Ninguna herramienta de escritura te salva de eso.
+
+#AutoríaHumana #InteligenciaArtificial #Derecho</pre></div>
+  </div>
+
+  <div class="citem ia">
+    <div class="cb"><div class="cb-h"><span class="lbl">C35 <span class="tag t-nav" style="margin-left:6px">IA responsable</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Los modelos de lenguaje inventan citas.
+
+No es un error ocasional: es una consecuencia de cómo funcionan. Generan texto plausible, y una cita falsa es perfectamente plausible. 📚
+
+Ha habido casos, en varios países, de escritos judiciales presentados con jurisprudencia inexistente generada por IA. Las consecuencias profesionales fueron serias.
+
+Regla sin excepciones: toda cita, norma y sentencia se verifica en la fuente oficial. Siempre. Sin importar cuán convincente se vea.
+
+#InteligenciaArtificial #Derecho #EjercicioProfesional #IntegridadAcadémica</pre></div>
+  </div>
+
+  <div class="citem ia">
+    <div class="cb"><div class="cb-h"><span class="lbl">C36 <span class="tag t-nav" style="margin-left:6px">IA responsable</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Decidimos que ScribeClaro no escribiera por nadie.
+
+Es, comercialmente, una mala decisión. Un generador de textos jurídicos tendría muchos más usuarios. 📉
+
+Pero hay una razón: quien firma un escrito responde por él. Ante un cliente, ante un tribunal, ante una comisión evaluadora. Una herramienta que redacta crea una distancia incómoda entre la firma y el texto.
+
+Preferimos no crearla.
+
+#AutoríaHumana #InteligenciaArtificial #IntegridadAcadémica #Derecho</pre></div>
+  </div>
+
+  <div class="citem proyecto">
+    <div class="cb"><div class="cb-h"><span class="lbl">C37 · Tutorial <span class="tag t-grn" style="margin-left:6px">Proyecto y comunidad</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Cómo usar ScribeClaro en tres pasos. 👇
+
+1️⃣ Entra a scribeclaro.pucv.cl — no necesitas registrarte ni dar tu correo
+
+2️⃣ Pega un párrafo de tu escrito. Un párrafo, no el documento completo: el análisis es más útil cuando es específico
+
+3️⃣ Lee el diagnóstico y corrige tú. La herramienta te muestra el problema; la decisión de cómo resolverlo es tuya
+
+Es gratis. No guarda tu texto para entrenar nada. Y funciona igual de bien para un informe en derecho que para un oficio administrativo.
+
+Enlace en la bio 🔗
+
+#ScribeClaro #LenguajeClaro #EscrituraJurídica #PUCV</pre></div>
+  </div>
+
+  <div class="citem proyecto">
+    <div class="cb"><div class="cb-h"><span class="lbl">C38 · Preguntas frecuentes <span class="tag t-grn" style="margin-left:6px">Proyecto y comunidad</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Las cinco preguntas que más nos hacen 📩
+
+❓ ¿Es gratis?
+Sí. Y sin registro.
+
+❓ ¿Escribe el texto por mí?
+No. Analiza lo que tú escribiste y te muestra qué dificulta entenderlo.
+
+❓ ¿Sirve solo para Derecho?
+Nació para Derecho, pero la usan también estudiantes de otras carreras. El problema de escribir para que otro entienda no es exclusivo de una disciplina.
+
+❓ ¿Guarda mis textos?
+Consulta nuestra política en el sitio. Y una recomendación válida para cualquier herramienta: no ingreses datos personales de terceros ni información reservada de causas.
+
+❓ ¿Quién está detrás?
+La Universidad Católica de Valparaíso, con apoyo de la Vicerrectoría Académica y la Facultad de Derecho.
+
+¿Te quedó otra duda? Pregunta acá abajo 👇
+
+#ScribeClaro #PreguntasFrecuentes #LenguajeClaro #PUCV</pre></div>
+  </div>
+
+  <div class="citem proyecto">
+    <div class="cb"><div class="cb-h"><span class="lbl">C39 · Balance con cifras <span class="tag t-grn" style="margin-left:6px">Proyecto y comunidad</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>Un año de ScribeClaroPUCV. 📊
+
+Empezamos pensando en estudiantes de segundo año de Derecho de una sola universidad.
+
+Hoy:
+→ [N] textos analizados
+→ [N] usuarios en [N] países
+→ Destacada en el Boletín de Lenguaje Claro de la Corte Suprema
+→ Incorporada al listado de herramientas de IA de la Academia Judicial
+→ Usada por funcionarios del Poder Judicial y del Tribunal Constitucional
+→ Presentada en la II Convención de la Red Panhispánica, en Lima
+
+Y algo que no esperábamos: estudiantes de ingeniería usándola para sus informes.
+
+Gracias a cada persona que la probó, la compartió o nos escribió para decirnos qué mejorar. 🙏
+
+Lo que viene en el próximo año: [roadmap]
+
+#ScribeClaro #PUCV #LenguajeClaro #Balance</pre></div>
+  </div>
+
+  <div class="citem proyecto">
+    <div class="cb"><div class="cb-h"><span class="lbl">C40 · Invitación abierta <span class="tag t-grn" style="margin-left:6px">Proyecto y comunidad</span></span><span class="cnt"></span><button class="cpy">Copiar</button></div><pre>¿Tienes un documento que nadie entiende? Mándanoslo. 📬
+
+Estamos armando un banco de ejemplos para nuestra serie #ClaroEstá y para el material de nuestros talleres.
+
+Buscamos textos jurídicos o administrativos reales que sean difíciles de comprender: resoluciones, oficios, circulares, cláusulas, notificaciones.
+
+Condiciones:
+✅ Lo anonimizamos completamente antes de usarlo — sin nombres, sin RUT, sin número de causa, sin tribunal identificable
+✅ Solo usamos documentos públicos o enviados con tu autorización
+✅ Nunca publicamos el original completo: solo el fragmento que ilustra el problema
+
+Escríbenos por mensaje directo o a [correo institucional].
+
+Los mejores casos se convierten en material de enseñanza que usan cientos de personas. 📚
+
+#ClaroEstá #LenguajeClaro #Comunidad #Derecho</pre></div>
+  </div>
+
+  <div class="alert b"><strong>Cómo usar este banco</strong><p>No publicarlos en orden. Mezclar pilares según la parrilla semanal (§Calendario) y adaptar el ejemplo cuando aparezca uno mejor en la práctica real del proyecto. Los comentarios que reciba cada publicación son la mejor fuente para los siguientes.</p></div>
+</section>
+<section id="reels">
+  <h2>12 guiones de reels</h2>
+  <p class="sub">Especificación común: <strong>1080 × 1920 px</strong> · 30 a 60 s · <strong>texto sobreimpreso siempre</strong> (la mayoría ve sin sonido) · subtítulos automáticos con CapCut · elementos clave dentro de los 1080 × 1350 px centrales · <strong>gancho en los primeros 3 segundos</strong>.</p>
+
+  <div class="alert o"><strong>Los primeros 3 segundos deciden todo</strong><p>Si el gancho no detiene el deslizamiento, el resto del video no existe. Escribir el gancho primero y el video después, no al revés.</p></div>
+
+  <h3>Reel 1 · "Por qué no escribe por ti" <span class="tag t-nav">45 s · desarrollado</span></h3>
+  <table>
+    <thead><tr><th style="width:80px">Tiempo</th><th style="width:30%">Imagen</th><th>Texto sobreimpreso / audio</th></tr></thead>
+    <tbody>
+      <tr><td>0-3 s</td><td>Primer plano de la fundadora</td><td><strong>"Nos preguntan por qué nuestra IA no escribe."</strong></td></tr>
+      <tr><td>3-12 s</td><td>Plano medio</td><td>"Podríamos haberla hecho así. Habría sido más fácil."</td></tr>
+      <tr><td>12-25 s</td><td>Pantalla: texto con anotaciones apareciendo</td><td>"Pero escribir es pensar. Cuando organizas un argumento jurídico estás tomando decisiones: qué va primero, qué se subordina."</td></tr>
+      <tr><td>25-38 s</td><td>Vuelta a cámara</td><td>"Si la máquina toma esas decisiones, no aprendiste nada. Y el texto no es tuyo."</td></tr>
+      <tr><td>38-45 s</td><td>Cierre con logotipo</td><td><strong>"Analiza. No escribe. Tú corriges."</strong> + <code>scribeclaro.pucv.cl</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Reel 2 · "78 palabras" <span class="tag t-nav">30 s · desarrollado</span></h3>
+  <table>
+    <thead><tr><th style="width:80px">Tiempo</th><th style="width:36%">Imagen</th><th>Texto</th></tr></thead>
+    <tbody>
+      <tr><td>0-3 s</td><td>Párrafo opaco llenando la pantalla</td><td><strong>"Esto es UNA sola oración."</strong></td></tr>
+      <tr><td>3-10 s</td><td>Contador de palabras subiendo hasta 78</td><td>"78 palabras. Cero puntos."</td></tr>
+      <tr><td>10-20 s</td><td>Transición al texto reescrito</td><td>"Lo mismo, en tres oraciones."</td></tr>
+      <tr><td>20-27 s</td><td>Comparación lado a lado</td><td><strong>"78 → 32 palabras. Mismo contenido jurídico."</strong></td></tr>
+      <tr><td>27-30 s</td><td>Logotipo</td><td><code>scribeclaro.pucv.cl</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Reels 3 a 12 · esquema gancho / desarrollo / cierre</h3>
+  <table>
+    <thead><tr><th style="width:44px">#</th><th style="width:22%">Título · duración</th><th style="width:30%">Gancho (0-3 s)</th><th>Desarrollo y cierre</th></tr></thead>
+    <tbody>
+      <tr><td><strong>3</strong></td><td>La regla de las 25 palabras<br><span class="mini">40 s</span></td><td>"Si tu oración pasa las 25 palabras, tu lector ya se perdió."</td><td>Explicación de la memoria de trabajo con animación de un contador. Cierre: <strong>"Lee en voz alta. Donde respires, va un punto."</strong></td></tr>
+      <tr><td><strong>4</strong></td><td>¿Quién decide acá?<br><span class="mini">35 s</span></td><td>"'Se resolvió rechazar'. ¿Quién resolvió?"</td><td>La voz impersonal como forma de esconder al responsable, con ejemplos. Cierre: <strong>"Recupera el sujeto. La oración se acorta y la responsabilidad aparece."</strong></td></tr>
+      <tr><td><strong>5</strong></td><td>Palabras que sobran<br><span class="mini">30 s</span></td><td>Ritmo rápido: un par cada 3 segundos</td><td><code>a mayor abundamiento → además</code> · <code>en el evento de que → si</code> · <code>proceder a rechazar → rechazar</code> · <code>de conformidad a lo dispuesto en → según</code> · <code>en la especie → (nada)</code>. Cierre: <strong>"¿Cuál agregarías tú?"</strong></td></tr>
+      <tr><td><strong>6</strong></td><td>Cómo usar ScribeClaro<br><span class="mini">45 s</span></td><td>"Tres pasos. Cero registro. Cero costo."</td><td>Grabación de pantalla del proceso completo: entrar, pegar un párrafo, leer el análisis, corregir</td></tr>
+      <tr><td><strong>7</strong></td><td>¿Es hacer trampa?<br><span class="mini">50 s</span></td><td>"¿Usar IA para tu tesis es hacer trampa?"</td><td>La distinción entre una herramienta que redacta y una que analiza. Cierre: <strong>"Si no puedes explicar por qué escribiste algo así, ese texto no es tuyo."</strong></td></tr>
+      <tr><td><strong>8</strong></td><td>El día que la usó un juez<br><span class="mini">40 s</span></td><td>"La hicimos para estudiantes de segundo año. Hoy la usan en tribunales."</td><td>El recorrido inesperado del proyecto. Cierre: <strong>"El problema de escribir para que otro entienda no es solo del Derecho."</strong></td></tr>
+      <tr><td><strong>9</strong></td><td>La IA inventa citas<br><span class="mini">40 s</span></td><td>"La IA puede inventar jurisprudencia que no existe."</td><td>Por qué ocurre y qué consecuencias ha tenido. Cierre: <strong>"Verifica siempre en la fuente oficial. Siempre."</strong></td></tr>
+      <tr><td><strong>10</strong></td><td>Tu cliente no estudió Derecho<br><span class="mini">35 s</span></td><td>"Este es el correo que le mandaste a tu cliente."</td><td>Antes/después de un correo profesional. Cierre: <strong>"Escribir claro también es una forma de servicio."</strong></td></tr>
+      <tr><td><strong>11</strong></td><td>Un párrafo, una idea<br><span class="mini">30 s</span></td><td>"Ponle un título de tres palabras a cada párrafo que escribiste."</td><td>Si no puedes, hay más de una idea adentro. Cierre: <strong>"Dos minutos. La prueba más rápida que existe."</strong></td></tr>
+      <tr><td><strong>12</strong></td><td>Detrás de ScribeClaro<br><span class="mini">50 s</span></td><td>"Una lingüista forense, una investigadora en literatura y un desarrollador que estudió música."</td><td>Presentación del equipo, tono cercano, grabado en la Escuela de Derecho</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Producción de video: lo mínimo</h3>
+  <div class="grid g3">
+    <div class="card"><h4>Grabación</h4><p class="mini">Un teléfono moderno basta. Lo que sí importa: <strong>luz de ventana de frente</strong> (no de espaldas) y grabar en un lugar sin eco. El audio malo se nota más que la imagen mala.</p></div>
+    <div class="card"><h4>Subtítulos</h4><p class="mini"><a class="ext" href="https://www.capcut.com/" target="_blank" rel="noopener">CapCut</a> genera subtítulos automáticos en español y permite corregirlos. <strong>Siempre incrustados</strong>, nunca dependiendo de los del sistema.</p></div>
+    <div class="card"><h4>Reutilización</h4><p class="mini">El mismo reel sube a Instagram, a YouTube Shorts y como video nativo de LinkedIn. Producir una vez, publicar tres veces.</p></div>
+  </div>
+</section>
+<section id="seguidores">
+  <h2>Estrategia para ganar seguidores</h2>
+  <p class="sub">Trece tácticas concretas en tres fases, más la lista de lo que no hay que hacer.</p>
+
+  <div class="alert b"><strong>Qué significa crecer aquí</strong><p>Para ScribeClaro, <strong>800 seguidores en LinkedIn compuestos por jueces, académicos, funcionarios y directores de escuelas de Derecho valen infinitamente más que 15.000 atraídos con contenido genérico.</strong> El objetivo no es volumen: es densidad del público correcto. Cada atajo que degrada esa densidad arruina las métricas que después servirían para conseguir convenios.</p></div>
+
+  <h3>Fase 1 · Los primeros 500 <span class="tag t-red">Meses 1-3</span></h3>
+  <p class="mini">Los primeros cientos no llegan por algoritmo: llegan porque alguien los trae. Esta fase es manual y no hay forma de saltársela.</p>
+
+  <h4>Táctica 1 · La red que ya existe</h4>
+  <p class="mini">El proyecto tiene acceso a más gente de la que cree. Lista a activar en las primeras dos semanas:</p>
+  <table>
+    <thead><tr><th style="width:36%">Grupo</th><th>Cómo activarlo</th></tr></thead>
+    <tbody>
+      <tr><td>Estudiantes de las asignaturas de las profesoras</td><td>Mencionar la cuenta en clase y en el aula virtual. <strong>El canal más directo que existe</strong></td></tr>
+      <tr><td>Colegas de la Escuela de Derecho PUCV</td><td>Correo personal breve pidiendo seguir y compartir</td></tr>
+      <tr><td>Contactos de LinkedIn de la fundadora</td><td>Publicación desde su perfil anunciando la página</td></tr>
+      <tr><td>Red de Lenguaje Claro Chile</td><td>Correo institucional a las instituciones miembro</td></tr>
+      <tr><td>Asistentes a charlas y seminarios previos</td><td>Correo a la lista, si existe</td></tr>
+      <tr><td>Egresados y ayudantes</td><td>Grupo de WhatsApp, mensaje directo</td></tr>
+      <tr><td>Otras unidades PUCV</td><td>Desarrollo Docente, VRA, Facultad de Derecho, Biblioteca</td></tr>
+    </tbody>
+  </table>
+  <p class="mini"><strong>Meta realista de esta táctica sola: 200 a 300 seguidores en LinkedIn en tres semanas.</strong></p>
+
+  <h4>Táctica 2 · Amplificación institucional</h4>
+  <div class="alert g"><strong>Un solo repost de la cuenta institucional principal puede superar el resultado de un mes de trabajo orgánico</strong><p>Solicitar formalmente a la Dirección de Comunicación Estratégica: mención cuando publiquen una nota sobre el proyecto · repost del contenido de lanzamiento · inclusión en el boletín interno · mención en las cuentas de la Facultad de Derecho.</p></div>
+
+  <h4>Táctica 3 · Comentar antes que publicar</h4>
+  <p>Táctica subestimada y muy eficaz en LinkedIn: <strong>comentar de manera sustantiva en publicaciones ajenas relevantes</strong>. Un comentario que aporta algo real —no "excelente aporte"— expone el perfil a toda la audiencia de esa publicación.</p>
+  <div class="card">
+    <h4>Rutina diaria: 5 comentarios, 10 minutos</h4>
+    <p class="mini">En publicaciones de: Comisión de Lenguaje Claro · Academia Judicial · Biblioteca del Congreso · Contraloría · escuelas de Derecho · académicos de lingüística · periodistas judiciales.</p>
+    <p class="mini"><strong>Regla:</strong> el comentario debe aportar información, un matiz o una pregunta genuina. Nunca autopromoción.</p>
+  </div>
+
+  <h4>Táctica 4 · Invitaciones de página, dosificadas</h4>
+  <p class="mini">LinkedIn otorga créditos mensuales para invitar contactos. <strong>Usarlos de a 30 por semana</strong>, no todos de golpe: las invitaciones no aceptadas consumen crédito y un envío masivo mal segmentado los quema sin retorno. Orden de prioridad: académicos de Derecho → funcionarios judiciales → abogados en ejercicio → estudiantes → resto.</p>
+
+  <h4>Táctica 5 · Firma de correo y presencia física</h4>
+  <p class="mini">Cambios de un minuto que rinden durante años.</p>
+  <div class="cb"><div class="cb-h"><span class="lbl">Firma de correo</span><button class="cpy">Copiar</button></div><pre>—
+Claudia Poblete Olmedo
+Directora · ScribeClaroPUCV
+Escuela de Derecho · Pontificia Universidad Católica de Valparaíso
+scribeclaro.pucv.cl · LinkedIn: /company/scribeclaropucv · Instagram: @scribeclaropucv</pre></div>
+  <p class="mini">Y además: <strong>código QR en la última diapositiva de cada charla</strong> · enlaces en el pie de página del sitio (<strong>hoy no existen</strong>) · mención en cada nota de prensa.</p>
+
+  <h3>Fase 2 · De 500 a 3.000 <span class="tag t-org">Meses 4-9</span></h3>
+  <p class="mini">Aquí empieza a operar el alcance orgánico. La estrategia cambia de "traer gente" a "producir piezas que viajen solas".</p>
+
+  <h4>Táctica 6 · Identificar y explotar el formato que funciona</h4>
+  <div class="alert o"><strong>El error casi siempre es repartir el esfuerzo en partes iguales</strong><p>A los tres meses habrá datos suficientes para saber qué formato rinde, y la respuesta casi siempre es uno solo. Si el antes/después triplica al resto, debe pasar de una publicación semanal a dos. <strong>Revisión mensual obligatoria:</strong> ordenar todas las publicaciones por alcance e interacción, identificar el patrón, reasignar el esfuerzo.</p></div>
+
+  <h4>Táctica 7 · Contenido diseñado para ser guardado y compartido</h4>
+  <p>Las dos señales que más pesan hoy en el alcance <strong>no son los "me gusta"</strong>: son <strong>guardar</strong> y <strong>compartir</strong>. Ambas se pueden diseñar.</p>
+  <div class="grid g2">
+    <div class="card"><h4>Se guarda lo que sirve después</h4><p class="mini">Listas de verificación, reglas, glosarios, plantillas. Por eso el carrusel de "5 errores" rinde más que una reflexión, aunque la reflexión sea mejor texto.</p></div>
+    <div class="card"><h4>Se comparte lo que dice algo que el lector quería decir</h4><p class="mini">"Esto es lo que llevo años tratando de explicarle a mi equipo". El contenido sobre el derecho a comprender funciona así con los funcionarios públicos.</p></div>
+  </div>
+  <p class="mini"><strong>Pedirlo explícitamente funciona:</strong> "Guarda este post para tu próxima entrega 📌" y "Compártelo con quien escriba resoluciones 🔁" aumentan de manera medible ambas señales.</p>
+
+  <h4>Táctica 8 · Colaboraciones</h4>
+  <div class="alert g"><strong>Publicaciones colaborativas de Instagram</strong><p>La función <em>Colaborar</em> hace que la publicación aparezca en el perfil de ambas cuentas y llegue a las dos audiencias simultáneamente. Es la forma más eficiente de crecimiento cruzado que existe hoy.</p></div>
+  <p class="mini"><strong>Candidatos naturales:</strong> cuentas de escuelas de Derecho · centros de estudiantes · Biblioteca del Congreso (Ley Fácil) · cuentas de divulgación jurídica chilena · otras universidades de la Red de Lenguaje Claro.</p>
+  <p class="mini"><strong>Entrevistas cruzadas:</strong> invitar a un juez, a un funcionario de la Comisión de Lenguaje Claro o a un académico a un video breve. Se publica en ambos canales y ambos ganan.</p>
+
+  <h4>Táctica 9 · Convertir cada actividad presencial en contenido</h4>
+  <div class="cb"><div class="cb-h"><span class="lbl">El multiplicador</span><button class="cpy">Copiar</button></div><pre>Una charla de 60 minutos
+ ├── 1 video completo en YouTube
+ ├── 5 recortes verticales de 45 segundos (reels + shorts)
+ ├── 1 carrusel con las ideas centrales
+ ├── 1 artículo de LinkedIn
+ ├── 1 edición del boletín
+ └── 3 historias del día del evento</pre></div>
+  <p class="mini"><strong>Producir una vez, publicar diez veces.</strong> Con un equipo de tres personas no es una optimización: es la única forma de sostener el volumen.</p>
+
+  <h4>Táctica 10 · Aparecer en la casa de otros</h4>
+  <p class="mini">El alcance más rentable es el prestado. Buscar activamente: pódcast jurídicos chilenos · boletines institucionales (el de la Corte Suprema ya destacó al proyecto una vez) · columnas de opinión en medios · seminarios de la Red · webinars de otras universidades.</p>
+  <div class="alert b"><strong>Una columna trimestral firmada en un medio nacional construye más autoridad que treinta publicaciones en redes</strong></div>
+
+  <h3>Fase 3 · Consolidación <span class="tag t-tea">Mes 10 en adelante</span></h3>
+  <div class="grid g3">
+    <div class="card"><h4>11 · Embajadores estudiantiles</h4><p class="mini">10 a 15 estudiantes de Derecho de distintas universidades, seleccionados anualmente. Reciben formación gratuita, materiales y certificación; a cambio difunden en su facultad, aportan textos para el corpus y dan retroalimentación. <strong>Costo casi nulo, alcance descentralizado</strong> y contacto directo permanente con el usuario real.</p></div>
+    <div class="card"><h4>12 · El informe anual</h4><p class="mini">El <em>Informe del estado del lenguaje jurídico claro en Chile</em> es el activo de mayor potencial: genera un titular garantizado cada año, posiciona a ScribeClaro como fuente autorizada, alimenta semanas de contenido y entrega a la prensa lo que necesita: <strong>datos originales que nadie más tiene</strong>.</p></div>
+    <div class="card"><h4>13 · El 13 de octubre</h4><p class="mini">El Día Internacional del Lenguaje Claro es el único día del año en que todo el ecosistema publica sobre el tema al mismo tiempo. Momento de máxima atención disponible: seminario propio, lanzamiento del informe, campaña coordinada. <strong>Se prepara con dos meses de anticipación.</strong></p></div>
+  </div>
+
+  <h3>Lo que NO hay que hacer</h3>
+  <table>
+    <thead><tr><th style="width:34%">Práctica</th><th>Por qué evitarla</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Comprar seguidores</strong></td><td>Destruye la tasa de interacción, que es la métrica que miran las instituciones antes de firmar un convenio</td></tr>
+      <tr><td><strong>Sorteos por seguir</strong></td><td>Trae audiencia que no vuelve y contamina las métricas para siempre</td></tr>
+      <tr><td>Publicar el mismo texto idéntico en ambas plataformas</td><td>Los públicos y los formatos son distintos. Adaptar siempre, aunque sea mínimamente</td></tr>
+      <tr><td>Enlaces en el cuerpo del post de LinkedIn</td><td>Reducen el alcance. Ponerlos en el primer comentario</td></tr>
+      <tr><td>Ignorar comentarios</td><td>Es el factor de crecimiento orgánico más subestimado. Responder dentro de 24 horas</td></tr>
+      <tr><td>Publicar solo cuando hay noticias del proyecto</td><td>Nadie sigue una cuenta para leer comunicados. El 95% debe ser utilidad</td></tr>
+      <tr><td>Perseguir tendencias ajenas al tema</td><td>Confunde a la audiencia y al algoritmo</td></tr>
+      <tr><td>Usar los mismos 30 hashtags siempre</td><td>Rotar los conjuntos. Y 5 a 8 rinden más que 30</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Etiquetas: los tres niveles</h3>
+  <table>
+    <thead><tr><th style="width:20%">Nivel</th><th>Ejemplos</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Propias</strong></td><td><code>#ClaroEstá</code> <code>#ScribeClaroPUCV</code> <code>#UnaPalabraMenos</code> <code>#AutoríaHumana</code> <code>#PreguntaAlScribe</code></td></tr>
+      <tr><td><strong>De nicho</strong></td><td><code>#LenguajeClaro</code> <code>#EscrituraJurídica</code> <code>#DerechoAComprender</code> <code>#AccesoALaJusticia</code> <code>#IntegridadAcadémica</code> <code>#EstudiantesDeDerecho</code></td></tr>
+      <tr><td><strong>Amplias</strong></td><td><code>#Derecho</code> <code>#PUCV</code> <code>#IA</code> <code>#DerechoChile</code> <code>#Universidad</code></td></tr>
+    </tbody>
+  </table>
+</section>
+<section id="contactos">
+  <h2>Captar contactos y convertir</h2>
+  <p class="sub">Los seguidores son prestados. La lista de correo es propia. Esta parte es la que convierte alcance en algo que se puede usar.</p>
+
+  <div class="alert"><strong>El problema actual</strong><p>Cada visitante del sitio se pierde definitivamente al cerrar la pestaña. No hay boletín, ni lista de correo, ni formulario de interés institucional. Se puede tener 50.000 visitas al año y terminar con cero contactos.</p></div>
+
+  <h3>La escalera de conversión</h3>
+  <div class="cb"><div class="cb-h"><span class="lbl">El recorrido completo</span><button class="cpy">Copiar</button></div><pre>Redes sociales
+      ↓  contenido útil, sin pedir nada
+Visita al sitio
+      ↓  el asistente funciona sin registro (no tocar esto)
+Uso de la herramienta
+      ↓  descarga un recurso a cambio del correo
+CONTACTO CAPTADO
+      ↓  boletín mensual sostenido
+Relación
+      ↓  webinar gratuito
+Interés declarado
+      ↓  conversación
+Taller o convenio institucional</pre></div>
+
+  <div class="alert g"><strong>Regla que no se negocia</strong><p>El asistente sigue siendo <strong>gratuito y sin registro</strong>. Es el activo de legitimidad del proyecto. Lo que se pide a cambio de correo son los recursos descargables, nunca el acceso a la herramienta.</p></div>
+
+  <h3>Los tres imanes de captación</h3>
+  <table>
+    <thead><tr><th style="width:30%">Recurso</th><th style="width:26%">Qué se pide</th><th style="width:20%">Público</th><th>Prioridad</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lista de verificación de claridad</strong><br><span class="mini">1 página, imprimible</span></td><td>Nada — descarga libre</td><td>Todos</td><td><span class="tag t-red">Producir primero</span><br><span class="mini">Será el más descargado</span></td></tr>
+      <tr><td><strong>Manual de escritura jurídica clara</strong><br><span class="mini">30-40 páginas</span></td><td>Nombre, correo, institución</td><td>Estudiantes, abogados</td><td><span class="tag t-org">El imán principal</span></td></tr>
+      <tr><td><strong>Guía de uso responsable de IA</strong></td><td>Nombre, correo, institución, cargo</td><td>Docentes, universidades</td><td><span class="tag t-tea">Trae contactos institucionales</span></td></tr>
+    </tbody>
+  </table>
+  <p class="mini"><strong>Formulario mínimo, siempre.</strong> Cada campo adicional reduce las conversiones. Cuatro campos es el techo.</p>
+
+  <h4>Llamados a la acción para redes</h4>
+  <div class="cb"><div class="cb-h"><span class="lbl">CTA · recurso libre</span><button class="cpy">Copiar</button></div><pre>📥 Descarga la lista de verificación de claridad — gratis, sin registro. Enlace en la bio.</pre></div>
+  <div class="cb"><div class="cb-h"><span class="lbl">CTA · recurso con captura</span><button class="cpy">Copiar</button></div><pre>📘 El manual completo de escritura jurídica clara (38 páginas) está disponible. Te lo enviamos al correo → enlace en la bio.</pre></div>
+
+  <h3>Instrumentación: sin esto no se sabe nada</h3>
+  <div class="alert o"><strong>Instalar antes de publicar la primera pieza</strong><p>Medir después de lanzar significa perder para siempre los datos del lanzamiento, que son los más informativos del año.</p></div>
+  <div class="card"><ul class="clean chk">
+    <li><strong>Analítica:</strong> <a class="ext" href="https://analytics.google.com/" target="_blank" rel="noopener">Google Analytics 4</a>, o una alternativa respetuosa de la privacidad como <a class="ext" href="https://plausible.io/" target="_blank" rel="noopener">Plausible</a> o <a class="ext" href="https://umami.is/" target="_blank" rel="noopener">Umami</a> (autoalojable, coherente con el discurso de privacidad del proyecto)</li>
+    <li><strong><a class="ext" href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console</a></strong> — para ver por qué consultas llega la gente</li>
+    <li><strong>Eventos personalizados:</strong> inicio de análisis de texto · análisis completado · descarga de recurso · envío de formulario · clic al correo de contacto</li>
+    <li><strong>Parámetros UTM en todos los enlaces de redes.</strong> Sin esto es imposible saber qué plataforma trae tráfico útil</li>
+  </ul></div>
+
+  <div class="cb"><div class="cb-h"><span class="lbl">Ejemplo de enlace etiquetado</span><button class="cpy">Copiar</button></div><pre>https://scribeclaro.pucv.cl/?utm_source=instagram&utm_medium=social&utm_campaign=claroesta&utm_content=post02</pre></div>
+  <p class="mini">Generador oficial: <a class="ext" href="https://ga-dev-tools.google/campaign-url-builder/" target="_blank" rel="noopener">Campaign URL Builder</a></p>
+
+  <h3>Conversión hacia lo institucional</h3>
+  <p>Los contactos que importan para la sostenibilidad no llegan por formulario, sino por conversación.</p>
+  <div class="grid g3">
+    <div class="card"><h4>Mensaje directo tras interacción cualificada</h4><p class="mini">Cuando un funcionario judicial, académico o directivo comenta o reacciona a una publicación, es el mejor momento posible para escribirle. Plantilla en la sección <strong>Mensajes y correos</strong>.</p></div>
+    <div class="card"><h4>Webinar como filtro</h4><p class="mini">Un webinar gratuito de 60 minutos capta decenas de contactos identificados con su institución y cargo. <strong>Quien asiste completo es un candidato real a taller pagado.</strong> El mecanismo de conversión más eficiente del catálogo.</p></div>
+    <div class="card"><h4>Página de servicios funcional</h4><p class="mini">Hoy <code>/services/</code> describe funciones del sitio, no servicios contratables, pese a que la portada anuncia "Capacitaciones y talleres". Convertirla en oferta real con formulario de cotización es un cambio barato que abre la puerta a la primera venta.</p></div>
+  </div>
+</section>
+
+<section id="mensajes">
+  <h2>Mensajes y correos</h2>
+  <p class="sub">Siete plantillas listas para adaptar y enviar.</p>
+
+  <h3>M1 · Mensaje directo tras interacción cualificada (LinkedIn)</h3>
+  <div class="alert o"><strong>No enviar antes de la interacción</strong><p>Sin ese contexto es correo no deseado. La secuencia correcta es: la persona comenta o reacciona → se le escribe mencionando específicamente lo que dijo.</p></div>
+  <div class="cb"><div class="cb-h"><span class="lbl">M1 · Mensaje directo</span><button class="cpy">Copiar</button></div><pre>Estimado/a [Nombre]:
+
+Gracias por su comentario en la publicación sobre [tema]. Me interesó especialmente lo que planteó sobre [detalle específico de lo que dijo].
+
+Dirijo ScribeClaroPUCV, una plataforma de la Universidad Católica de Valparaíso que analiza textos jurídicos y muestra qué dificulta su comprensión. Es gratuita y sin registro: scribeclaro.pucv.cl
+
+Si en [su institución] hay interés en explorar el tema del lenguaje claro —ya sea usando la herramienta o a través de una charla o taller—, con gusto conversamos. Sin compromiso alguno.
+
+Saludos cordiales,
+Claudia Poblete Olmedo
+Directora, ScribeClaroPUCV
+Escuela de Derecho · Pontificia Universidad Católica de Valparaíso</pre></div>
+
+  <h3>M2 · Correo a una institución de la Red de Lenguaje Claro</h3>
+  <div class="cb"><div class="cb-h"><span class="lbl">M2 · Correo institucional</span><button class="cpy">Copiar</button></div><pre>Asunto: ScribeClaroPUCV — herramienta de lenguaje claro y propuesta de colaboración
+
+Estimado/a [Nombre]:
+
+Le escribo desde la Escuela de Derecho de la Pontificia Universidad Católica de Valparaíso, institución que integra la Red de Lenguaje Claro Chile.
+
+Desarrollamos ScribeClaroPUCV, una plataforma web que analiza textos jurídicos y administrativos e identifica qué elementos dificultan su comprensión: oraciones extensas, subordinación acumulada, voz impersonal, fórmulas sin contenido. La herramienta no redacta: entrega un diagnóstico para que la persona corrija. Es gratuita y no requiere registro.
+
+Actualmente la utilizan funcionarios del Poder Judicial y del Tribunal Constitucional. La Comisión de Lenguaje Claro de la Corte Suprema la destacó en su boletín y la Academia Judicial la incorporó a su listado de herramientas de inteligencia artificial para tareas judiciales.
+
+Le escribo por dos motivos:
+
+1. Poner la herramienta a disposición de [institución], por si resulta útil para el trabajo de sus equipos. Puede usarse hoy mismo en scribeclaro.pucv.cl
+
+2. Ofrecer una presentación de 30 minutos, sin costo, para su equipo. Si después hay interés en un programa de formación más extenso, podemos conversarlo.
+
+Quedo atenta a su respuesta.
+
+Cordialmente,
+Claudia Poblete Olmedo
+Directora, ScribeClaroPUCV
+[correo institucional] · scribeclaro.pucv.cl</pre></div>
+
+  <h3>M3 · Correo a la Dirección de Comunicación Estratégica PUCV</h3>
+  <div class="cb"><div class="cb-h"><span class="lbl">M3 · Coordinación institucional</span><button class="cpy">Copiar</button></div><pre>Asunto: ScribeClaroPUCV — creación de redes sociales y solicitud de apoyo
+
+Estimado equipo:
+
+Somos el equipo de ScribeClaroPUCV, proyecto de la Escuela de Derecho originado en el Programa de Desarrollo Docente de la Vicerrectoría Académica.
+
+Estamos por abrir cuentas institucionales del proyecto en LinkedIn e Instagram y queremos hacerlo en coordinación con ustedes, ajustándonos al Manual de Estilo para Redes Sociales de la universidad.
+
+Nos gustaría consultarles:
+
+1. Si hay lineamientos específicos que debamos seguir en el uso de la marca PUCV
+2. Si pueden apoyarnos con revisión de los activos gráficos
+3. Si es posible que las cuentas institucionales de la universidad amplifiquen el contenido de lanzamiento
+
+El proyecto ha tenido cobertura fuera de la universidad —fue destacado en el Boletín de Lenguaje Claro de la Corte Suprema, incorporado al listado de herramientas de IA de la Academia Judicial y reseñado por el diario El Universo de Ecuador—, por lo que creemos que puede ser un buen caso institucional.
+
+Quedamos atentos.
+
+Saludos cordiales,
+[Equipo ScribeClaroPUCV]</pre></div>
+
+  <h3>M4 · Correo a una escuela de Derecho de otra universidad</h3>
+  <div class="cb"><div class="cb-h"><span class="lbl">M4 · Expansión a otras universidades</span><button class="cpy">Copiar</button></div><pre>Asunto: Herramienta gratuita de escritura jurídica para sus estudiantes
+
+Estimado/a Director/a [Nombre]:
+
+Le escribo desde la Escuela de Derecho de la Pontificia Universidad Católica de Valparaíso.
+
+Desarrollamos ScribeClaroPUCV, una plataforma que entrega retroalimentación sobre escritos jurídicos: identifica oraciones excesivamente largas, subordinación acumulada, párrafos con múltiples ideas y otros elementos que dificultan la comprensión. Es gratuita, no requiere registro y está disponible para cualquier estudiante.
+
+Un aspecto que puede interesar a su unidad de integridad académica: la herramienta deliberadamente no genera texto. Solo analiza lo que el estudiante ya escribió. El texto sigue siendo suyo.
+
+La ponemos a disposición de sus estudiantes sin ninguna contraprestación: scribeclaro.pucv.cl
+
+Si además les interesa integrarla en asignaturas de escritura o argumentación, ofrecemos un taller de formación docente y materiales complementarios —rúbricas de evaluación de claridad, guías y plantillas—. Podemos conversarlo cuando les acomode.
+
+Cordialmente,
+Claudia Poblete Olmedo
+Directora, ScribeClaroPUCV</pre></div>
+
+  <h3>M5 · Respuesta a una consulta de taller</h3>
+  <div class="cb"><div class="cb-h"><span class="lbl">M5 · Respuesta comercial</span><button class="cpy">Copiar</button></div><pre>Estimado/a [Nombre]:
+
+Gracias por su interés en nuestros talleres.
+
+Trabajamos con programas adaptados a distintos públicos:
+
+· Escritura jurídica clara: fundamentos (8 horas) — estudiantes y abogados jóvenes
+· Claridad en resoluciones judiciales (8 horas) — jueces y funcionarios judiciales
+· Comunicación administrativa clara (8 horas) — funcionarios de servicios públicos
+· IA responsable en la escritura académica (4 horas) — docentes universitarios
+
+Todos incluyen trabajo práctico sobre documentos reales de los participantes, materiales y uso de la plataforma. En el caso del taller para servicios públicos, el grupo se lleva un documento institucional propio ya reescrito.
+
+Para preparar una propuesta ajustada necesitaría saber:
+· Cuántas personas participarían y qué función cumplen
+· Si prefieren modalidad presencial o remota
+· Qué tipo de documentos escriben habitualmente
+· Fechas tentativas
+
+Con esos datos le envío una propuesta con contenidos y valores dentro de [X] días hábiles.
+
+Cordialmente,
+Claudia Poblete Olmedo
+Directora, ScribeClaroPUCV</pre></div>
+
+  <h3>M6 · Respuesta a un cuestionamiento público sobre IA</h3>
+  <p class="mini">Para usar en comentarios. Tono: agradecer, no defenderse, aportar información.</p>
+  <div class="cb"><div class="cb-h"><span class="lbl">M6 · Respuesta en comentarios</span><button class="cpy">Copiar</button></div><pre>Gracias por plantearlo, es una preocupación razonable y la escuchamos seguido.
+
+ScribeClaro no redacta textos: analiza el que la persona ya escribió y le indica qué dificulta su comprensión —una oración de 78 palabras, un párrafo con tres ideas, la pérdida del sujeto—. La corrección la hace quien escribe.
+
+Es la misma función que cumple un profesor que devuelve un trabajo con anotaciones al margen, solo que disponible a cualquier hora y para cualquiera.
+
+Si le interesa, publicamos nuestra postura completa sobre autoría e IA en [enlace]. Y si después de leerla mantiene la objeción, con gusto seguimos conversando: este debate nos parece necesario.</pre></div>
+
+  <h3>M7 · Solicitud de autorización para usar un texto</h3>
+  <div class="cb"><div class="cb-h"><span class="lbl">M7 · Autorización de uso</span><button class="cpy">Copiar</button></div><pre>Estimado/a [Nombre]:
+
+Gracias por enviarnos el documento.
+
+Antes de usarlo queremos confirmar las condiciones:
+
+· Lo anonimizaremos por completo: sin nombres, sin RUT, sin número de causa, sin tribunal ni institución identificable, y modificando cualquier dato que permita reconstruir el caso
+· Usaremos solo el fragmento que ilustra el problema, nunca el documento completo
+· Aparecerá en material educativo: publicaciones, talleres o guías del proyecto
+· Puede pedirnos que dejemos de usarlo en cualquier momento
+
+Si está de acuerdo, respóndanos este correo confirmándolo. Si prefiere que no lo usemos, también está perfecto: nos sirve igual como insumo interno.
+
+Gracias por contribuir.
+
+Cordialmente,
+[Equipo ScribeClaroPUCV]</pre></div>
+</section>
+<section id="produccion">
+  <h2>Producción</h2>
+  <p class="sub">Herramientas, flujo de trabajo y roles. Todo con costo cero.</p>
+
+  <h3>Pila mínima recomendada</h3>
+  <div class="grid g4">
+    <div class="card"><h4>Diseño</h4><p class="mini"><a class="ext" href="https://www.canva.com/" target="_blank" rel="noopener">Canva</a><br><strong>Canva para Educación es gratuito para docentes</strong> — verificar elegibilidad en <a class="ext" href="https://www.canva.com/education/" target="_blank" rel="noopener">canva.com/education</a></p></div>
+    <div class="card"><h4>Programación y métricas</h4><p class="mini"><a class="ext" href="https://metricool.com/" target="_blank" rel="noopener">Metricool</a><br>Plan gratuito: 1 marca por red. Suficiente para empezar</p></div>
+    <div class="card"><h4>Video</h4><p class="mini"><a class="ext" href="https://www.capcut.com/" target="_blank" rel="noopener">CapCut</a><br>Gratis, con subtítulos automáticos en español</p></div>
+    <div class="card"><h4>Instagram nativo</h4><p class="mini"><a class="ext" href="https://business.facebook.com/" target="_blank" rel="noopener">Meta Business Suite</a><br>Gratis. Gestión de accesos sin compartir contraseña</p></div>
+  </div>
+
+  <h3>Herramientas completas</h3>
+  <table>
+    <thead><tr><th style="width:24%">Necesidad</th><th style="width:26%">Herramienta</th><th>Costo</th></tr></thead>
+    <tbody>
+      <tr><td>Diseño de piezas</td><td><a class="ext" href="https://www.canva.com/" target="_blank" rel="noopener">Canva</a> · <a class="ext" href="https://www.figma.com/" target="_blank" rel="noopener">Figma</a></td><td>Gratis</td></tr>
+      <tr><td>Programación</td><td><a class="ext" href="https://metricool.com/" target="_blank" rel="noopener">Metricool</a> · <a class="ext" href="https://buffer.com/" target="_blank" rel="noopener">Buffer</a> · <a class="ext" href="https://later.com/" target="_blank" rel="noopener">Later</a></td><td>Planes gratuitos</td></tr>
+      <tr><td>Edición de video</td><td><a class="ext" href="https://www.capcut.com/" target="_blank" rel="noopener">CapCut</a> · <a class="ext" href="https://www.descript.com/" target="_blank" rel="noopener">Descript</a></td><td>Gratis</td></tr>
+      <tr><td>Tipografías</td><td><a class="ext" href="https://fonts.google.com/" target="_blank" rel="noopener">Google Fonts</a></td><td>Gratis</td></tr>
+      <tr><td>Imágenes de banco</td><td><a class="ext" href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a> · <a class="ext" href="https://www.pexels.com/" target="_blank" rel="noopener">Pexels</a></td><td>Gratis</td></tr>
+      <tr><td>Accesibilidad</td><td><a class="ext" href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a></td><td>Gratis</td></tr>
+      <tr><td>Comprimir imágenes</td><td><a class="ext" href="https://squoosh.app/" target="_blank" rel="noopener">Squoosh</a> · <a class="ext" href="https://tinypng.com/" target="_blank" rel="noopener">TinyPNG</a></td><td>Gratis</td></tr>
+      <tr><td>Etiquetar enlaces</td><td><a class="ext" href="https://ga-dev-tools.google/campaign-url-builder/" target="_blank" rel="noopener">Campaign URL Builder</a> · <a class="ext" href="https://bitly.com/" target="_blank" rel="noopener">Bitly</a></td><td>Gratis</td></tr>
+      <tr><td>Verificar nombres de usuario</td><td><a class="ext" href="https://www.namecheckr.com/" target="_blank" rel="noopener">Namecheckr</a></td><td>Gratis</td></tr>
+      <tr><td>Boletín</td><td><a class="ext" href="https://www.mailerlite.com/" target="_blank" rel="noopener">MailerLite</a> · <a class="ext" href="https://www.beehiiv.com/" target="_blank" rel="noopener">Beehiiv</a></td><td>Planes gratuitos</td></tr>
+      <tr><td>Publicar recursos con DOI</td><td><a class="ext" href="https://zenodo.org/" target="_blank" rel="noopener">Zenodo</a></td><td>Gratis</td></tr>
+      <tr><td>Elegir licencia abierta</td><td><a class="ext" href="https://chooser-beta.creativecommons.org/" target="_blank" rel="noopener">Creative Commons Chooser</a></td><td>Gratis</td></tr>
+    </tbody>
+  </table>
+
+  <h3>El bloque de producción quincenal</h3>
+  <div class="alert g"><strong>Tres horas cada quince días producen dos semanas completas</strong><p>Es el único método que sobrevive a la carga académica. Fuera del bloque solo quedan dos tareas diarias de diez minutos: responder comentarios y comentar en cinco publicaciones ajenas.</p></div>
+  <table>
+    <thead><tr><th style="width:130px">Tiempo</th><th>Actividad</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0:00 – 0:20</strong></td><td>Revisar métricas de las dos semanas anteriores. Qué rindió, qué no</td></tr>
+      <tr><td><strong>0:20 – 0:50</strong></td><td>Elegir los 8 temas del período desde el banco de ideas</td></tr>
+      <tr><td><strong>0:50 – 1:40</strong></td><td>Escribir los 8 textos completos, sin diseñar nada todavía</td></tr>
+      <tr><td><strong>1:40 – 2:30</strong></td><td>Diseñar las piezas gráficas sobre las plantillas existentes</td></tr>
+      <tr><td><strong>2:30 – 2:50</strong></td><td>Revisión cruzada: filtro de claridad + revisión de datos sensibles</td></tr>
+      <tr><td><strong>2:50 – 3:00</strong></td><td>Programar todo en Metricool o Meta Business Suite</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Roles</h3>
+  <table>
+    <thead><tr><th style="width:26%">Rol</th><th style="width:26%">Quién</th><th>Responsabilidad</th></tr></thead>
+    <tbody>
+      <tr><td>Dirección editorial y vocería</td><td>Claudia Poblete</td><td>Aprueba línea, valida contenido técnico, publica desde su perfil</td></tr>
+      <tr><td>Producción de contenido</td><td><strong>Ayudante estudiantil</strong></td><td>10 h/semana. Redacta borradores, arma carruseles, programa, monitorea</td></tr>
+      <tr><td>Curaduría académica</td><td>Pamela Catalán</td><td>Valida rigor lingüístico y pedagógico</td></tr>
+      <tr><td>Analítica e integración web</td><td>Óscar Sancho</td><td>Instrumentación, informes</td></tr>
+      <tr><td>Diseño e institucionalidad</td><td>Dir. Comunicación Estratégica PUCV</td><td>Manual de marca, amplificación</td></tr>
+    </tbody>
+  </table>
+  <div class="alert o"><strong>La contratación del ayudante estudiantil es la condición material de todo este manual</strong><p>Sin ella, lo descrito aquí no ocurrirá: no por falta de voluntad, sino porque tres académicos con carga docente completa no pueden sostener una operación diaria de contenido.</p></div>
+
+  <h3>Nomenclatura de archivos</h3>
+  <p class="mini">Con dos años de producción, encontrar una pieza sin sistema es imposible.</p>
+  <div class="cb"><div class="cb-h"><span class="lbl">Convención de nombres</span><button class="cpy">Copiar</button></div><pre>AAAAMMDD_plataforma_serie_tema_version.ext
+
+20260901_ig_claroesta_resolucion-rechazo_v1.png
+20260903_li_carrusel_cinco-errores_v2.pdf
+20260905_ig_reel_regla-25-palabras_v1.mp4</pre></div>
+  <div class="cb"><div class="cb-h"><span class="lbl">Estructura de carpetas en la nube compartida</span><button class="cpy">Copiar</button></div><pre>/ScribeClaro-RRSS
+  /01-plantillas
+  /02-piezas-publicadas
+     /2026-09
+     /2026-10
+  /03-en-produccion
+  /04-banco-de-ejemplos     ← párrafos antes/después, ya anonimizados
+  /05-fotos-y-video
+  /06-metricas</pre></div>
+</section>
+
+<section id="metricas">
+  <h2>Métricas</h2>
+  <p class="sub">Qué mirar, qué ignorar y cómo reportarlo en una página.</p>
+
+  <div class="alert o"><strong>Advertencia previa</strong><p>Hoy no existe línea base. Hasta que la analítica lleve un mes funcionando, cualquier meta numérica es inventada. <strong>El primer mes se mide, no se evalúa.</strong> Las metas se fijan en el día 30 con datos reales.</p></div>
+
+  <h3>Qué mirar, y qué ignorar</h3>
+  <table>
+    <thead><tr><th style="width:28%">Métrica</th><th style="width:130px">Importancia</th><th>Por qué</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Clics al sitio</strong></td><td><span class="tag t-red">Máxima</span></td><td>Es el único puente entre la red y el producto</td></tr>
+      <tr><td><strong>Guardados</strong> (Instagram)</td><td><span class="tag t-red">Máxima</span></td><td>Señal de utilidad real y el mayor impulsor de alcance</td></tr>
+      <tr><td><strong>Compartidos</strong></td><td><span class="tag t-red">Máxima</span></td><td>Crecimiento orgánico puro</td></tr>
+      <tr><td><strong>Suscriptores al boletín</strong></td><td><span class="tag t-red">Máxima</span></td><td>Audiencia propia, no prestada</td></tr>
+      <tr><td>Comentarios cualificados</td><td><span class="tag t-org">Alta</span></td><td>Un comentario de un juez vale más que 500 "me gusta"</td></tr>
+      <tr><td>Tasa de interacción</td><td><span class="tag t-org">Alta</span></td><td>Es lo que miran las instituciones antes de firmar</td></tr>
+      <tr><td>Alcance</td><td><span class="tag t-yel">Media</span></td><td>Útil como tendencia, engañoso como meta</td></tr>
+      <tr><td>Seguidores</td><td><span class="tag t-yel">Media</span></td><td>Importa la composición, no el número</td></tr>
+      <tr><td>Me gusta</td><td><span class="tag t-nav">Baja</span></td><td>La métrica más fácil de conseguir y la menos informativa</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Informe mensual · una página, nueve líneas</h3>
+  <div class="cb"><div class="cb-h"><span class="lbl">Plantilla de informe</span><button class="cpy">Copiar</button></div><pre>SCRIBECLARO · REDES SOCIALES · [MES]
+
+1. Seguidores LinkedIn: ___ (+___ )   Instagram: ___ (+___ )
+2. Publicaciones realizadas: ___
+3. Alcance total: ___
+4. Clics al sitio desde redes: ___
+5. Descargas de recursos: ___
+6. Suscriptores al boletín: ___ (+___ )
+7. Consultas institucionales recibidas: ___
+8. Publicación de mayor rendimiento: ___________ (por qué: _______)
+9. Publicación de menor rendimiento: ___________ (por qué: _______)
+
+DECISIÓN DEL MES: ______________________________</pre></div>
+  <div class="alert b"><strong>La última línea es la que importa</strong><p>Un informe que no cambia nada del mes siguiente es tiempo perdido.</p></div>
+
+  <h3>Señales de lectura</h3>
+  <div class="grid g2">
+    <div class="card"><h4 style="color:var(--grn)">Va bien cuando…</h4><ul class="clean">
+      <li>Gente que no conoces comparte tu contenido citándolo</li>
+      <li>Llegan consultas institucionales sin que las hayas buscado</li>
+      <li>Un medio te cita como fuente</li>
+      <li>Un docente de otra universidad dice que usa tus materiales en clase</li>
+      <li>Los comentarios traen ejemplos y preguntas propias, no solo felicitaciones</li>
+    </ul></div>
+    <div class="card"><h4 style="color:var(--red)">Alarma cuando…</h4><ul class="clean">
+      <li>Crecen los seguidores pero caen los clics al sitio → contenido entretenido pero inútil</li>
+      <li>Alta interacción y cero consultas → falta el llamado a la acción, o falta a quién llamar</li>
+      <li>Todo el alcance viene de una sola publicación viral → no hay sistema, hubo suerte</li>
+      <li>Las publicaciones institucionales rinden mucho menos que las didácticas → lección: menos comunicados, más utilidad</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="links">
+  <h2>Todos los enlaces</h2>
+  <p class="sub">Directorio completo, agrupado por función.</p>
+
+  <div class="grid g2">
+    <div class="card"><h4>Crear y administrar cuentas</h4><ul class="clean">
+      <li><a class="ext" href="https://www.linkedin.com/company/setup/new/" target="_blank" rel="noopener">Crear página de LinkedIn</a></li>
+      <li><a class="ext" href="https://www.instagram.com/accounts/emailsignup/" target="_blank" rel="noopener">Crear cuenta de Instagram</a></li>
+      <li><a class="ext" href="https://business.facebook.com/" target="_blank" rel="noopener">Meta Business Suite</a></li>
+      <li><a class="ext" href="https://www.youtube.com/create_channel" target="_blank" rel="noopener">Crear canal de YouTube</a></li>
+      <li><a class="ext" href="https://bsky.app/" target="_blank" rel="noopener">Bluesky</a></li>
+      <li><a class="ext" href="https://www.namecheckr.com/" target="_blank" rel="noopener">Namecheckr</a> · <a class="ext" href="https://namechk.com/" target="_blank" rel="noopener">Namechk</a></li>
+    </ul></div>
+    <div class="card"><h4>Producción</h4><ul class="clean">
+      <li><a class="ext" href="https://www.canva.com/" target="_blank" rel="noopener">Canva</a> · <a class="ext" href="https://www.canva.com/education/" target="_blank" rel="noopener">Canva para Educación</a></li>
+      <li><a class="ext" href="https://www.figma.com/" target="_blank" rel="noopener">Figma</a></li>
+      <li><a class="ext" href="https://www.capcut.com/" target="_blank" rel="noopener">CapCut</a> · <a class="ext" href="https://www.descript.com/" target="_blank" rel="noopener">Descript</a></li>
+      <li><a class="ext" href="https://fonts.google.com/" target="_blank" rel="noopener">Google Fonts</a></li>
+      <li><a class="ext" href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a> · <a class="ext" href="https://www.pexels.com/" target="_blank" rel="noopener">Pexels</a></li>
+      <li><a class="ext" href="https://squoosh.app/" target="_blank" rel="noopener">Squoosh</a> · <a class="ext" href="https://tinypng.com/" target="_blank" rel="noopener">TinyPNG</a></li>
+    </ul></div>
+    <div class="card"><h4>Programación y métricas</h4><ul class="clean">
+      <li><a class="ext" href="https://metricool.com/" target="_blank" rel="noopener">Metricool</a></li>
+      <li><a class="ext" href="https://buffer.com/" target="_blank" rel="noopener">Buffer</a> · <a class="ext" href="https://later.com/" target="_blank" rel="noopener">Later</a></li>
+      <li><a class="ext" href="https://analytics.google.com/" target="_blank" rel="noopener">Google Analytics</a></li>
+      <li><a class="ext" href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console</a></li>
+      <li><a class="ext" href="https://plausible.io/" target="_blank" rel="noopener">Plausible</a> · <a class="ext" href="https://umami.is/" target="_blank" rel="noopener">Umami</a></li>
+      <li><a class="ext" href="https://ga-dev-tools.google/campaign-url-builder/" target="_blank" rel="noopener">Campaign URL Builder</a> · <a class="ext" href="https://bitly.com/" target="_blank" rel="noopener">Bitly</a></li>
+    </ul></div>
+    <div class="card"><h4>Boletín, accesibilidad y publicación abierta</h4><ul class="clean">
+      <li><a class="ext" href="https://www.mailerlite.com/" target="_blank" rel="noopener">MailerLite</a> · <a class="ext" href="https://www.beehiiv.com/" target="_blank" rel="noopener">Beehiiv</a> · <a class="ext" href="https://substack.com/" target="_blank" rel="noopener">Substack</a></li>
+      <li><a class="ext" href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a></li>
+      <li><a class="ext" href="https://zenodo.org/" target="_blank" rel="noopener">Zenodo (DOI gratuito)</a></li>
+      <li><a class="ext" href="https://chooser-beta.creativecommons.org/" target="_blank" rel="noopener">Creative Commons Chooser</a></li>
+    </ul></div>
+  </div>
+
+  <h3>Contexto institucional y fuentes de contenido</h3>
+  <div class="card"><ul class="clean">
+    <li><a class="ext" href="https://scribeclaro.pucv.cl/" target="_blank" rel="noopener">ScribeClaroPUCV</a></li>
+    <li><a class="ext" href="https://www.pucv.cl/uuaa/site/docs/20240318/20240318170236/manual_redes_sociales_2024.pdf" target="_blank" rel="noopener">Manual de Estilo de Redes Sociales PUCV 2024</a></li>
+    <li><a class="ext" href="https://ia.academiajudicial.cl/herramientas-ia/scribeclaro/" target="_blank" rel="noopener">Academia Judicial — ScribeClaro</a></li>
+    <li><a class="ext" href="https://www.lenguajeclarochile.cl/" target="_blank" rel="noopener">Red de Lenguaje Claro Chile</a></li>
+    <li><a class="ext" href="https://www.rae.es/la-institucion/red-panhispanica-de-lenguaje-claro-y-accesible" target="_blank" rel="noopener">Red Panhispánica de Lenguaje Claro (RAE)</a></li>
+    <li><a class="ext" href="https://www.pjud.cl/docs/download/126748" target="_blank" rel="noopener">Boletín Lenguaje Claro, Poder Judicial</a></li>
+    <li><a class="ext" href="https://cdn.senado.cl/portal-senado-produccion/s3fs-public/2025-10/guia-de-lenguaje-claro-para-el-ambito-legislativo.-formato-accesible.pdf" target="_blank" rel="noopener">Guía de lenguaje claro para el ámbito legislativo, Senado</a></li>
+    <li><a class="ext" href="https://www.fundeu.es/" target="_blank" rel="noopener">Fundéu RAE</a> · <a class="ext" href="https://dle.rae.es/" target="_blank" rel="noopener">Diccionario RAE</a></li>
+  </ul></div>
+
+  <h3>Fuentes de las especificaciones técnicas</h3>
+  <p class="mini">Medidas y límites verificados en agosto de 2026. <strong>Las plataformas los modifican sin aviso: reverificar una vez al año.</strong></p>
+  <div class="card"><ul class="clean">
+    <li><a class="ext" href="https://www.digitalapplied.com/blog/social-media-image-sizes-2026-every-platform" target="_blank" rel="noopener">Social Media Image Sizes 2026 — Digital Applied</a></li>
+    <li><a class="ext" href="https://postiv.ai/blog/linkedin-posts-specs" target="_blank" rel="noopener">LinkedIn Post Specs 2026 — Postiv</a></li>
+    <li><a class="ext" href="https://creatorflow.so/blog/instagram-post-size-guide/" target="_blank" rel="noopener">Instagram Post Size Guide 2026 — Creatorflow</a></li>
+    <li><a class="ext" href="https://wavegen.ai/social-media-image-sizes" target="_blank" rel="noopener">Social Media Image Sizes 2026 — Wavegen</a></li>
+    <li><a class="ext" href="https://typecount.com/blog/instagram-caption-character-limit" target="_blank" rel="noopener">Instagram Character Limits 2026 — Typecount</a></li>
+  </ul></div>
+</section>
+
+</main>
+</div>
+<script>
+(function(){
+  var links=document.querySelectorAll('#nav a');
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      links.forEach(function(x){x.classList.remove('active')});
+      a.classList.add('active');
+      document.querySelectorAll('main section').forEach(function(s){s.classList.remove('on')});
+      var t=document.getElementById(a.dataset.s);
+      if(t){t.classList.add('on')}
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  // contadores de caracteres
+  document.querySelectorAll('.cb').forEach(function(cb){
+    var pre=cb.querySelector('pre'), cnt=cb.querySelector('.cnt');
+    if(pre&&cnt){cnt.textContent=pre.textContent.length+' car.'}
+  });
+  // copiar
+  document.querySelectorAll('.cpy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var pre=b.closest('.cb').querySelector('pre');
+      if(!pre)return;
+      var txt=pre.textContent;
+      var done=function(){
+        var o=b.textContent; b.textContent='✓ Copiado'; b.classList.add('ok');
+        setTimeout(function(){b.textContent=o;b.classList.remove('ok')},1600);
+      };
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done).catch(function(){fallback(txt,done)});
+      } else {fallback(txt,done)}
+    });
+  });
+  function fallback(txt,done){
+    try{
+      var ta=document.createElement('textarea');
+      ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta); done();
+    }catch(e){}
+  }
+  // filtro de copys
+  var wrap=document.getElementById('cp');
+  if(wrap){
+    wrap.querySelectorAll('.pill').forEach(function(p){
+      p.addEventListener('click',function(){
+        wrap.querySelectorAll('.pill').forEach(function(x){x.classList.remove('on')});
+        p.classList.add('on');
+        var v=p.getAttribute('data-c');
+        document.querySelectorAll('.citem').forEach(function(it){
+          it.style.display=(v==='all'||it.classList.contains(v))?'':'none';
+        });
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
