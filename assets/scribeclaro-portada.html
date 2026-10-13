@@ -1,0 +1,48 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><style>
+*{margin:0;box-sizing:border-box}
+body{width:1600px;height:900px;background:#00284d;font-family:Inter,sans-serif;color:#fff;position:relative;overflow:hidden}
+.glow{position:absolute;right:-220px;top:-260px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,#003f75 0%,rgba(0,63,117,0) 70%)}
+.left{position:absolute;left:120px;top:0;bottom:0;width:820px;display:flex;flex-direction:column;justify-content:center}
+.brand{display:flex;align-items:center;gap:28px;margin-bottom:56px}
+.iso{width:120px;height:120px;border-radius:26px;background:#c8811c;display:flex;align-items:center;justify-content:center;font-family:'DejaVu Serif',Georgia,serif;font-size:84px;color:#00284d;font-weight:700;line-height:1}
+.word{font-size:76px;font-weight:800;letter-spacing:-2px;line-height:1}
+.word span{color:#c8811c}
+.sub{font-size:20px;letter-spacing:.22em;text-transform:uppercase;color:#a9c4dc;font-weight:600;margin-top:10px}
+h1{font-size:54px;line-height:1.15;font-weight:700;letter-spacing:-1px;max-width:780px}
+h1 em{font-style:normal;color:#c8811c}
+.tag{margin-top:40px;font-size:24px;color:#a9c4dc;font-weight:500}
+.tag b{color:#fff;font-weight:600}
+.panel{position:absolute;right:110px;top:190px;width:500px;background:#fff;border-radius:22px;padding:40px 44px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.lab{font-size:15px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.a{color:#a8433a}.d{color:#1d6b45}
+.lines{display:flex;flex-direction:column;gap:13px}
+.l{height:13px;border-radius:7px;background:#dde5ec}
+.messy .l{background:#e9d3cf}
+.clean .l{background:#cfe6d9}
+hr{border:0;border-top:2px dashed #dde5ec;margin:30px 0}
+.stat{margin-top:30px;background:#f4f7fa;border-radius:12px;padding:16px 20px;font-size:21px;font-weight:700;color:#00284d;display:flex;justify-content:space-between}
+.stat span{color:#1d6b45}
+.foot{position:absolute;left:120px;right:120px;bottom:56px;display:flex;justify-content:space-between;font-size:18px;color:#5c86ad;font-weight:500}
+.bar{position:absolute;left:0;top:0;bottom:0;width:14px;background:#c8811c}
+</style></head><body>
+<div class="glow"></div><div class="bar"></div>
+<div class="left">
+  <div class="brand"><div class="iso">¶</div><div><div class="word">Scribe<span>Claro</span></div><div class="sub">PUCV · Lenguaje claro</div></div></div>
+  <h1>La inteligencia artificial que <em>no escribe por ti</em>: te enseña a escribir claro.</h1>
+  <p class="tag"><b>Analiza.</b> No escribe. <b>Tú corriges.</b></p>
+</div>
+<div class="panel">
+  <div class="lab a">Antes</div>
+  <div class="lines messy">
+    <div class="l" style="width:100%"></div><div class="l" style="width:94%"></div><div class="l" style="width:100%"></div>
+    <div class="l" style="width:97%"></div><div class="l" style="width:100%"></div><div class="l" style="width:62%"></div>
+  </div>
+  <hr>
+  <div class="lab d">Después</div>
+  <div class="lines clean">
+    <div class="l" style="width:78%"></div><div class="l" style="width:58%"></div><div class="l" style="width:70%"></div>
+  </div>
+  <div class="stat">Texto más breve y directo <span>✓</span></div>
+</div>
+<div class="foot"><span>Pontificia Universidad Católica de Valparaíso</span><span>#ClaroEstá</span></div>
+</body></html>
