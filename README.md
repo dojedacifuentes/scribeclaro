@@ -15,6 +15,7 @@ index.html        Portada
 estrategia.html   Panel estratégico  → /estrategia
 rrss.html         Kit de redes       → /rrss
 vercel.json       Clean URLs, redirecciones y cabeceras
+assets/           Imágenes de marca (portada 1600×900 y su HTML fuente)
 ```
 
 No hay build ni dependencias: son tres páginas HTML autónomas (CSS y JS en línea, sin recursos externos).
